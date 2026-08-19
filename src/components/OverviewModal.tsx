@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Eye, Compass, Sun, Moon, Check, ArrowRight } from 'lucide-react';
+import { X, Eye, Compass, Sun, Moon, CheckCircle2, ArrowRight, Maximize2, Sparkles } from 'lucide-react';
 import { PropertyData } from '../types';
 
 interface OverviewModalProps {
@@ -111,7 +111,7 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
         {/* Header - Fixed & Sticky */}
         <div className="shrink-0 px-6 py-4 bg-[#0a162b] border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-cyan-600/30 border border-cyan-400/50 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-cyan-600/30 border border-cyan-400/50 flex items-center justify-center shadow-[0_0_10px_rgba(6,182,212,0.3)]">
               <Eye className="w-4 h-4 text-cyan-300" />
             </div>
             <div>
@@ -129,29 +129,29 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
             <div className="flex items-center bg-white/5 border border-white/10 rounded-full p-0.5 text-xs">
               <button
                 onClick={() => setLightingMode('day')}
-                className={`px-2.5 py-1 rounded-full flex items-center gap-1 cursor-pointer transition-colors ${
-                  lightingMode === 'day' ? 'bg-amber-500/30 text-amber-200 border border-amber-400/40 font-semibold' : 'text-slate-400 hover:text-white'
+                className={`px-3 py-1 rounded-full flex items-center gap-1.5 cursor-pointer transition-all ${
+                  lightingMode === 'day' ? 'bg-amber-500/30 text-amber-200 border border-amber-400/60 font-bold shadow-[0_0_8px_rgba(245,158,11,0.3)]' : 'text-slate-400 hover:text-white'
                 }`}
               >
-                <Sun className="w-3 h-3" />
+                <Sun className="w-3.5 h-3.5" />
                 <span>Day</span>
               </button>
               <button
                 onClick={() => setLightingMode('twilight')}
-                className={`px-2.5 py-1 rounded-full flex items-center gap-1 cursor-pointer transition-colors ${
-                  lightingMode === 'twilight' ? 'bg-cyan-600/40 text-cyan-200 border border-cyan-400/40 font-semibold' : 'text-slate-400 hover:text-white'
+                className={`px-3 py-1 rounded-full flex items-center gap-1.5 cursor-pointer transition-all ${
+                  lightingMode === 'twilight' ? 'bg-cyan-600/50 text-cyan-100 border border-cyan-400/70 font-bold shadow-[0_0_10px_rgba(6,182,212,0.4)]' : 'text-slate-400 hover:text-white'
                 }`}
               >
-                <Compass className="w-3 h-3" />
+                <Compass className="w-3.5 h-3.5" />
                 <span>Twilight</span>
               </button>
               <button
                 onClick={() => setLightingMode('night')}
-                className={`px-2.5 py-1 rounded-full flex items-center gap-1 cursor-pointer transition-colors ${
-                  lightingMode === 'night' ? 'bg-indigo-600/40 text-indigo-200 border border-indigo-400/40 font-semibold' : 'text-slate-400 hover:text-white'
+                className={`px-3 py-1 rounded-full flex items-center gap-1.5 cursor-pointer transition-all ${
+                  lightingMode === 'night' ? 'bg-indigo-600/50 text-indigo-100 border border-indigo-400/70 font-bold shadow-[0_0_10px_rgba(99,102,241,0.4)]' : 'text-slate-400 hover:text-white'
                 }`}
               >
-                <Moon className="w-3 h-3" />
+                <Moon className="w-3.5 h-3.5" />
                 <span>Night</span>
               </button>
             </div>
@@ -166,7 +166,7 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
         </div>
 
         {/* Room Navigation Tabs - Fixed */}
-        <div className="shrink-0 px-6 py-2.5 bg-[#060e1b] border-b border-white/5 flex gap-2 overflow-x-auto no-scrollbar">
+        <div className="shrink-0 px-6 py-3 bg-[#060e1b] border-b border-white/10 flex gap-2 overflow-x-auto no-scrollbar">
           {[
             { id: 'greatRoom', label: 'Great Room & Salon' },
             { id: 'masterSuite', label: 'Primary Sanctuary' },
@@ -177,10 +177,10 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
             <button
               key={tab.id}
               onClick={() => setSelectedRoom(tab.id as any)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+              className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 selectedRoom === tab.id
-                  ? 'bg-cyan-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.4)]'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+                  ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-[0_0_15px_rgba(6,182,212,0.5)] border border-cyan-400/60'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5 border border-transparent'
               }`}
             >
               {tab.label}
@@ -188,13 +188,13 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
           ))}
         </div>
 
-        {/* Modal Main Body - Dedicated Internal Scroll Container */}
+        {/* Modal Main Body */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             
             {/* Visualizer Image (lg:col-span-7) */}
-            <div className="lg:col-span-7 space-y-3">
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 h-72 lg:h-96 bg-slate-900 shadow-xl group">
+            <div className="lg:col-span-7 space-y-4">
+              <div className="relative rounded-2xl overflow-hidden border border-cyan-500/30 h-72 lg:h-96 bg-slate-900 shadow-xl group">
                 <img
                   src={activeRoom.image}
                   alt={activeRoom.name}
@@ -211,31 +211,33 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
                 )}
 
                 {/* Badge Overlay */}
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-xs font-mono font-semibold flex items-center gap-1.5">
+                <div className="absolute top-3 left-3 px-3.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-cyan-400/50 text-white text-xs font-mono font-bold flex items-center gap-2 shadow-[0_0_12px_rgba(6,182,212,0.3)]">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>Spatial Mode: 4K Architectural Render</span>
+                  <span>Spatial Mode: 4K Architectural Twin</span>
                 </div>
 
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
-                  <span className="font-mono text-cyan-300 font-semibold">{activeRoom.ceiling}</span>
-                  <span className="text-slate-300">{activeRoom.exposure}</span>
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/70 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-white/20">
+                  <span className="font-mono text-cyan-300 font-bold">{activeRoom.ceiling}</span>
+                  <span className="text-slate-200 font-medium">{activeRoom.exposure}</span>
                   <span className="font-mono font-bold text-amber-300 tabular-nums">{activeRoom.sqft}</span>
                 </div>
               </div>
 
-              {/* Quick Spec Metrics Grid */}
-              <div className="grid grid-cols-3 gap-2.5 text-center text-xs">
-                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-slate-400 text-[10px] uppercase font-semibold">Living Space</div>
-                  <div className="font-bold text-white font-mono tabular-nums">6,450 Sq Ft</div>
+              {/* 3 HIGH-CONTRAST VALUE PROP METRIC CARDS (POP & STAND OUT) */}
+              <div className="grid grid-cols-3 gap-3 text-center">
+                <div className="p-3.5 rounded-2xl bg-gradient-to-br from-[#0c2347] to-[#071326] border border-cyan-400/50 shadow-[0_4px_15px_rgba(6,182,212,0.25),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:scale-[1.02] transition-transform">
+                  <div className="text-cyan-300 text-[10.5px] uppercase font-bold tracking-wider font-mono">Living Space</div>
+                  <div className="font-bold text-white font-mono text-base lg:text-lg tabular-nums mt-0.5 drop-shadow">6,450 Sq Ft</div>
                 </div>
-                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-slate-400 text-[10px] uppercase font-semibold">Outdoor Living</div>
-                  <div className="font-bold text-amber-300 font-mono tabular-nums">1,200 Sq Ft</div>
+
+                <div className="p-3.5 rounded-2xl bg-gradient-to-br from-[#2a220e] to-[#141005] border border-[#E6CA65]/60 shadow-[0_4px_15px_rgba(191,167,117,0.3),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:scale-[1.02] transition-transform">
+                  <div className="text-[#E6CA65] text-[10.5px] uppercase font-bold tracking-wider font-mono">Outdoor Living</div>
+                  <div className="font-bold text-[#F3E2B8] font-mono text-base lg:text-lg tabular-nums mt-0.5 drop-shadow">1,200 Sq Ft</div>
                 </div>
-                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-slate-400 text-[10px] uppercase font-semibold">Exposure</div>
-                  <div className="font-bold text-cyan-300">South-West (Lake)</div>
+
+                <div className="p-3.5 rounded-2xl bg-gradient-to-br from-[#0d2a4d] to-[#08182b] border border-cyan-400/50 shadow-[0_4px_15px_rgba(6,182,212,0.25),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:scale-[1.02] transition-transform">
+                  <div className="text-cyan-300 text-[10.5px] uppercase font-bold tracking-wider font-mono">Exposure</div>
+                  <div className="font-bold text-cyan-200 text-sm lg:text-base mt-0.5 drop-shadow">South-West (Lake)</div>
                 </div>
               </div>
             </div>
@@ -243,41 +245,45 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
             {/* Room Details & Specifications (lg:col-span-5) */}
             <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
               <div>
-                <div className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold mb-1">
+                <div className="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold mb-1">
                   Room Portfolio
                 </div>
-                <h4 className="text-xl font-display font-bold text-white mb-2">
+                <h4 className="text-2xl font-display font-bold text-white mb-2 drop-shadow">
                   {activeRoom.name}
                 </h4>
                 <p className="text-xs text-slate-300 leading-relaxed mb-4">
                   Engineered with architectural perfection for seamless entertaining and supreme private discretion.
                 </p>
 
-                <div className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold mb-2">
+                <div className="text-xs font-mono uppercase tracking-wider text-cyan-300 font-bold mb-2.5">
                   Architectural Inclusions
                 </div>
 
-                <div className="space-y-2.5">
+                {/* Elevated Inclusion Cards */}
+                <div className="space-y-2">
                   {activeRoom.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-slate-200">
-                      <Check className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                      <span>{feat}</span>
+                    <div
+                      key={idx}
+                      className="flex items-start gap-2.5 p-3 rounded-xl bg-gradient-to-r from-[#0d2242]/90 to-[#08152b]/90 border border-cyan-500/30 text-xs text-slate-100 shadow-sm"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                      <span className="leading-relaxed">{feat}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Inquiry trigger */}
+              {/* Inquiry Trigger */}
               <div className="pt-4 border-t border-white/10">
                 <button
                   onClick={() => {
                     onClose();
                     onOpenConciergeQuestion(`Tell me more about the architectural specifications for the ${activeRoom.name} in Suite 5200.`);
                   }}
-                  className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all"
+                  className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all hover:scale-[1.02]"
                 >
                   <span>Ask ARGUS About {activeRoom.name}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -288,7 +294,7 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
         {/* Footer - Fixed & Sticky */}
         <div className="shrink-0 px-6 py-3 bg-[#0a162b] border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
           <span>Four Seasons Private Residences · 50 Yorkville Ave, Toronto</span>
-          <span className="text-cyan-400 font-mono font-semibold">Direct Private Elevator Keying</span>
+          <span className="text-cyan-400 font-mono font-bold">Direct Private Elevator Keying</span>
         </div>
       </div>
     </div>

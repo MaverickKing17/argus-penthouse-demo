@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Layers, Sparkles, Droplets, Cpu, Volume2, ArrowRight } from 'lucide-react';
+import { X, Layers, Sparkles, Droplets, Cpu, Volume2, ArrowRight, CheckCircle2, Shield } from 'lucide-react';
 import { PropertyData } from '../types';
 
 interface SpecificationsModalProps {
@@ -31,6 +31,7 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
     millwork: {
       title: 'Poliform Bespoke Italian Cabinetry & Architectural Joinery',
       subtitle: 'Engineered in Brianza, Italy with hand-applied satin polyurethane finishes',
+      badge: 'Master Italian Joinery',
       items: [
         { label: 'Culinary Cabinetry', val: 'Poliform Varenna Shape Matrix in Matte Fume Glass and Fluted Black Walnut' },
         { label: 'Wardrobe Systems', val: 'Poliform Senzafine wardrobe galleries with integrated LED vertical profiles and smoky glass doors' },
@@ -42,6 +43,7 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
     appliances: {
       title: 'Commercial-Grade Culinary Suite',
       subtitle: 'Dual-fuel precision cooking by Sub-Zero, Wolf, and Gaggenau',
+      badge: 'Michelin Precision',
       items: [
         { label: 'Refrigeration', val: 'Sub-Zero 48\" Designer series column refrigerator & freezer with internal ice dispenser' },
         { label: 'Cooking Suite', val: 'Wolf 48\" Dual Fuel Range with 6 dual-stacked sealed burners and infrared griddle' },
@@ -53,6 +55,7 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
     materials: {
       title: 'Slab Stone & Premium Architectural Materials',
       subtitle: 'Bookmatched slabs sourced directly from Carrara and Tuscany',
+      badge: 'Natural Tuscan Slabs',
       items: [
         { label: 'Kitchen Island & Counters', val: 'Continuous 14-foot monolithic slab of Calacatta Borghini marble with mitered waterfall edges' },
         { label: 'Primary Bathroom', val: 'Full-slab Fior di Bosco heated marble walls, vanity deck, and zero-threshold steam shower' },
@@ -64,6 +67,7 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
     automation: {
       title: 'Lutron Palladiom & Savant Whole-Home Automation',
       subtitle: 'Centralized micro-control for lighting, climate, shades, and high-fidelity audio',
+      badge: 'Intelligent Automation',
       items: [
         { label: 'Lighting Controls', val: 'Lutron Palladiom keypads in custom Satin Nickel with backlit engraved buttons' },
         { label: 'Motorized Shading', val: 'Lutron Palladiom dual-roller automated shades (99% blackout in bedrooms, 3% solar in living)' },
@@ -75,6 +79,7 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
     acoustics: {
       title: 'Acoustic Engineering & Triple-Pane Fenestration',
       subtitle: 'Engineered STC rating of 54 for total library-level tranquility 52 floors above Yorkville',
+      badge: 'STC 54 Acoustic Mat',
       items: [
         { label: 'Curtain Wall', val: 'Schüco structural aluminum curtain wall with triple-glazed low-iron acoustic laminate glass' },
         { label: 'Solar & Thermal', val: 'Argon-gas filled cavities with multi-layer Low-E coatings minimizing solar gain and UV fading' },
@@ -93,7 +98,7 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
         {/* Header - Fixed & Sticky */}
         <div className="shrink-0 px-6 py-4 bg-[#0a162b] border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center shadow-[0_0_10px_rgba(191,167,117,0.3)]">
               <Layers className="w-4 h-4 text-amber-300" />
             </div>
             <div>
@@ -115,7 +120,7 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
         </div>
 
         {/* Categories Bar - Fixed with 2px Luxe Gold Bottom Accent Bar */}
-        <div className="shrink-0 px-6 py-3 bg-[#060e1b] border-b border-white/5 flex gap-2 overflow-x-auto no-scrollbar">
+        <div className="shrink-0 px-6 py-3 bg-[#060e1b] border-b border-white/10 flex gap-2 overflow-x-auto no-scrollbar">
           {specCategories.map((cat) => {
             const Icon = cat.icon;
             const isActive = activeCategory === cat.id;
@@ -123,10 +128,10 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id as any)}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer relative ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer relative ${
                   isActive
-                    ? 'bg-amber-500/20 text-[#F3E2B8] border border-[#BFA775]/50 border-b-2 border-b-[#BFA775] shadow-[0_0_12px_rgba(191,167,117,0.25)]'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+                    ? 'bg-gradient-to-r from-amber-500/25 to-[#BFA775]/20 text-[#F3E2B8] border border-[#BFA775] border-b-2 border-b-[#BFA775] shadow-[0_0_15px_rgba(191,167,117,0.35)]'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5 border border-transparent'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -136,22 +141,37 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
           })}
         </div>
 
-        {/* Main Body - Dedicated Internal Scroll Container */}
+        {/* Main Body - VALUE PROP CARDS POP WITH LUMINOUS GRADIENTS & HIGHLIGHTS */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           <div>
-            <h4 className="text-lg font-display font-bold text-white mb-1">{current.title}</h4>
-            <p className="text-xs text-[#E6CA65] font-mono mb-4">{current.subtitle}</p>
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="text-lg sm:text-xl font-display font-bold text-white tracking-wide">{current.title}</h4>
+              <span className="px-3 py-1 rounded-full bg-amber-500/20 text-[#F3E2B8] border border-[#BFA775]/60 text-xs font-mono font-bold shadow-[0_0_10px_rgba(191,167,117,0.25)]">
+                {current.badge}
+              </span>
+            </div>
+            <p className="text-xs text-[#E6CA65] font-mono mb-5">{current.subtitle}</p>
 
-            <div className="grid grid-cols-1 gap-3">
+            {/* VALUE PROP SPECIFICATION CARDS WITH HIGH VISUAL CONTRAST & DEPTH */}
+            <div className="grid grid-cols-1 gap-3.5">
               {current.items.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-4 rounded-xl bg-white/5 border border-white/10 border-t border-t-white/20 hover:border-cyan-400/40 transition-colors shadow-sm"
+                  className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#0d2242]/95 via-[#0a1a33]/90 to-[#071326]/95 border border-cyan-500/35 hover:border-cyan-400/70 shadow-[0_6px_25px_rgba(0,0,0,0.45),inset_0_1px_1px_rgba(255,255,255,0.18)] hover:scale-[1.01] transition-all relative overflow-hidden group"
                 >
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-cyan-300 font-semibold mb-1">
-                    {item.label}
+                  {/* Subtle left accent bar */}
+                  <div className="absolute top-0 bottom-0 left-0 w-1 bg-gradient-to-b from-cyan-400 via-teal-400 to-transparent"></div>
+
+                  <div className="flex items-center justify-between mb-1.5 pl-2">
+                    <span className="px-2.5 py-0.5 rounded-md bg-cyan-500/20 text-cyan-200 border border-cyan-400/50 text-[11px] font-mono font-bold uppercase tracking-wider shadow-[0_0_8px_rgba(6,182,212,0.3)]">
+                      {item.label}
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-400 group-hover:text-cyan-300 transition-colors">
+                      Spec #{idx + 1}
+                    </span>
                   </div>
-                  <div className="text-xs lg:text-sm text-slate-200 font-normal leading-relaxed">
+
+                  <div className="text-sm lg:text-[15px] text-white font-medium pl-2 leading-relaxed drop-shadow-sm">
                     {item.val}
                   </div>
                 </div>
@@ -162,15 +182,16 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
 
         {/* Footer - Fixed & Sticky */}
         <div className="shrink-0 px-6 py-3.5 bg-[#0a162b] border-t border-white/10 flex items-center justify-between">
-          <div className="text-xs text-slate-400">
-            Certified Four Seasons Architectural Compliance · 2026 Updated Specs
+          <div className="text-xs text-slate-400 flex items-center gap-1.5">
+            <Shield className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Certified Four Seasons Architectural Compliance · 2026 Updated Specs</span>
           </div>
           <button
             onClick={() => {
               onClose();
               onOpenConciergeQuestion(`Can you provide more technical details on the ${current.title}?`);
             }}
-            className="py-2 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-md transition-colors"
+            className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-lg hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all hover:scale-[1.02]"
           >
             <span>Ask ARGUS About Materials</span>
             <ArrowRight className="w-3.5 h-3.5" />

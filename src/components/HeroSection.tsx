@@ -55,11 +55,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           {/* Location Pin */}
           <div className="flex items-start gap-3 text-slate-200 drop-shadow-md mb-8">
-            <div className="w-8 h-8 rounded-full bg-black/40 border border-white/20 flex items-center justify-center shrink-0 mt-0.5 backdrop-blur-md">
+            <div className="w-8 h-8 rounded-full bg-black/50 border border-white/30 flex items-center justify-center shrink-0 mt-0.5 backdrop-blur-md shadow-[0_0_12px_rgba(230,202,101,0.3)]">
               <MapPin className="w-4 h-4 text-[#E6CA65]" />
             </div>
             <div className="leading-tight">
-              <div className="font-semibold text-sm sm:text-base text-white">
+              <div className="font-semibold text-sm sm:text-base text-white drop-shadow">
                 50 Yorkville Avenue, Toronto
               </div>
               <div className="text-xs text-slate-300 font-light mt-0.5">
@@ -68,11 +68,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
           </div>
 
-          {/* Interactive Architectural Action Pills */}
-          <div className="flex flex-wrap items-center gap-2.5">
+          {/* High-Contrast Value Prop Exploration Action Pills */}
+          <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={onOpenOverview}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold backdrop-blur-md border border-white/15 transition-all cursor-pointer shadow-md hover:border-cyan-400/50"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0a1b38]/80 hover:bg-[#0f2c5e] text-white text-xs font-bold backdrop-blur-md border border-cyan-400/50 hover:border-cyan-300 shadow-[0_4px_15px_rgba(6,182,212,0.25),inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all cursor-pointer hover:scale-105"
             >
               <Eye className="w-3.5 h-3.5 text-cyan-300" />
               <span>3D Digital Twin</span>
@@ -80,7 +80,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <button
               onClick={onOpenSpecs}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold backdrop-blur-md border border-white/15 transition-all cursor-pointer shadow-md hover:border-cyan-400/50"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#201a0d]/80 hover:bg-[#332912] text-[#F3E2B8] text-xs font-bold backdrop-blur-md border border-[#BFA775]/60 hover:border-[#E6CA65] shadow-[0_4px_15px_rgba(191,167,117,0.3),inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all cursor-pointer hover:scale-105"
             >
               <Layers className="w-3.5 h-3.5 text-[#E6CA65]" />
               <span>Poliform Matrix</span>
@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <button
               onClick={onOpenFinancials}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold backdrop-blur-md border border-white/15 transition-all cursor-pointer shadow-md hover:border-cyan-400/50"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0c261b]/80 hover:bg-[#143d2c] text-emerald-200 text-xs font-bold backdrop-blur-md border border-emerald-400/50 hover:border-emerald-300 shadow-[0_4px_15px_rgba(16,185,129,0.25),inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all cursor-pointer hover:scale-105"
             >
               <Calculator className="w-3.5 h-3.5 text-emerald-300" />
               <span>Carrying Costs</span>
@@ -96,7 +96,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <button
               onClick={onOpenNeighborhood}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold backdrop-blur-md border border-white/15 transition-all cursor-pointer shadow-md hover:border-cyan-400/50"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0a1b38]/80 hover:bg-[#0f2c5e] text-cyan-200 text-xs font-bold backdrop-blur-md border border-cyan-400/50 hover:border-cyan-300 shadow-[0_4px_15px_rgba(6,182,212,0.25),inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all cursor-pointer hover:scale-105"
             >
               <Compass className="w-3.5 h-3.5 text-cyan-300" />
               <span>Yorkville District</span>
