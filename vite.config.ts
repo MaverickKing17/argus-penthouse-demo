@@ -35,8 +35,11 @@ function geminiApiPlugin(): Plugin {
 
             if (url === '/api/chat') {
               try {
-                const { messages = [], userInput = '' } = body;
-                const apiKey = process.env.GEMINI_API_KEY;
+                const { messages = [], userInput = '', conversationId = 'argus-user-1' } = body;
+                const geminiKey = process.env.GEMINI_API_KEY;
+                const botpressKey = process.env.BOTPRESS_API_KEY || process.env.BOTPRESS_PAT;
+                const botpressBotId = process.env.BOTPRESS_BOT_ID;
+                const botpressWebhook = process.env.BOTPRESS_WEBHOOK_URL;
 
                 const PENTHOUSE_SPECS = {
                   property: 'Penthouse Suite 5200, Four Seasons Private Residences',
@@ -65,9 +68,111 @@ function geminiApiPlugin(): Plugin {
                   if (match) extractedBudget = match[0].toUpperCase();
                 }
 
-                if (apiKey) {
+                // 1. PRIMARY ROUTE: BOTPRESS INTEGRATION (If credentials provided)
+                let botpressReply: string | null = null;
+
+                if (botpressWebhook) {
+                  try {
+                    const bpRes = await fetch(botpressWebhook, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        type: 'text',
+                        text: userInput,
+                        conversationId,
+                        user: { id: conversationId },
+                      }),
+                    });
+
+                    if (bpRes.ok) {
+                      const bpData: any = await bpRes.json();
+                      if (bpData.responses && bpData.responses.length > 0) {
+                        botpressReply = bpData.responses.map((r: any) => r.text).join('\n\n');
+                      } else if (bpData.text) {
+                        botpressReply = bpData.text;
+                      }
+                    }
+                  } catch (bpErr) {
+                    console.warn('Botpress Webhook call failed, falling back to Gemini:', bpErr);
+                  }
+                } else if (botpressKey && botpressBotId) {
+                  try {
+                    // Botpress Cloud API
+                    const bpRes = await fetch(`https://api.botpress.cloud/v1/chat/messages`, {
+                      method: 'POST',
+                      headers: {
+                        'Authorization': `Bearer ${botpressKey}`,
+                        'x-bot-id': botpressBotId,
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        payload: {
+                          type: 'text',
+                          text: userInput,
+                        },
+                        conversationId,
+                      }),
+                    });
+
+                    if (bpRes.ok) {
+                      const bpData: any = await bpRes.json();
+                      if (bpData.message?.payload?.text) {
+                        botpressReply = bpData.message.payload.text;
+                      } else if (bpData.text) {
+                        botpressReply = bpData.text;
+                      }
+                    }
+                  } catch (bpErr) {
+                    console.warn('Botpress Cloud API call failed, falling back to Gemini:', bpErr);
+                  }
+                }
+
+                // If Botpress returned a valid response, formulate qualification payload & return
+                if (botpressReply) {
+                  const botpressOutput = {
+                    reply: botpressReply,
+                    source: 'botpress',
+                    qualification: {
+                      leadStatus: isCash || isBudget ? 'HOT LEAD' : 'QUALIFIED PROSPECT',
+                      leadBadge: isCash ? '$5.5M CASH BUYER' : '$15.8M QUALIFIED HNWI',
+                      confidenceScore: isCash ? 96 : 92,
+                      leadQuality: 'Excellent',
+                      intentLevel: isViewing || isCash ? 'High' : 'High',
+                      riskLevel: 'Low',
+                      estimatedBudget: extractedBudget,
+                      purchaseStructure: isCash ? 'Cash' : 'Liquid Capital Pool',
+                      liquidAllocationTimeline: isViewing ? '< 30 Days' : '< 90 Days',
+                      representation: isUnrepresented ? 'Unrepresented' : 'Unrepresented',
+                      propertyInterest: 'Suite 5200',
+                      locationPreference: 'Yorkville, Toronto',
+                      propertyType: 'Ultra-Luxury Penthouse',
+                      intentScore: 5,
+                      summaryPills: [
+                        'Verified ID',
+                        isCash ? 'Budget: $5M+' : 'Budget: $15M+',
+                        isCash ? 'Cash Acquisition' : 'Capital Allocation',
+                        'Timeline: <90 Days',
+                        'Unrepresented',
+                        'High Intent',
+                      ],
+                      extractedInsights: [
+                        isCash ? 'Buyer indicated cash purchase structure' : 'Buyer evaluating prime tier-one luxury asset',
+                        'Budget range confirmed within target parameters ($5M+)',
+                        'Target acquisition timeline within 90 days',
+                        'Direct engagement via Botpress Intelligence Core',
+                        isViewing ? 'Requested private viewing coordination' : 'Expressed interest in private viewing',
+                      ],
+                    },
+                  };
+
+                  res.setHeader('Content-Type', 'application/json');
+                  return res.end(JSON.stringify(botpressOutput));
+                }
+
+                // 2. SECONDARY / FALLBACK ROUTE: GEMINI SAGE PERSONA
+                if (geminiKey) {
                   const ai = new GoogleGenAI({
-                    apiKey: apiKey,
+                    apiKey: geminiKey,
                     httpOptions: {
                       headers: {
                         'User-Agent': 'aistudio-build',
@@ -101,6 +206,7 @@ Guide qualified prospects toward scheduling a private viewing or demonstration.
 REQUIRED JSON OUTPUT FORMAT:
 {
   "reply": "Sage response text ending with a consultative follow-up question to extract qualification signals.",
+  "source": "gemini",
   "qualification": {
     "leadStatus": "HOT LEAD",
     "leadBadge": "$5.5M CASH BUYER",
@@ -148,7 +254,7 @@ REQUIRED JSON OUTPUT FORMAT:
                   return res.end(JSON.stringify(parsed));
                 }
 
-                // Fallback high-fidelity Sage response if API key is not configured
+                // 3. TERTIARY ROUTE: DETERMINISTIC HIGH-FIDELITY LUXURY ADVISORY
                 let reply = 'A cash acquisition structure eliminates third-party financing contingencies and materially alters the carrying dynamics for an asset of this caliber. To calibrate the portfolio model accurately for Suite 5200, what approximate acquisition budget and liquid capital allocation horizon are you currently working with?';
                 
                 if (isCarryingCosts) {
@@ -163,6 +269,7 @@ REQUIRED JSON OUTPUT FORMAT:
 
                 const fallbackData = {
                   reply,
+                  source: 'deterministic-sage',
                   qualification: {
                     leadStatus: isCash || isBudget ? 'HOT LEAD' : 'QUALIFIED PROSPECT',
                     leadBadge: isCash ? '$5.5M CASH BUYER' : '$15.8M QUALIFIED HNWI',

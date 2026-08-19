@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { BrokerQualificationView } from './components/BrokerQualificationView';
@@ -43,6 +43,35 @@ export default function App() {
   const [isContactLeadOpen, setIsContactLeadOpen] = useState(false);
   const [isScheduleCallOpen, setIsScheduleCallOpen] = useState(false);
   const [isPrivateDemoOpen, setIsPrivateDemoOpen] = useState(false);
+
+  // Listen to Botpress Webchat events if present
+  useEffect(() => {
+    const handleBotpressMessage = (event: MessageEvent) => {
+      try {
+        if (event.data && typeof event.data === 'object') {
+          if (event.data.type === 'botpress-webchat:message' || event.data.action === 'send') {
+            const text = event.data.payload?.text || event.data.text || '';
+            if (/cash/i.test(text)) {
+              setQualification((prev) => ({
+                ...prev,
+                leadStatus: 'HOT LEAD',
+                leadBadge: '$5.5M CASH BUYER',
+                confidenceScore: 96,
+                purchaseStructure: 'Cash',
+                estimatedBudget: '$5,000,000 - $6,000,000',
+                lastUpdated: `Today, ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`,
+              }));
+            }
+          }
+        }
+      } catch (e) {
+        // ignore non-json messages
+      }
+    };
+
+    window.addEventListener('message', handleBotpressMessage);
+    return () => window.removeEventListener('message', handleBotpressMessage);
+  }, []);
 
   const handleNavClick = (tabId: string) => {
     setActiveTab(tabId);
