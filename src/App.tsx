@@ -16,6 +16,7 @@ import { INITIAL_PROPERTY_DATA, INITIAL_QUALIFICATION } from './data/propertyDat
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('concierge');
+  const [viewportMode, setViewportMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [property] = useState(INITIAL_PROPERTY_DATA);
   const [qualification, setQualification] = useState<QualificationData>(INITIAL_QUALIFICATION);
   const [inputValue, setInputValue] = useState('');
@@ -109,7 +110,6 @@ export default function App() {
       }
     } catch (err) {
       console.error('Error contacting ARGUS intelligence layer:', err);
-      // High-precision fallback response preserving the Sage archetype
       const isCash = /cash/i.test(userMsg.content);
       const fallbackReply = isCash
         ? 'A cash acquisition eliminates mortgage financing overhead and accelerates the conveyancing timeline to under 14 business days. For Suite 5200 (offered at $15,800,000 CAD), what liquid capital allocation range and closing horizon are you currently targeting?'
@@ -162,36 +162,49 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#070e1b] text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
-      {/* Top Header */}
+      {/* Top Header with Viewport Mode Switcher */}
       <Header
         activeTab={activeTab}
         setActiveTab={handleNavClick}
         onRequestDemo={() => setIsPrivateDemoOpen(true)}
+        viewportMode={viewportMode}
+        setViewportMode={setViewportMode}
       />
 
-      {/* Main Penthouse Showcase & Floating ARGUS Concierge */}
-      <main className="flex-1">
-        <HeroConcierge
-          property={property}
-          messages={messages}
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          onSendMessage={handleSendMessage}
-          isLoading={isLoading}
-          onResetChat={handleResetChat}
-          onOpenSpecs={() => setIsSpecsOpen(true)}
-          onOpenFinancials={() => setIsFinancialsOpen(true)}
-          onOpenSchedule={() => setIsScheduleCallOpen(true)}
-        />
+      {/* Main Container with Smooth Responsive Viewport Simulation */}
+      <div
+        className={`flex-1 transition-all duration-300 w-full ${
+          viewportMode === 'tablet'
+            ? 'max-w-[780px] mx-auto my-4 rounded-3xl border-2 border-cyan-500/40 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden bg-[#070E1B]'
+            : viewportMode === 'mobile'
+            ? 'max-w-[400px] mx-auto my-4 rounded-[36px] border-2 border-cyan-500/40 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden bg-[#070E1B]'
+            : 'w-full'
+        }`}
+      >
+        <main className="flex-1">
+          {/* Unobstructed Hero Showcase & Right-Anchored Glassmorphic ARGUS Concierge */}
+          <HeroConcierge
+            property={property}
+            messages={messages}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            onSendMessage={handleSendMessage}
+            isLoading={isLoading}
+            onResetChat={handleResetChat}
+            onOpenSpecs={() => setIsSpecsOpen(true)}
+            onOpenFinancials={() => setIsFinancialsOpen(true)}
+            onOpenSchedule={() => setIsScheduleCallOpen(true)}
+          />
 
-        {/* Real-Time Broker Lead Qualification View (Bottom Live Section) */}
-        <BrokerQualificationView
-          qualification={qualification}
-          onViewProfile={() => setIsLeadProfileOpen(true)}
-          onContactLead={() => setIsContactLeadOpen(true)}
-          onScheduleCall={() => setIsScheduleCallOpen(true)}
-        />
-      </main>
+          {/* Real-Time Broker Lead Qualification View (Bottom Live Section) */}
+          <BrokerQualificationView
+            qualification={qualification}
+            onViewProfile={() => setIsLeadProfileOpen(true)}
+            onContactLead={() => setIsContactLeadOpen(true)}
+            onScheduleCall={() => setIsScheduleCallOpen(true)}
+          />
+        </main>
+      </div>
 
       {/* Footer */}
       <Footer />
