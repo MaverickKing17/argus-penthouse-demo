@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, DollarSign, Calculator, ShieldCheck, PieChart, TrendingUp, ArrowRight, Building, CheckCircle2 } from 'lucide-react';
+import { X, DollarSign, Calculator, TrendingUp, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { PropertyData } from '../types';
 
 interface FinancialsModalProps {
@@ -26,17 +26,13 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
   const listPrice = property.priceCad * fxRate;
 
   // Land Transfer Tax Calculation (Ontario Provincial + Toronto Municipal)
-  // On $15.8M CAD:
-  // Ontario LTT: ~$392,475 CAD
-  // Toronto MLTT: ~$392,475 CAD
-  // Total LTT: ~$784,950 CAD (~$577,000 USD)
   const lttTotalCad = 784950;
   const lttTotal = lttTotalCad * fxRate;
 
   // Monthly Operating Costs
   const monthlyMaintenance = property.monthlyMaintenanceCad * fxRate;
   const monthlyPropertyTax = (property.taxesAnnualCad / 12) * fxRate;
-  const monthlyInsurance = 950 * fxRate; // Estimated luxury contents & liability
+  const monthlyInsurance = 950 * fxRate;
   const baselineMonthly = monthlyMaintenance + monthlyPropertyTax + monthlyInsurance;
 
   // Financed numbers
@@ -61,7 +57,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
               <Calculator className="w-4 h-4 text-emerald-300" />
             </div>
             <div>
-              <h3 className="text-base font-serif font-bold text-white tracking-wide">
+              <h3 className="text-base font-display font-bold text-white tracking-wide">
                 Suite 5200: Carrying Cost & Acquisition Structure Model
               </h3>
               <p className="text-xs text-slate-400">
@@ -75,7 +71,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
             <div className="flex items-center bg-white/5 border border-white/10 rounded-lg p-0.5 text-xs">
               <button
                 onClick={() => setCurrency('CAD')}
-                className={`px-2.5 py-1 rounded-md font-mono transition-colors cursor-pointer ${
+                className={`px-2.5 py-1 rounded-md font-mono transition-colors cursor-pointer tabular-nums ${
                   currency === 'CAD' ? 'bg-cyan-600 text-white font-bold' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -83,7 +79,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
               </button>
               <button
                 onClick={() => setCurrency('USD')}
-                className={`px-2.5 py-1 rounded-md font-mono transition-colors cursor-pointer ${
+                className={`px-2.5 py-1 rounded-md font-mono transition-colors cursor-pointer tabular-nums ${
                   currency === 'USD' ? 'bg-cyan-600 text-white font-bold' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -102,20 +98,20 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          {/* Purchase Structure Selector */}
+          {/* Purchase Structure Selector with Cyan Outer Glow for active selection */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div
               onClick={() => setPurchaseType('cash')}
               className={`p-4 rounded-2xl border transition-all cursor-pointer ${
                 purchaseType === 'cash'
-                  ? 'bg-gradient-to-br from-emerald-950/60 to-cyan-950/40 border-emerald-400/50 shadow-[0_0_20px_rgba(16,185,129,0.15)]'
+                  ? 'bg-gradient-to-br from-emerald-950/60 to-cyan-950/40 border-emerald-400/50 shadow-[0_0_12px_rgba(56,190,201,0.25)]'
                   : 'bg-white/5 border-white/10 hover:border-white/20'
               }`}
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-emerald-400" />
-                  <span className="font-bold text-white text-sm">100% Cash Acquisition</span>
+                  <span className="font-bold text-white text-sm font-display">100% Cash Acquisition</span>
                 </div>
                 {purchaseType === 'cash' && (
                   <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-mono">
@@ -132,14 +128,14 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
               onClick={() => setPurchaseType('financed')}
               className={`p-4 rounded-2xl border transition-all cursor-pointer ${
                 purchaseType === 'financed'
-                  ? 'bg-gradient-to-br from-cyan-950/60 to-blue-950/40 border-cyan-400/50 shadow-[0_0_20px_rgba(6,182,212,0.15)]'
+                  ? 'bg-gradient-to-br from-cyan-950/60 to-blue-950/40 border-cyan-400/50 shadow-[0_0_12px_rgba(56,190,201,0.25)]'
                   : 'bg-white/5 border-white/10 hover:border-white/20'
               }`}
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-cyan-400" />
-                  <span className="font-bold text-white text-sm">Structured Debt Financing</span>
+                  <span className="font-bold text-white text-sm font-display">Structured Debt Financing</span>
                 </div>
                 {purchaseType === 'financed' && (
                   <span className="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-mono">
@@ -159,7 +155,9 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
               <div>
                 <div className="flex justify-between text-xs text-slate-300 mb-1">
                   <span>Down Payment Allocation</span>
-                  <span className="font-mono text-cyan-400 font-bold">{downPaymentPct}% (${(listPrice * downPaymentPct / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency})</span>
+                  <span className="font-mono text-cyan-400 font-bold tabular-nums">
+                    {downPaymentPct}% (${(listPrice * downPaymentPct / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency})
+                  </span>
                 </div>
                 <input
                   type="range"
@@ -175,7 +173,9 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
               <div>
                 <div className="flex justify-between text-xs text-slate-300 mb-1">
                   <span>Private Wealth Mortgage Rate</span>
-                  <span className="font-mono text-cyan-400 font-bold">{interestRate}% Fixed (30 Yr)</span>
+                  <span className="font-mono text-cyan-400 font-bold tabular-nums">
+                    {interestRate}% Fixed (30 Yr)
+                  </span>
                 </div>
                 <input
                   type="range"
@@ -192,9 +192,9 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
 
           {/* Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-5 rounded-2xl bg-[#0a1528] border border-white/10">
+            <div className="p-5 rounded-2xl bg-[#0a1528] border border-white/10 shadow-lg">
               <div className="text-xs font-mono uppercase text-slate-400 mb-1">Estimated Monthly Carrying</div>
-              <div className="text-2xl lg:text-3xl font-bold font-mono text-emerald-400">
+              <div className="text-2xl lg:text-3xl font-bold font-mono text-emerald-400 tabular-nums">
                 ${totalMonthlyCarrying.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                 <span className="text-xs font-normal text-slate-400 ml-1">/mo {currency}</span>
               </div>
@@ -203,18 +203,18 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
               </div>
             </div>
 
-            <div className="p-5 rounded-2xl bg-[#0a1528] border border-white/10">
+            <div className="p-5 rounded-2xl bg-[#0a1528] border border-white/10 shadow-lg">
               <div className="text-xs font-mono uppercase text-slate-400 mb-1">Total Closing Capital Due</div>
-              <div className="text-2xl lg:text-3xl font-bold font-mono text-white">
+              <div className="text-2xl lg:text-3xl font-bold font-mono text-white tabular-nums">
                 ${(purchaseType === 'cash' ? listPrice + lttTotal : (listPrice * downPaymentPct / 100) + lttTotal).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                 <span className="text-xs font-normal text-slate-400 ml-1">{currency}</span>
               </div>
-              <div className="text-xs text-slate-400 mt-2">
+              <div className="text-xs text-slate-400 mt-2 tabular-nums">
                 Includes Ontario & Toronto Land Transfer Taxes (${lttTotal.toLocaleString(undefined, { maximumFractionDigits: 0 })})
               </div>
             </div>
 
-            <div className="p-5 rounded-2xl bg-[#0a1528] border border-white/10">
+            <div className="p-5 rounded-2xl bg-[#0a1528] border border-white/10 shadow-lg">
               <div className="text-xs font-mono uppercase text-slate-400 mb-1">Condo Reserve Health</div>
               <div className="text-2xl lg:text-3xl font-bold font-mono text-cyan-300">
                 Tier-1 AAA
@@ -226,39 +226,39 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
             </div>
           </div>
 
-          {/* Breakdown Table */}
+          {/* Line-Item Operating Schedule Table with row hover states and tabular numbers */}
           <div className="p-5 rounded-2xl bg-[#070e1c] border border-white/10">
-            <h4 className="text-sm font-semibold text-white mb-3">Line-Item Operating Schedule</h4>
+            <h4 className="text-sm font-semibold text-white mb-3 font-display">Line-Item Operating Schedule</h4>
             <div className="divide-y divide-white/5 text-xs">
-              <div className="flex justify-between py-2">
+              <div className="flex justify-between py-2.5 px-2 rounded-lg hover:bg-white/[0.02] transition-colors duration-150">
                 <span className="text-slate-300">Monthly Maintenance Fee ($1.15 / sq ft)</span>
-                <span className="font-mono text-white font-semibold">
+                <span className="font-mono text-white font-semibold tabular-nums">
                   ${monthlyMaintenance.toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency}/mo
                 </span>
               </div>
-              <div className="flex justify-between py-2">
+              <div className="flex justify-between py-2.5 px-2 rounded-lg hover:bg-white/[0.02] transition-colors duration-150">
                 <span className="text-slate-300">Annual Municipal Property Taxes ($88,480 CAD/yr)</span>
-                <span className="font-mono text-white font-semibold">
+                <span className="font-mono text-white font-semibold tabular-nums">
                   ${monthlyPropertyTax.toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency}/mo
                 </span>
               </div>
-              <div className="flex justify-between py-2">
+              <div className="flex justify-between py-2.5 px-2 rounded-lg hover:bg-white/[0.02] transition-colors duration-150">
                 <span className="text-slate-300">Luxury Penthouse Hazard & Contents Insurance (Est.)</span>
-                <span className="font-mono text-white font-semibold">
+                <span className="font-mono text-white font-semibold tabular-nums">
                   ${monthlyInsurance.toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency}/mo
                 </span>
               </div>
               {purchaseType === 'financed' && (
-                <div className="flex justify-between py-2">
+                <div className="flex justify-between py-2.5 px-2 rounded-lg hover:bg-white/[0.02] transition-colors duration-150">
                   <span className="text-cyan-300 font-semibold">Mortgage Principal & Interest Service</span>
-                  <span className="font-mono text-cyan-300 font-bold">
+                  <span className="font-mono text-cyan-300 font-bold tabular-nums">
                     ${monthlyMortgage.toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency}/mo
                   </span>
                 </div>
               )}
-              <div className="flex justify-between pt-2.5 font-bold text-sm">
-                <span className="text-white">Total Projected Monthly Holding Cost</span>
-                <span className="font-mono text-emerald-400">
+              <div className="flex justify-between pt-3 pb-1 px-2 font-bold text-sm">
+                <span className="text-white font-display">Total Projected Monthly Holding Cost</span>
+                <span className="font-mono text-emerald-400 tabular-nums">
                   ${totalMonthlyCarrying.toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency}/mo
                 </span>
               </div>

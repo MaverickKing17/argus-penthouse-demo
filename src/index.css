@@ -1,5 +1,28 @@
 @import "tailwindcss";
 
+/* Global CSS Variables & Font Definition (Microsoft Fluent / Segoe UI Stack) */
+:root {
+  --font-microsoft-display: "Segoe UI Variable Display", "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  --font-microsoft-text: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body, input, select, textarea, button {
+  font-family: var(--font-microsoft-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-microsoft-display);
+  letter-spacing: -0.015em;
+}
+
+/* Enable Tabular Numbers for all financial & numerical data */
+.tabular-nums, .metric-value, .financial-amount, .timestamp {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

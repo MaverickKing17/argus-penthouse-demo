@@ -41,7 +41,7 @@ export const ContactLeadModal: React.FC<ContactLeadModalProps> = ({
               <Mail className="w-4 h-4 text-amber-300" />
             </div>
             <div>
-              <h3 className="text-base font-serif font-bold text-white tracking-wide">
+              <h3 className="text-base font-display font-bold text-white tracking-wide">
                 Direct Executive Outreach to Qualified Prospect
               </h3>
               <p className="text-xs text-slate-400">

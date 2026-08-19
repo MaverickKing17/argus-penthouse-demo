@@ -133,12 +133,12 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
           {/* 2. LEFT HERO TEXT - CLEAN & UNCLUTTERED */}
           <div className="xl:col-span-4 flex flex-col justify-center pt-4 lg:pt-8">
             {/* Title */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[54px] 2xl:text-[62px] font-serif text-white font-normal tracking-tight leading-[1.08] mb-3 drop-shadow-md">
+            <h1 className="text-4xl sm:text-5xl lg:text-[54px] 2xl:text-[62px] font-display text-white font-normal tracking-tight leading-[1.08] mb-3 drop-shadow-md">
               Suite 5200:
             </h1>
             
             {/* Golden Subtitle */}
-            <h2 className="text-2xl sm:text-3xl lg:text-[32px] 2xl:text-[36px] font-serif text-[#F3E2B8] font-light leading-[1.25] mb-5 drop-shadow">
+            <h2 className="text-2xl sm:text-3xl lg:text-[32px] 2xl:text-[36px] font-display text-[#F3E2B8] font-light leading-[1.25] mb-5 drop-shadow">
               The Intelligent Digital Twin for Toronto's Most Exclusive Penthouse.
             </h2>
 

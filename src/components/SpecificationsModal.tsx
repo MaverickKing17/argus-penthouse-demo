@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Layers, CheckCircle2, Shield, Sparkles, Sliders, Cpu, Droplets, Volume2, ArrowRight } from 'lucide-react';
+import { X, Layers, Sparkles, Droplets, Cpu, Volume2, ArrowRight } from 'lucide-react';
 import { PropertyData } from '../types';
 
 interface SpecificationsModalProps {
@@ -97,7 +97,7 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
               <Layers className="w-4 h-4 text-amber-300" />
             </div>
             <div>
-              <h3 className="text-base font-serif font-bold text-white tracking-wide">
+              <h3 className="text-base font-display font-bold text-white tracking-wide">
                 Suite 5200: Architectural Specifications Matrix
               </h3>
               <p className="text-xs text-slate-400">
@@ -114,7 +114,7 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
           </button>
         </div>
 
-        {/* Categories Bar */}
+        {/* Categories Bar with 2px Luxe Gold Bottom Accent Bar on active tab */}
         <div className="px-6 py-3 bg-[#060e1b] border-b border-white/5 flex gap-2 overflow-x-auto no-scrollbar">
           {specCategories.map((cat) => {
             const Icon = cat.icon;
@@ -123,9 +123,9 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id as any)}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+                className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer relative ${
                   isActive
-                    ? 'bg-amber-500/20 text-amber-200 border border-amber-400/40 shadow-[0_0_10px_rgba(245,158,11,0.2)]'
+                    ? 'bg-amber-500/20 text-[#F3E2B8] border border-[#BFA775]/50 border-b-2 border-b-[#BFA775] shadow-[0_0_12px_rgba(191,167,117,0.25)]'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
                 }`}
               >
@@ -136,17 +136,17 @@ export const SpecificationsModal: React.FC<SpecificationsModalProps> = ({
           })}
         </div>
 
-        {/* Main Body */}
+        {/* Main Body with Spec Detail Inset Top Edge Highlight */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           <div>
-            <h4 className="text-lg font-serif font-bold text-white mb-1">{current.title}</h4>
-            <p className="text-xs text-amber-300/80 font-mono mb-4">{current.subtitle}</p>
+            <h4 className="text-lg font-display font-bold text-white mb-1">{current.title}</h4>
+            <p className="text-xs text-[#E6CA65]/90 font-mono mb-4">{current.subtitle}</p>
 
             <div className="grid grid-cols-1 gap-3">
               {current.items.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400/30 transition-colors"
+                  className="p-4 rounded-xl bg-white/5 border border-white/10 border-t border-t-white/20 hover:border-cyan-400/40 transition-colors shadow-sm"
                 >
                   <div className="text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-semibold mb-1">
                     {item.label}

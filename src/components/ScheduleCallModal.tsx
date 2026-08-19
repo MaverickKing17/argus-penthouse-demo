@@ -34,7 +34,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
               <Calendar className="w-4 h-4 text-cyan-300" />
             </div>
             <div>
-              <h3 className="text-base font-serif font-bold text-white tracking-wide">
+              <h3 className="text-base font-display font-bold text-white tracking-wide">
                 Schedule VIP Private Showing or Consultation
               </h3>
               <p className="text-xs text-slate-400">

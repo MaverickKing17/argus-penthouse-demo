@@ -101,7 +101,7 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
               <Eye className="w-4 h-4 text-cyan-300" />
             </div>
             <div>
-              <h3 className="text-base font-serif font-bold text-white tracking-wide">
+              <h3 className="text-base font-display font-bold text-white tracking-wide">
                 Suite 5200: 3D Digital Twin & Floorplan Navigator
               </h3>
               <p className="text-xs text-slate-400">
@@ -233,7 +233,7 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
               <div className="text-xs font-mono uppercase tracking-wider text-amber-400 mb-1">
                 Room Portfolio
               </div>
-              <h4 className="text-xl font-serif font-bold text-white mb-2">
+              <h4 className="text-xl font-display font-bold text-white mb-2">
                 {activeRoom.name}
               </h4>
               <p className="text-xs text-slate-300 leading-relaxed mb-4">

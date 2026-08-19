@@ -33,7 +33,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onReque
             </div>
           </div>
           <div className="flex items-baseline gap-1.5">
-            <span className="text-white font-bold tracking-[0.2em] text-lg font-serif">ARCUS</span>
+            <span className="text-white font-bold tracking-[0.2em] text-lg font-display">ARCUS</span>
             <span className="text-[#E6CA65] font-semibold tracking-wider text-[11px] px-1.5 py-0.2 rounded bg-[#E6CA65]/15 border border-[#E6CA65]/30">
               AI
             </span>

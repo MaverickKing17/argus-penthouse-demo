@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Sparkles, Building2, CheckCircle2, Shield, ArrowRight, Phone } from 'lucide-react';
+import { X, Building2, CheckCircle2, ArrowRight } from 'lucide-react';
 import { BROKERAGE_PARTNERS } from '../data/propertyData';
 
 interface PrivateDemoModalProps {
@@ -35,7 +35,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
               <Building2 className="w-4 h-4 text-amber-300" />
             </div>
             <div>
-              <h3 className="text-base font-serif font-bold text-white tracking-wide">
+              <h3 className="text-base font-display font-bold text-white tracking-wide">
                 ARCUS AI: Brokerage Enterprise Demo
               </h3>
               <p className="text-xs text-slate-400">
@@ -59,7 +59,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
               <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-400 animate-bounce">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h4 className="text-lg font-serif font-bold text-white">Private Demo Requested</h4>
+              <h4 className="text-lg font-display font-bold text-white">Private Demo Requested</h4>
               <p className="text-xs text-slate-300 max-w-sm">
                 An ARCUS AI Luxury Integration Partner will contact your team to configure a custom Digital Twin sandbox for your $5M+ listings.
               </p>
@@ -73,7 +73,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
                 <select
                   value={brokerageName}
                   onChange={(e) => setBrokerageName(e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400 focus:outline-none transition-all"
                 >
                   {BROKERAGE_PARTNERS.map((b) => (
                     <option key={b.name} value={b.name} className="bg-[#081222] text-white">
@@ -97,7 +97,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
                     placeholder="e.g. Barry Cohen"
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-amber-400"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-600 focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400 focus:outline-none transition-all"
                   />
                 </div>
                 <div>
@@ -110,7 +110,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
                     placeholder="(416) 555-0199"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-amber-400"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-600 focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400 focus:outline-none transition-all tabular-nums"
                   />
                 </div>
               </div>
@@ -125,7 +125,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
                   placeholder="barry@barrycohenhomes.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-amber-400"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-600 focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400 focus:outline-none transition-all"
                 />
               </div>
 
@@ -135,7 +135,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
                 </span>
                 <button
                   type="submit"
-                  className="py-2 px-5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-lg"
+                  className="py-2.5 px-5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#c5a059] to-[#bfa775] hover:brightness-110 active:scale-[0.99] text-[#0A1128] text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-lg transition-transform"
                 >
                   <span>Request Executive Briefing</span>
                   <ArrowRight className="w-3.5 h-3.5" />

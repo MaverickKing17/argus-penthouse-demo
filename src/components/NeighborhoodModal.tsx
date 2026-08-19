@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, MapPin, Compass, Utensils, ShoppingBag, Landmark, Coffee, Shield, ArrowRight } from 'lucide-react';
+import { X, MapPin, ShoppingBag, Utensils, Landmark, ArrowRight } from 'lucide-react';
 import { PropertyData } from '../types';
 
 interface NeighborhoodModalProps {
@@ -56,7 +56,7 @@ export const NeighborhoodModal: React.FC<NeighborhoodModalProps> = ({
               <MapPin className="w-4 h-4 text-cyan-300" />
             </div>
             <div>
-              <h3 className="text-base font-serif font-bold text-white tracking-wide">
+              <h3 className="text-base font-display font-bold text-white tracking-wide">
                 Yorkville Toronto: The Luxury Ecosystem
               </h3>
               <p className="text-xs text-slate-400">
@@ -83,32 +83,41 @@ export const NeighborhoodModal: React.FC<NeighborhoodModalProps> = ({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#081222] via-[#081222]/40 to-transparent"></div>
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-              <div className="text-white font-serif font-bold text-lg">Yorkville / Bloor Luxury District</div>
-              <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 text-xs font-mono">
+              <div className="text-white font-display font-bold text-lg">Yorkville / Bloor Luxury District</div>
+              <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 text-xs font-mono tabular-nums">
                 Walk Score: 99/100
               </span>
             </div>
           </div>
 
-          {/* Landmarks List */}
+          {/* Landmarks List with Row Hover State and Tabular Distance Numbers */}
           <div className="space-y-4">
             {landmarks.map((sec, idx) => {
               const Icon = sec.icon;
               return (
                 <div key={idx} className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <div className="flex items-center gap-2 text-amber-400 font-semibold text-xs uppercase tracking-wider mb-3">
+                  <div className="flex items-center gap-2 text-[#E6CA65] font-semibold text-xs uppercase tracking-wider mb-3 font-display">
                     <Icon className="w-4 h-4" />
                     <span>{sec.category}</span>
                   </div>
 
-                  <div className="space-y-2.5">
+                  <div className="space-y-1.5">
                     {sec.items.map((it, i) => (
-                      <div key={i} className="flex items-start justify-between gap-4 pb-2 border-b border-white/5 last:border-0 last:pb-0">
+                      <div
+                        key={i}
+                        onClick={() => {
+                          onClose();
+                          onOpenConciergeQuestion(`How close is Suite 5200 to ${it.name} and what are the concierge privileges?`);
+                        }}
+                        className="flex items-start justify-between gap-4 p-2.5 rounded-xl hover:bg-white/[0.03] transition-colors duration-150 cursor-pointer group"
+                      >
                         <div>
-                          <div className="text-sm font-semibold text-white">{it.name}</div>
+                          <div className="text-sm font-semibold text-white group-hover:text-cyan-200 transition-colors">
+                            {it.name}
+                          </div>
                           <div className="text-xs text-slate-300">{it.desc}</div>
                         </div>
-                        <span className="text-[11px] font-mono text-cyan-300 shrink-0 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">
+                        <span className="text-[11px] font-mono text-cyan-300 shrink-0 bg-cyan-950/60 px-2.5 py-1 rounded border border-cyan-800/40 tabular-nums">
                           {it.distance}
                         </span>
                       </div>

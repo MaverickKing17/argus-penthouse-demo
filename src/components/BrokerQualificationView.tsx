@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Flame,
   CheckCircle2,
@@ -26,6 +26,16 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
   onContactLead,
   onScheduleCall,
 }) => {
+  // Animate progress bar fill on mount
+  const [animatedScore, setAnimatedScore] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimatedScore(qualification.confidenceScore);
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [qualification.confidenceScore]);
+
   return (
     <section className="w-full bg-gradient-to-b from-[#0A1128] via-[#08152E] to-[#050C1B] border-t border-cyan-500/20 pt-8 pb-12 px-4 sm:px-6 lg:px-10">
       <div className="max-w-[1720px] mx-auto">
@@ -33,11 +43,11 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
         {/* Section Header */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">
-            <h2 className="text-xl sm:text-2xl font-serif font-bold text-white tracking-wide">
+            <h2 className="text-xl sm:text-2xl font-display font-bold text-white tracking-wide">
               Broker View: Real-Time Lead Qualification
             </h2>
             <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-400 text-xs font-mono font-medium shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse duration-1000"></span>
               <span>Live</span>
             </div>
           </div>
@@ -53,8 +63,8 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                 Lead Status
               </div>
 
-              {/* Rich Crimson / Ruby Gradient Hot Lead Badge */}
-              <div className="rounded-xl bg-gradient-to-r from-[#7a121d] via-[#941724] to-[#600e16] border border-red-400/50 p-4 shadow-[0_0_25px_rgba(220,38,38,0.3)] mb-5">
+              {/* Rich Crimson / Ruby Gradient Hot Lead Badge with Subtle Keyframe Pulse */}
+              <div className="rounded-xl bg-gradient-to-r from-[#7a121d] via-[#941724] to-[#600e16] border border-red-400/50 p-4 shadow-[0_0_25px_rgba(220,38,38,0.3)] mb-5 animate-pulse duration-1000">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-red-500/30 border border-red-400/60 flex items-center justify-center shrink-0 shadow-inner">
                     <Flame className="w-6 h-6 text-red-300 animate-pulse" />
@@ -63,25 +73,25 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                     <div className="text-xs font-mono font-bold tracking-widest text-red-200 uppercase">
                       {qualification.leadStatus}
                     </div>
-                    <div className="text-sm sm:text-base font-bold text-white tracking-wide">
+                    <div className="text-sm sm:text-base font-bold text-white tracking-wide tabular-nums">
                       {qualification.leadBadge}
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* AI Confidence Score */}
+              {/* AI Confidence Score with Animated Fill Width on Mount */}
               <div className="space-y-2 mb-5">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-slate-300 font-medium">AI Confidence Score</span>
-                  <span className="text-cyan-300 font-mono font-bold text-base">
+                  <span className="text-cyan-300 font-mono font-bold text-base tabular-nums">
                     {qualification.confidenceScore}%
                   </span>
                 </div>
                 <div className="w-full h-2.5 bg-[#050D1C] rounded-full overflow-hidden p-0.5 border border-cyan-500/30">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-teal-300 transition-all duration-700 shadow-[0_0_12px_rgba(6,182,212,0.6)]"
-                    style={{ width: `${qualification.confidenceScore}%` }}
+                    className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-teal-300 transition-all duration-1000 ease-out shadow-[0_0_12px_rgba(6,182,212,0.6)]"
+                    style={{ width: `${animatedScore}%` }}
                   ></div>
                 </div>
               </div>
@@ -124,7 +134,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                   <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Verified ID</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium tabular-nums">
                   <DollarSign className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Budget: $5M+</span>
                 </div>
@@ -132,7 +142,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                   <Briefcase className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Cash Acquisition</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium tabular-nums">
                   <Calendar className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Timeline: &lt;90 Days</span>
                 </div>
@@ -174,11 +184,11 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                 Lead Intelligence
               </div>
 
-              {/* Key-Value Table */}
+              {/* Key-Value Table with Tabular Financials */}
               <div className="space-y-2 text-xs divide-y divide-white/5">
                 <div className="flex items-center justify-between pb-1.5">
                   <span className="text-slate-400">Estimated Budget</span>
-                  <span className="text-white font-mono font-semibold">
+                  <span className="text-white font-mono font-semibold tabular-nums financial-amount">
                     {qualification.estimatedBudget}
                   </span>
                 </div>
@@ -188,7 +198,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                 </div>
                 <div className="flex items-center justify-between py-1.5">
                   <span className="text-slate-400">Liquid Allocation Timeline</span>
-                  <span className="text-cyan-300 font-mono font-medium">
+                  <span className="text-cyan-300 font-mono font-medium tabular-nums">
                     {qualification.liquidAllocationTimeline}
                   </span>
                 </div>
@@ -218,7 +228,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                 </div>
                 <div className="flex items-center justify-between pt-1.5">
                   <span className="text-slate-400">Last Updated</span>
-                  <span className="text-slate-400 font-mono text-[11px]">
+                  <span className="text-slate-400 font-mono text-[11px] tabular-nums timestamp">
                     {qualification.lastUpdated || 'Today, 6:47 PM'}
                   </span>
                 </div>

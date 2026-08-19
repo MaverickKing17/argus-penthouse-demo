@@ -12,11 +12,11 @@ export const Footer: React.FC = () => {
               <div className="w-2.5 h-2.5 rotate-45 border border-amber-400"></div>
             </div>
           </div>
-          <span className="text-white font-serif font-bold tracking-widest text-sm">ARCUS AI</span>
+          <span className="text-white font-display font-bold tracking-widest text-sm">ARCUS AI</span>
         </div>
 
         {/* Tagline */}
-        <div className="text-slate-300 font-serif tracking-wider text-xs sm:text-sm italic">
+        <div className="text-slate-300 font-display tracking-wider text-xs sm:text-sm">
           Intelligence. Precision. Results.
         </div>
 

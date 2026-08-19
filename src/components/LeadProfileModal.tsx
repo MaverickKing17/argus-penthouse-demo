@@ -36,14 +36,14 @@ export const LeadProfileModal: React.FC<LeadProfileModalProps> = ({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-serif font-bold text-white tracking-wide">
+                <h3 className="text-base font-display font-bold text-white tracking-wide">
                   HNWI Lead Dossier: Suite 5200 Prospect
                 </h3>
                 <span className="px-2 py-0.5 rounded bg-red-500/20 border border-red-500/40 text-red-300 text-[10px] font-mono font-bold">
                   {qualification.leadStatus}
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-400 tabular-nums">
                 Verified Autonomous Intelligence Record · AI Confidence: {qualification.confidenceScore}%
               </p>
             </div>
