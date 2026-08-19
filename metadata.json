@@ -1,0 +1,6 @@
+{
+  "name": "ARGUS: AI Digital Twin for Luxury Real Estate",
+  "description": "Intelligent Digital Twin and qualification layer for luxury real estate by ARCUS AI, featuring ARGUS AI Concierge with Sage persona, real-time HNWI qualification telemetry, carrying cost modeling, and broker intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
