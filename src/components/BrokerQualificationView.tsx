@@ -2,19 +2,14 @@ import React from 'react';
 import {
   Flame,
   CheckCircle2,
-  ShieldCheck,
   DollarSign,
   Briefcase,
   Calendar,
   User,
-  Sparkles,
   Zap,
   Mail,
-  PhoneCall,
   UserCheck,
   Star,
-  Activity,
-  ArrowUpRight,
 } from 'lucide-react';
 import { QualificationData } from '../types';
 
@@ -32,54 +27,43 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
   onScheduleCall,
 }) => {
   return (
-    <section className="w-full bg-[#050c18] border-t border-white/10 pt-8 pb-12 px-4 lg:px-8">
-      <div className="max-w-[1680px] mx-auto">
+    <section className="w-full bg-gradient-to-b from-[#0A1128] via-[#08152E] to-[#050C1B] border-t border-cyan-500/20 pt-8 pb-12 px-4 sm:px-6 lg:px-10">
+      <div className="max-w-[1720px] mx-auto">
+        
         {/* Section Header */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-          <div>
-            <div className="flex items-center gap-3">
-              <h2 className="text-xl lg:text-2xl font-serif font-bold text-white tracking-wide">
-                Broker View: Real-Time Lead Qualification
-              </h2>
-              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Live</span>
-              </div>
+          <div className="flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl font-serif font-bold text-white tracking-wide">
+              Broker View: Real-Time Lead Qualification
+            </h2>
+            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-400 text-xs font-mono font-medium shadow-[0_0_10px_rgba(16,185,129,0.2)]">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Live</span>
             </div>
-            <p className="text-xs lg:text-sm text-slate-400 mt-1">
-              Autonomous HNWI telemetry stream extracted from active ARGUS concierge dialogue.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-3 text-xs text-slate-400 font-mono">
-            <span className="text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-md border border-cyan-800/60">
-              Listing: Penthouse Suite 5200 ($15.8M CAD)
-            </span>
           </div>
         </div>
 
         {/* 3-Column Qualification Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
+          
           {/* Card 1: Lead Status & Predictive Scoring (lg:col-span-3) */}
-          <div className="lg:col-span-3 bg-[#081324] border border-white/10 rounded-2xl p-5 flex flex-col justify-between shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/5 rounded-full blur-2xl pointer-events-none"></div>
-
+          <div className="lg:col-span-3 bg-[#081730]/90 border border-cyan-500/20 rounded-2xl p-5 flex flex-col justify-between shadow-xl backdrop-blur-md relative overflow-hidden">
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+              <div className="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold mb-3">
                 Lead Status
               </div>
 
-              {/* Hot Lead Badge Banner */}
-              <div className="rounded-xl bg-gradient-to-r from-red-950/90 via-rose-900/80 to-amber-950/90 border border-red-500/30 p-4 shadow-[0_0_20px_rgba(239,68,68,0.15)] mb-5">
+              {/* Rich Crimson / Ruby Gradient Hot Lead Badge */}
+              <div className="rounded-xl bg-gradient-to-r from-[#7a121d] via-[#941724] to-[#600e16] border border-red-400/50 p-4 shadow-[0_0_25px_rgba(220,38,38,0.3)] mb-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-red-500/20 border border-red-400/40 flex items-center justify-center shrink-0">
-                    <Flame className="w-6 h-6 text-red-400 animate-pulse" />
+                  <div className="w-10 h-10 rounded-lg bg-red-500/30 border border-red-400/60 flex items-center justify-center shrink-0 shadow-inner">
+                    <Flame className="w-6 h-6 text-red-300 animate-pulse" />
                   </div>
                   <div>
-                    <div className="text-xs font-mono font-bold tracking-wider text-red-300 uppercase">
+                    <div className="text-xs font-mono font-bold tracking-widest text-red-200 uppercase">
                       {qualification.leadStatus}
                     </div>
-                    <div className="text-sm lg:text-base font-bold text-white tracking-wide">
+                    <div className="text-sm sm:text-base font-bold text-white tracking-wide">
                       {qualification.leadBadge}
                     </div>
                   </div>
@@ -94,9 +78,9 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                     {qualification.confidenceScore}%
                   </span>
                 </div>
-                <div className="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-white/10">
+                <div className="w-full h-2.5 bg-[#050D1C] rounded-full overflow-hidden p-0.5 border border-cyan-500/30">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-400 transition-all duration-700 shadow-[0_0_10px_rgba(6,182,212,0.5)]"
+                    className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-teal-300 transition-all duration-700 shadow-[0_0_12px_rgba(6,182,212,0.6)]"
                     style={{ width: `${qualification.confidenceScore}%` }}
                   ></div>
                 </div>
@@ -107,13 +91,13 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
             <div className="space-y-2.5 pt-3 border-t border-white/10 text-xs">
               <div className="flex items-center justify-between">
                 <span className="text-slate-400">Lead Quality</span>
-                <span className="text-emerald-400 font-semibold px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                <span className="text-emerald-400 font-semibold px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30">
                   {qualification.leadQuality}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-400">Intent Level</span>
-                <span className="text-cyan-400 font-semibold px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/20">
+                <span className="text-cyan-300 font-semibold px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-400/30">
                   {qualification.intentLevel}
                 </span>
               </div>
@@ -128,42 +112,42 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
           </div>
 
           {/* Card 2: Qualification Summary & Extracted Insights (lg:col-span-5) */}
-          <div className="lg:col-span-5 bg-[#081324] border border-white/10 rounded-2xl p-5 flex flex-col justify-between shadow-xl">
+          <div className="lg:col-span-5 bg-[#081730]/90 border border-cyan-500/20 rounded-2xl p-5 flex flex-col justify-between shadow-xl backdrop-blur-md">
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+              <div className="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold mb-3">
                 Qualification Summary
               </div>
 
               {/* 6 Summary Pills Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-5">
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
                   <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Verified ID</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
                   <DollarSign className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Budget: $5M+</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
                   <Briefcase className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Cash Acquisition</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
                   <Calendar className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Timeline: &lt;90 Days</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
                   <User className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Unrepresented</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
                   <Zap className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">High Intent</span>
                 </div>
               </div>
 
               {/* Extracted Insights Section */}
-              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2.5">
+              <div className="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold mb-2.5">
                 Extracted Insights
               </div>
 
@@ -178,15 +162,15 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
             </div>
 
             <div className="mt-4 pt-3 border-t border-white/10 text-[11px] text-slate-400 flex items-center justify-between">
-              <span>Qualification Engine: ARGUS Semantic Vector v4.2</span>
-              <span className="text-cyan-400">Status: Real-Time Synced</span>
+              <span>ARGUS Intelligence Vector v4.2</span>
+              <span className="text-cyan-400 font-mono">Live Synced</span>
             </div>
           </div>
 
-          {/* Card 3: Lead Intelligence Key-Value Table & Action Buttons (lg:col-span-4) */}
-          <div className="lg:col-span-4 bg-[#081324] border border-white/10 rounded-2xl p-5 flex flex-col justify-between shadow-xl">
+          {/* Card 3: Lead Intelligence Key-Value Table & Updated Action Buttons (lg:col-span-4) */}
+          <div className="lg:col-span-4 bg-[#081730]/90 border border-cyan-500/20 rounded-2xl p-5 flex flex-col justify-between shadow-xl backdrop-blur-md">
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+              <div className="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold mb-3">
                 Lead Intelligence
               </div>
 
@@ -210,7 +194,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                 </div>
                 <div className="flex items-center justify-between py-1.5">
                   <span className="text-slate-400">Representation</span>
-                  <span className="text-amber-300 font-medium">{qualification.representation}</span>
+                  <span className="text-[#F3E2B8] font-medium">{qualification.representation}</span>
                 </div>
                 <div className="flex items-center justify-between py-1.5">
                   <span className="text-slate-400">Property Interest</span>
@@ -241,33 +225,37 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
               </div>
             </div>
 
-            {/* Action CTAs */}
-            <div className="grid grid-cols-3 gap-2 mt-5 pt-3 border-t border-white/10">
+            {/* ACTION BUTTONS: SOLID LUXE GOLD CONTACT LEAD + OUTLINED SECONDARIES */}
+            <div className="grid grid-cols-3 gap-2.5 mt-5 pt-3 border-t border-white/10">
+              {/* Outlined Secondary: View Full Profile */}
               <button
                 onClick={onViewProfile}
-                className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-slate-800/80 hover:bg-slate-700/90 text-slate-200 hover:text-white border border-white/10 text-xs font-semibold transition-all cursor-pointer shadow-md"
+                className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-transparent hover:bg-[#BFA775]/10 text-amber-200 border border-[#BFA775]/50 text-xs font-semibold transition-all cursor-pointer shadow-sm hover:border-[#BFA775]"
               >
-                <UserCheck className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                <UserCheck className="w-3.5 h-3.5 text-[#E6CA65] shrink-0" />
                 <span className="truncate">View Full Profile</span>
               </button>
 
+              {/* SOLID LUXE GOLD PRIMARY: Contact Lead */}
               <button
                 onClick={onContactLead}
-                className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 hover:text-amber-200 border border-amber-500/30 text-xs font-semibold transition-all cursor-pointer shadow-md"
+                className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-[#BFA775] hover:bg-[#caa866] text-[#0A1128] font-bold text-xs shadow-[0_0_15px_rgba(191,167,117,0.4)] transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Mail className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-[#0A1128] shrink-0" />
                 <span className="truncate">Contact Lead</span>
               </button>
 
+              {/* Outlined Secondary: Schedule Private Call */}
               <button
                 onClick={onScheduleCall}
-                className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-gradient-to-r from-cyan-600/40 to-blue-600/40 hover:from-cyan-600/60 hover:to-blue-600/60 text-cyan-200 hover:text-white border border-cyan-500/40 text-xs font-semibold transition-all cursor-pointer shadow-md"
+                className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-transparent hover:bg-cyan-500/10 text-cyan-200 border border-cyan-400/50 text-xs font-semibold transition-all cursor-pointer shadow-sm hover:border-cyan-400"
               >
                 <Calendar className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
                 <span className="truncate">Schedule Private Call</span>
               </button>
             </div>
           </div>
+
         </div>
       </div>
     </section>
