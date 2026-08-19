@@ -8,6 +8,8 @@ import { OverviewModal } from './components/OverviewModal';
 import { SpecificationsModal } from './components/SpecificationsModal';
 import { NeighborhoodModal } from './components/NeighborhoodModal';
 import { FinancialsModal } from './components/FinancialsModal';
+import { MarketInsightsModal } from './components/MarketInsightsModal';
+import { PortfolioStrategyModal } from './components/PortfolioStrategyModal';
 import { LeadProfileModal } from './components/LeadProfileModal';
 import { ContactLeadModal } from './components/ContactLeadModal';
 import { ScheduleCallModal } from './components/ScheduleCallModal';
@@ -23,13 +25,13 @@ export default function App() {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Initial messages matching the exact welcome from ARCUS AI / ARGUS
+  // Initial welcome message from ARGUS
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'argus-welcome',
       role: 'assistant',
       content:
-        'Welcome to Suite 5200. I am ARGUS, your dedicated AI concierge.\n\nAsk me anything about floorplans, finishes, or carrying cost simulations, or schedule a private viewing.',
+        'Welcome to Suite 5200 at Four Seasons Private Residences. I am ARGUS, your dedicated AI concierge and luxury acquisition advisor.\n\nAsk me anything about floorplans, finishes, carrying cost simulations, Toronto luxury comps, or schedule an executive twilight viewing.',
       timestamp: '6:42 PM',
     },
   ]);
@@ -39,6 +41,8 @@ export default function App() {
   const [isSpecsOpen, setIsSpecsOpen] = useState(false);
   const [isNeighborhoodOpen, setIsNeighborhoodOpen] = useState(false);
   const [isFinancialsOpen, setIsFinancialsOpen] = useState(false);
+  const [isMarketOpen, setIsMarketOpen] = useState(false);
+  const [isPortfolioOpen, setIsPortfolioOpen] = useState(false);
   const [isLeadProfileOpen, setIsLeadProfileOpen] = useState(false);
   const [isContactLeadOpen, setIsContactLeadOpen] = useState(false);
   const [isScheduleCallOpen, setIsScheduleCallOpen] = useState(false);
@@ -79,6 +83,8 @@ export default function App() {
     if (tabId === 'specifications') setIsSpecsOpen(true);
     if (tabId === 'neighborhood') setIsNeighborhoodOpen(true);
     if (tabId === 'financials') setIsFinancialsOpen(true);
+    if (tabId === 'market') setIsMarketOpen(true);
+    if (tabId === 'portfolio') setIsPortfolioOpen(true);
   };
 
   const handleSendMessage = async (textToSend: string) => {
@@ -179,7 +185,7 @@ export default function App() {
         id: 'argus-welcome',
         role: 'assistant',
         content:
-          'Welcome to Suite 5200. I am ARGUS, your dedicated AI concierge.\n\nAsk me anything about floorplans, finishes, or carrying cost simulations, or schedule a private viewing.',
+          'Welcome to Suite 5200 at Four Seasons Private Residences. I am ARGUS, your dedicated AI concierge and luxury acquisition advisor.\n\nAsk me anything about floorplans, finishes, carrying cost simulations, Toronto luxury comps, or schedule an executive twilight viewing.',
         timestamp: '6:42 PM',
       },
     ]);
@@ -232,7 +238,7 @@ export default function App() {
         </main>
       </div>
 
-      {/* 1. REPOSITIONED FLOATING AI CONCIERGE WIDGET (BOTTOM-RIGHT CORNER) */}
+      {/* REPOSITIONED FLOATING AI CONCIERGE WIDGET WITH ENHANCED HIGH-CONTRAST VISIBILITY */}
       <FloatingConcierge
         property={property}
         messages={messages}
@@ -244,6 +250,8 @@ export default function App() {
         onOpenSpecs={() => setIsSpecsOpen(true)}
         onOpenFinancials={() => setIsFinancialsOpen(true)}
         onOpenSchedule={() => setIsScheduleCallOpen(true)}
+        onOpenMarket={() => setIsMarketOpen(true)}
+        onOpenPortfolio={() => setIsPortfolioOpen(true)}
       />
 
       {/* Footer */}
@@ -268,6 +276,18 @@ export default function App() {
         isOpen={isNeighborhoodOpen}
         onClose={() => setIsNeighborhoodOpen(false)}
         property={property}
+        onOpenConciergeQuestion={handleOpenConciergeQuestion}
+      />
+
+      <MarketInsightsModal
+        isOpen={isMarketOpen}
+        onClose={() => setIsMarketOpen(false)}
+        onOpenConciergeQuestion={handleOpenConciergeQuestion}
+      />
+
+      <PortfolioStrategyModal
+        isOpen={isPortfolioOpen}
+        onClose={() => setIsPortfolioOpen(false)}
         onOpenConciergeQuestion={handleOpenConciergeQuestion}
       />
 
