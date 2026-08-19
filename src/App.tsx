@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
-import { HeroConcierge } from './components/HeroConcierge';
+import { HeroSection } from './components/HeroSection';
 import { BrokerQualificationView } from './components/BrokerQualificationView';
+import { FloatingConcierge } from './components/FloatingConcierge';
 import { Footer } from './components/Footer';
 import { OverviewModal } from './components/OverviewModal';
 import { SpecificationsModal } from './components/SpecificationsModal';
@@ -22,7 +23,7 @@ export default function App() {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Initial messages matching the exact welcome from ARCUS AI / ARGUS screenshot
+  // Initial messages matching the exact welcome from ARCUS AI / ARGUS
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'argus-welcome',
@@ -182,21 +183,17 @@ export default function App() {
         }`}
       >
         <main className="flex-1">
-          {/* Unobstructed Hero Showcase & Right-Anchored Glassmorphic ARGUS Concierge */}
-          <HeroConcierge
+          {/* Unobstructed Hero Showcase */}
+          <HeroSection
             property={property}
-            messages={messages}
-            inputValue={inputValue}
-            setInputValue={setInputValue}
-            onSendMessage={handleSendMessage}
-            isLoading={isLoading}
-            onResetChat={handleResetChat}
+            onOpenOverview={() => setIsOverviewOpen(true)}
             onOpenSpecs={() => setIsSpecsOpen(true)}
             onOpenFinancials={() => setIsFinancialsOpen(true)}
-            onOpenSchedule={() => setIsScheduleCallOpen(true)}
+            onOpenNeighborhood={() => setIsNeighborhoodOpen(true)}
+            onOpenConciergePrompt={handleSendMessage}
           />
 
-          {/* Real-Time Broker Lead Qualification View (Bottom Live Section) */}
+          {/* Real-Time Broker Lead Qualification View (Live Dashboard Section) */}
           <BrokerQualificationView
             qualification={qualification}
             onViewProfile={() => setIsLeadProfileOpen(true)}
@@ -205,6 +202,20 @@ export default function App() {
           />
         </main>
       </div>
+
+      {/* 1. REPOSITIONED FLOATING AI CONCIERGE WIDGET (BOTTOM-RIGHT CORNER) */}
+      <FloatingConcierge
+        property={property}
+        messages={messages}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        onSendMessage={handleSendMessage}
+        isLoading={isLoading}
+        onResetChat={handleResetChat}
+        onOpenSpecs={() => setIsSpecsOpen(true)}
+        onOpenFinancials={() => setIsFinancialsOpen(true)}
+        onOpenSchedule={() => setIsScheduleCallOpen(true)}
+      />
 
       {/* Footer */}
       <Footer />
