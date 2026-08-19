@@ -34,143 +34,142 @@ function geminiApiPlugin(): Plugin {
             }
 
             if (url === '/api/chat') {
-              try {
-                const { messages = [], userInput = '', conversationId = 'argus-user-1' } = body;
-                const geminiKey = process.env.GEMINI_API_KEY;
-                const botpressKey = process.env.BOTPRESS_API_KEY || process.env.BOTPRESS_PAT;
-                const botpressBotId = process.env.BOTPRESS_BOT_ID;
-                const botpressWebhook = process.env.BOTPRESS_WEBHOOK_URL;
+              const { messages = [], userInput = '', conversationId = 'argus-user-1' } = body;
+              const geminiKey = process.env.GEMINI_API_KEY;
+              const botpressKey = process.env.BOTPRESS_API_KEY || process.env.BOTPRESS_PAT;
+              const botpressBotId = process.env.BOTPRESS_BOT_ID;
+              const botpressWebhook = process.env.BOTPRESS_WEBHOOK_URL;
 
-                const PENTHOUSE_SPECS = {
-                  property: 'Penthouse Suite 5200, Four Seasons Private Residences',
-                  address: '50 Yorkville Avenue, Toronto, ON M4W 0A3',
-                  listPrice: '$15,800,000 CAD',
-                  interiorSqFt: '6,450 sq ft',
-                  terraceSqFt: '1,200 sq ft wrap-around private terrace with heated pavers and outdoor fireplace',
-                  bedrooms: '4 + Library / Executive Study',
-                  bathrooms: '6 En-suite + Powder Room',
-                  parking: '3 Private Valet Stalls + Dedicated EV Supercharger',
-                  monthlyMaintenance: '$7,417.50 CAD ($1.15/sq ft) including 24/7 Four Seasons concierge, valet, amenities',
-                  annualPropertyTax: '$88,480 CAD',
-                  architecturalFinishes: 'Custom Italian Poliform millwork, bookmatched Calacatta Borghini marble, Sub-Zero & Wolf culinary suite, Dornbracht platinum fixtures, Lutron Palladiom home automation, Chevron French white oak flooring',
-                };
+              const PENTHOUSE_SPECS = {
+                property: 'Penthouse Suite 5200, Four Seasons Private Residences',
+                address: '50 Yorkville Avenue, Toronto, ON M4W 0A3',
+                listPrice: '$15,800,000 CAD',
+                interiorSqFt: '6,450 sq ft',
+                terraceSqFt: '1,200 sq ft wrap-around private terrace with heated pavers and outdoor fireplace',
+                bedrooms: '4 + Library / Executive Study',
+                bathrooms: '6 En-suite + Powder Room',
+                parking: '3 Private Valet Stalls + Dedicated EV Supercharger',
+                monthlyMaintenance: '$7,417.50 CAD ($1.15/sq ft) including 24/7 Four Seasons concierge, valet, amenities',
+                annualPropertyTax: '$88,480 CAD',
+                architecturalFinishes: 'Custom Italian Poliform millwork, bookmatched Calacatta Borghini marble, Sub-Zero & Wolf culinary suite, Dornbracht platinum fixtures, Lutron Palladiom home automation, Chevron French white oak flooring',
+              };
 
-                const isCash = /cash/i.test(userInput);
-                const isCarryingCosts = /carrying|cost|fee|tax|maintenance|expense|monthly/i.test(userInput);
-                const isFinishes = /finish|marble|kitchen|terrace|sqft|wood|spec/i.test(userInput);
-                const isViewing = /viewing|tour|see|schedule|visit|appointment/i.test(userInput);
-                const isBudget = /\$|\d+m|million|budget|fund|liquidity/i.test(userInput);
-                const isUnrepresented = /unrepresented|no agent|myself|direct|broker/i.test(userInput);
+              const isCash = /cash/i.test(userInput);
+              const isCarryingCosts = /carrying|cost|fee|tax|maintenance|expense|monthly|budget/i.test(userInput);
+              const isFinishes = /finish|marble|kitchen|terrace|sqft|wood|spec|material/i.test(userInput);
+              const isViewing = /viewing|tour|see|schedule|visit|appointment/i.test(userInput);
+              const isBudget = /\$|\d+m|million|budget|fund|liquidity/i.test(userInput);
+              const isUnrepresented = /unrepresented|no agent|myself|direct|broker/i.test(userInput);
 
-                let extractedBudget = isCash ? '$5,000,000 - $6,000,000' : '$15,800,000 (Asking)';
-                if (/\$?\d+[\.\d]*\s*[mM]/.test(userInput)) {
-                  const match = userInput.match(/\$?\d+[\.\d]*\s*[mM]/);
-                  if (match) extractedBudget = match[0].toUpperCase();
+              let extractedBudget = isCash ? '$5,000,000 - $6,000,000' : '$15,800,000 (Asking)';
+              if (/\$?\d+[\.\d]*\s*[mM]/.test(userInput)) {
+                const match = userInput.match(/\$?\d+[\.\d]*\s*[mM]/);
+                if (match) extractedBudget = match[0].toUpperCase();
+              }
+
+              // 1. PRIMARY ROUTE: BOTPRESS INTEGRATION (If credentials provided)
+              let botpressReply: string | null = null;
+
+              if (botpressWebhook) {
+                try {
+                  const bpRes = await fetch(botpressWebhook, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      type: 'text',
+                      text: userInput,
+                      conversationId,
+                      user: { id: conversationId },
+                    }),
+                  });
+
+                  if (bpRes.ok) {
+                    const bpData: any = await bpRes.json();
+                    if (bpData.responses && bpData.responses.length > 0) {
+                      botpressReply = bpData.responses.map((r: any) => r.text).join('\n\n');
+                    } else if (bpData.text) {
+                      botpressReply = bpData.text;
+                    }
+                  }
+                } catch (bpErr) {
+                  console.warn('Botpress Webhook call failed, falling back:', bpErr);
                 }
-
-                // 1. PRIMARY ROUTE: BOTPRESS INTEGRATION (If credentials provided)
-                let botpressReply: string | null = null;
-
-                if (botpressWebhook) {
-                  try {
-                    const bpRes = await fetch(botpressWebhook, {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({
+              } else if (botpressKey && botpressBotId) {
+                try {
+                  const bpRes = await fetch(`https://api.botpress.cloud/v1/chat/messages`, {
+                    method: 'POST',
+                    headers: {
+                      'Authorization': `Bearer ${botpressKey}`,
+                      'x-bot-id': botpressBotId,
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      payload: {
                         type: 'text',
                         text: userInput,
-                        conversationId,
-                        user: { id: conversationId },
-                      }),
-                    });
-
-                    if (bpRes.ok) {
-                      const bpData: any = await bpRes.json();
-                      if (bpData.responses && bpData.responses.length > 0) {
-                        botpressReply = bpData.responses.map((r: any) => r.text).join('\n\n');
-                      } else if (bpData.text) {
-                        botpressReply = bpData.text;
-                      }
-                    }
-                  } catch (bpErr) {
-                    console.warn('Botpress Webhook call failed, falling back to Gemini:', bpErr);
-                  }
-                } else if (botpressKey && botpressBotId) {
-                  try {
-                    // Botpress Cloud API
-                    const bpRes = await fetch(`https://api.botpress.cloud/v1/chat/messages`, {
-                      method: 'POST',
-                      headers: {
-                        'Authorization': `Bearer ${botpressKey}`,
-                        'x-bot-id': botpressBotId,
-                        'Content-Type': 'application/json',
                       },
-                      body: JSON.stringify({
-                        payload: {
-                          type: 'text',
-                          text: userInput,
-                        },
-                        conversationId,
-                      }),
-                    });
+                      conversationId,
+                    }),
+                  });
 
-                    if (bpRes.ok) {
-                      const bpData: any = await bpRes.json();
-                      if (bpData.message?.payload?.text) {
-                        botpressReply = bpData.message.payload.text;
-                      } else if (bpData.text) {
-                        botpressReply = bpData.text;
-                      }
+                  if (bpRes.ok) {
+                    const bpData: any = await bpRes.json();
+                    if (bpData.message?.payload?.text) {
+                      botpressReply = bpData.message.payload.text;
+                    } else if (bpData.text) {
+                      botpressReply = bpData.text;
                     }
-                  } catch (bpErr) {
-                    console.warn('Botpress Cloud API call failed, falling back to Gemini:', bpErr);
                   }
+                } catch (bpErr) {
+                  console.warn('Botpress Cloud API call failed, falling back:', bpErr);
                 }
+              }
 
-                // If Botpress returned a valid response, formulate qualification payload & return
-                if (botpressReply) {
-                  const botpressOutput = {
-                    reply: botpressReply,
-                    source: 'botpress',
-                    qualification: {
-                      leadStatus: isCash || isBudget ? 'HOT LEAD' : 'QUALIFIED PROSPECT',
-                      leadBadge: isCash ? '$5.5M CASH BUYER' : '$15.8M QUALIFIED HNWI',
-                      confidenceScore: isCash ? 96 : 92,
-                      leadQuality: 'Excellent',
-                      intentLevel: isViewing || isCash ? 'High' : 'High',
-                      riskLevel: 'Low',
-                      estimatedBudget: extractedBudget,
-                      purchaseStructure: isCash ? 'Cash' : 'Liquid Capital Pool',
-                      liquidAllocationTimeline: isViewing ? '< 30 Days' : '< 90 Days',
-                      representation: isUnrepresented ? 'Unrepresented' : 'Unrepresented',
-                      propertyInterest: 'Suite 5200',
-                      locationPreference: 'Yorkville, Toronto',
-                      propertyType: 'Ultra-Luxury Penthouse',
-                      intentScore: 5,
-                      summaryPills: [
-                        'Verified ID',
-                        isCash ? 'Budget: $5M+' : 'Budget: $15M+',
-                        isCash ? 'Cash Acquisition' : 'Capital Allocation',
-                        'Timeline: <90 Days',
-                        'Unrepresented',
-                        'High Intent',
-                      ],
-                      extractedInsights: [
-                        isCash ? 'Buyer indicated cash purchase structure' : 'Buyer evaluating prime tier-one luxury asset',
-                        'Budget range confirmed within target parameters ($5M+)',
-                        'Target acquisition timeline within 90 days',
-                        'Direct engagement via Botpress Intelligence Core',
-                        isViewing ? 'Requested private viewing coordination' : 'Expressed interest in private viewing',
-                      ],
-                    },
-                  };
+              // If Botpress returned a valid response, return immediately
+              if (botpressReply) {
+                const botpressOutput = {
+                  reply: botpressReply,
+                  source: 'botpress',
+                  qualification: {
+                    leadStatus: isCash || isBudget ? 'HOT LEAD' : 'QUALIFIED PROSPECT',
+                    leadBadge: isCash ? '$5.5M CASH BUYER' : '$15.8M QUALIFIED HNWI',
+                    confidenceScore: isCash ? 96 : 92,
+                    leadQuality: 'Excellent',
+                    intentLevel: isViewing || isCash ? 'High' : 'High',
+                    riskLevel: 'Low',
+                    estimatedBudget: extractedBudget,
+                    purchaseStructure: isCash ? 'Cash' : 'Liquid Capital Pool',
+                    liquidAllocationTimeline: isViewing ? '< 30 Days' : '< 90 Days',
+                    representation: isUnrepresented ? 'Unrepresented' : 'Unrepresented',
+                    propertyInterest: 'Suite 5200',
+                    locationPreference: 'Yorkville, Toronto',
+                    propertyType: 'Ultra-Luxury Penthouse',
+                    intentScore: 5,
+                    summaryPills: [
+                      'Verified ID',
+                      isCash ? 'Budget: $5M+' : 'Budget: $15M+',
+                      isCash ? 'Cash Acquisition' : 'Capital Allocation',
+                      'Timeline: <90 Days',
+                      'Unrepresented',
+                      'High Intent',
+                    ],
+                    extractedInsights: [
+                      isCash ? 'Buyer indicated cash purchase structure' : 'Buyer evaluating prime tier-one luxury asset',
+                      'Budget range confirmed within target parameters ($5M+)',
+                      'Target acquisition timeline within 90 days',
+                      'Direct engagement via Botpress Intelligence Core',
+                      isViewing ? 'Requested private viewing coordination' : 'Expressed interest in private viewing',
+                    ],
+                  },
+                };
 
-                  res.setHeader('Content-Type', 'application/json');
-                  return res.end(JSON.stringify(botpressOutput));
-                }
+                res.setHeader('Content-Type', 'application/json');
+                return res.end(JSON.stringify(botpressOutput));
+              }
 
-                // 2. SECONDARY / FALLBACK ROUTE: GEMINI SAGE PERSONA
-                if (geminiKey) {
+              // 2. SECONDARY ROUTE: GEMINI SAGE PERSONA WITH MULTI-MODEL RESILIENCY
+              if (geminiKey) {
+                try {
                   const ai = new GoogleGenAI({
                     apiKey: geminiKey,
                     httpOptions: {
@@ -240,77 +239,93 @@ REQUIRED JSON OUTPUT FORMAT:
   }
 }`;
 
-                  const response = await ai.models.generateContent({
-                    model: 'gemini-3.7-flash',
-                    contents: prompt,
-                    config: {
-                      responseMimeType: 'application/json',
-                      temperature: 0.2,
-                    },
-                  });
+                  // Try gemini-2.5-flash first for high reliability and throughput
+                  let responseText = '';
+                  try {
+                    const response = await ai.models.generateContent({
+                      model: 'gemini-2.5-flash',
+                      contents: prompt,
+                      config: {
+                        responseMimeType: 'application/json',
+                        temperature: 0.2,
+                      },
+                    });
+                    responseText = response.text || '';
+                  } catch (primaryErr) {
+                    console.warn('gemini-2.5-flash failed, trying fallback model:', primaryErr);
+                    // Fallback to gemini-2.5-pro
+                    const fallbackResponse = await ai.models.generateContent({
+                      model: 'gemini-2.5-pro',
+                      contents: prompt,
+                      config: {
+                        responseMimeType: 'application/json',
+                        temperature: 0.2,
+                      },
+                    });
+                    responseText = fallbackResponse.text || '';
+                  }
 
-                  const parsed = JSON.parse(response.text || '{}');
-                  res.setHeader('Content-Type', 'application/json');
-                  return res.end(JSON.stringify(parsed));
+                  if (responseText) {
+                    const parsed = JSON.parse(responseText);
+                    res.setHeader('Content-Type', 'application/json');
+                    return res.end(JSON.stringify(parsed));
+                  }
+                } catch (geminiError) {
+                  console.warn('All Gemini models encountered high demand/errors, falling back to deterministic Sage engine:', geminiError);
                 }
-
-                // 3. TERTIARY ROUTE: DETERMINISTIC HIGH-FIDELITY LUXURY ADVISORY
-                let reply = 'A cash acquisition structure eliminates third-party financing contingencies and materially alters the carrying dynamics for an asset of this caliber. To calibrate the portfolio model accurately for Suite 5200, what approximate acquisition budget and liquid capital allocation horizon are you currently working with?';
-                
-                if (isCarryingCosts) {
-                  reply = 'For Penthouse Suite 5200 at 50 Yorkville Avenue, monthly maintenance fees are $7,417.50 CAD ($1.15 per square foot), which includes 24/7 dedicated Four Seasons concierge, valet services, building insurance, and comprehensive common element maintenance. Annual municipal property taxes are approximately $88,480 CAD ($7,373/month), creating a baseline carrying cost of $14,790 CAD monthly. Would you like me to model how this compares against other tier-one Yorkville sub-penthouses or structure an entity-level holding analysis?';
-                } else if (isFinishes) {
-                  reply = 'Suite 5200 is appointed with custom Poliform Italian millwork, bookmatched Calacatta Borghini marble in the primary culinary gallery, and Sub-Zero 400-series refrigeration coupled with Wolf dual-fuel cooking suites. The 1,200 sq ft terrace features radiant-heated porcelain pavers and architectural windbreaks. Would you like me to walk you through the private elevator vestibule specs or the Lutron Palladiom automation system?';
-                } else if (isViewing) {
-                  reply = 'Private viewings for Suite 5200 are conducted with complete discretion in partnership with our listing directorship. We offer private daylight architectural walkthroughs or twilight skyline viewings. Which timeframe best aligns with your executive calendar this week?';
-                } else if (isCash) {
-                  reply = 'A cash acquisition eliminates mortgage financing costs and materially changes the ownership scenario, while reducing closing execution to under 14 business days. For Suite 5200, offered at $15,800,000 CAD, what acquisition budget envelope and liquidity allocation timeframe are you currently targeting?';
-                }
-
-                const fallbackData = {
-                  reply,
-                  source: 'deterministic-sage',
-                  qualification: {
-                    leadStatus: isCash || isBudget ? 'HOT LEAD' : 'QUALIFIED PROSPECT',
-                    leadBadge: isCash ? '$5.5M CASH BUYER' : '$15.8M QUALIFIED HNWI',
-                    confidenceScore: isCash ? 95 : 91,
-                    leadQuality: 'Excellent',
-                    intentLevel: isViewing || isCash ? 'High' : 'High',
-                    riskLevel: 'Low',
-                    estimatedBudget: isCash ? '$5,000,000 - $6,000,000' : '$15,800,000 (Asking)',
-                    purchaseStructure: isCash ? 'Cash' : 'Liquid Capital Pool',
-                    liquidAllocationTimeline: '< 90 Days',
-                    representation: isUnrepresented ? 'Unrepresented' : 'Unrepresented',
-                    propertyInterest: 'Suite 5200',
-                    locationPreference: 'Yorkville, Toronto',
-                    propertyType: 'Ultra-Luxury Penthouse',
-                    intentScore: 5,
-                    summaryPills: [
-                      'Verified ID',
-                      isCash ? 'Budget: $5M+' : 'Budget: $15M+',
-                      isCash ? 'Cash Acquisition' : 'Capital Allocation',
-                      'Timeline: <90 Days',
-                      'Unrepresented',
-                      'High Intent',
-                    ],
-                    extractedInsights: [
-                      isCash ? 'Buyer indicated cash purchase structure' : 'Buyer evaluating prime tier-one luxury asset',
-                      'Budget range confirmed within target parameters ($5M+)',
-                      'Target acquisition timeline within 90 days',
-                      'No current representation detected',
-                      isViewing ? 'Requested private viewing coordination' : 'Expressed interest in private viewing',
-                    ],
-                  },
-                };
-
-                res.setHeader('Content-Type', 'application/json');
-                return res.end(JSON.stringify(fallbackData));
-              } catch (error: any) {
-                console.error('Error in /api/chat middleware:', error);
-                res.statusCode = 500;
-                res.setHeader('Content-Type', 'application/json');
-                return res.end(JSON.stringify({ error: error.message }));
               }
+
+              // 3. TERTIARY ROUTE: DETERMINISTIC HIGH-FIDELITY LUXURY ADVISORY (ZERO FAILURES)
+              let reply = 'A cash acquisition structure eliminates third-party financing contingencies and materially alters the carrying dynamics for an asset of this caliber. To calibrate the portfolio model accurately for Suite 5200, what approximate acquisition budget and liquid capital allocation horizon are you currently working with?';
+              
+              if (isCarryingCosts) {
+                reply = 'For Penthouse Suite 5200 at 50 Yorkville Avenue, monthly maintenance fees are $7,417.50 CAD ($1.15 per square foot), which includes 24/7 dedicated Four Seasons concierge, valet services, building insurance, and comprehensive common element maintenance. Annual municipal property taxes are approximately $88,480 CAD ($7,373/month), creating a baseline carrying cost of $14,790 CAD monthly. Would you like me to model how this compares against other tier-one Yorkville sub-penthouses or structure an entity-level holding analysis?';
+              } else if (isFinishes) {
+                reply = 'Suite 5200 is appointed with custom Poliform Italian millwork, bookmatched Calacatta Borghini marble in the primary culinary gallery, and Sub-Zero 400-series refrigeration coupled with Wolf dual-fuel cooking suites. The 1,200 sq ft terrace features radiant-heated porcelain pavers and architectural windbreaks. Would you like me to walk you through the private elevator vestibule specs or the Lutron Palladiom automation system?';
+              } else if (isViewing) {
+                reply = 'Private viewings for Suite 5200 are conducted with complete discretion in partnership with our listing directorship. We offer private daylight architectural walkthroughs or twilight skyline viewings. Which timeframe best aligns with your executive calendar this week?';
+              } else if (isCash) {
+                reply = 'A cash acquisition eliminates mortgage financing costs and materially changes the ownership scenario, while reducing closing execution to under 14 business days. For Suite 5200, offered at $15,800,000 CAD, what acquisition budget envelope and liquidity allocation timeframe are you currently targeting?';
+              }
+
+              const fallbackData = {
+                reply,
+                source: 'deterministic-sage',
+                qualification: {
+                  leadStatus: isCash || isBudget ? 'HOT LEAD' : 'QUALIFIED PROSPECT',
+                  leadBadge: isCash ? '$5.5M CASH BUYER' : '$15.8M QUALIFIED HNWI',
+                  confidenceScore: isCash ? 95 : 91,
+                  leadQuality: 'Excellent',
+                  intentLevel: isViewing || isCash ? 'High' : 'High',
+                  riskLevel: 'Low',
+                  estimatedBudget: isCash ? '$5,000,000 - $6,000,000' : '$15,800,000 (Asking)',
+                  purchaseStructure: isCash ? 'Cash' : 'Liquid Capital Pool',
+                  liquidAllocationTimeline: '< 90 Days',
+                  representation: isUnrepresented ? 'Unrepresented' : 'Unrepresented',
+                  propertyInterest: 'Suite 5200',
+                  locationPreference: 'Yorkville, Toronto',
+                  propertyType: 'Ultra-Luxury Penthouse',
+                  intentScore: 5,
+                  summaryPills: [
+                    'Verified ID',
+                    isCash ? 'Budget: $5M+' : 'Budget: $15M+',
+                    isCash ? 'Cash Acquisition' : 'Capital Allocation',
+                    'Timeline: <90 Days',
+                    'Unrepresented',
+                    'High Intent',
+                  ],
+                  extractedInsights: [
+                    isCash ? 'Buyer indicated cash purchase structure' : 'Buyer evaluating prime tier-one luxury asset',
+                    'Budget range confirmed within target parameters ($5M+)',
+                    'Target acquisition timeline within 90 days',
+                    'No current representation detected',
+                    isViewing ? 'Requested private viewing coordination' : 'Expressed interest in private viewing',
+                  ],
+                },
+              };
+
+              res.setHeader('Content-Type', 'application/json');
+              return res.end(JSON.stringify(fallbackData));
             }
 
             if (url === '/api/schedule-viewing') {
