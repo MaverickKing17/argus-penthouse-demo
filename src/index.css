@@ -1,20 +1,31 @@
 @import "tailwindcss";
 
-/* Global CSS Variables & Font Definition (Microsoft Fluent / Segoe UI Variable Stack) */
+/* Microsoft Fluent / Windows 11 Enterprise Font Stack (Aptos / Segoe UI Variable / Segoe UI / Cascadia Code) */
 :root {
-  --font-microsoft-display: "Segoe UI Variable Display", "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-  --font-microsoft-text: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  --font-segoe-ui: "Segoe UI Variable Text", "Segoe UI Variable Display", "Aptos", "Segoe UI", "Selawik", -apple-system, BlinkMacSystemFont, "Segoe UI Emoji", system-ui, sans-serif;
+  --font-segoe-display: "Segoe UI Variable Display", "Aptos Display", "Segoe UI Semibold", "Segoe UI", system-ui, sans-serif;
+  --font-cascadia-mono: "Cascadia Code", "Cascadia Mono", "Segoe UI Mono", "Consolas", "Courier New", monospace;
 }
 
-body, input, select, textarea, button {
-  font-family: var(--font-microsoft-text);
+body, html {
+  font-family: var(--font-segoe-ui);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01", "ss02";
 }
 
-h1, h2, h3, h4, .font-display {
-  font-family: var(--font-microsoft-display);
-  letter-spacing: -0.015em;
+input, select, textarea, button, p, span, div, a, label {
+  font-family: var(--font-segoe-ui);
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-segoe-display) !important;
+  font-feature-settings: "cv02", "cv04", "ss01";
+}
+
+.font-mono, code, pre, kbd {
+  font-family: var(--font-cascadia-mono) !important;
+  font-feature-settings: "ss01", "ss02", "zero", "calt";
 }
 
 /* Enable tabular numbers for clean alignment across financial data, time, & metrics */
