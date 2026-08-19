@@ -47,10 +47,10 @@ export const NeighborhoodModal: React.FC<NeighborhoodModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-4xl bg-[#081222] border border-white/15 rounded-3xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.8)] flex flex-col max-h-[90vh]">
-        {/* Header */}
-        <div className="px-6 py-4 bg-[#0a162b] border-b border-white/10 flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md overflow-y-auto animate-fadeIn">
+      <div className="relative w-full max-w-4xl bg-[#081222] border border-white/15 rounded-3xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.8)] flex flex-col max-h-[85vh] my-auto">
+        {/* Header - Fixed & Sticky */}
+        <div className="shrink-0 px-6 py-4 bg-[#0a162b] border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-cyan-600/30 border border-cyan-400/50 flex items-center justify-center">
               <MapPin className="w-4 h-4 text-cyan-300" />
@@ -73,7 +73,7 @@ export const NeighborhoodModal: React.FC<NeighborhoodModalProps> = ({
           </button>
         </div>
 
-        {/* Content */}
+        {/* Content Body */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           <div className="relative rounded-2xl overflow-hidden border border-white/10 h-48 bg-slate-900">
             <img
@@ -84,7 +84,7 @@ export const NeighborhoodModal: React.FC<NeighborhoodModalProps> = ({
             <div className="absolute inset-0 bg-gradient-to-t from-[#081222] via-[#081222]/40 to-transparent"></div>
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
               <div className="text-white font-display font-bold text-lg">Yorkville / Bloor Luxury District</div>
-              <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 text-xs font-mono tabular-nums">
+              <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 text-xs font-mono font-semibold tabular-nums">
                 Walk Score: 99/100
               </span>
             </div>
@@ -117,7 +117,7 @@ export const NeighborhoodModal: React.FC<NeighborhoodModalProps> = ({
                           </div>
                           <div className="text-xs text-slate-300">{it.desc}</div>
                         </div>
-                        <span className="text-[11px] font-mono text-cyan-300 shrink-0 bg-cyan-950/60 px-2.5 py-1 rounded border border-cyan-800/40 tabular-nums">
+                        <span className="text-[11px] font-mono text-cyan-300 font-semibold shrink-0 bg-cyan-950/70 px-2.5 py-1 rounded border border-cyan-700/50 tabular-nums distance-badge">
                           {it.distance}
                         </span>
                       </div>
@@ -129,8 +129,8 @@ export const NeighborhoodModal: React.FC<NeighborhoodModalProps> = ({
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="px-6 py-3.5 bg-[#0a162b] border-t border-white/10 flex items-center justify-between">
+        {/* Footer - Fixed & Sticky */}
+        <div className="shrink-0 px-6 py-3.5 bg-[#0a162b] border-t border-white/10 flex items-center justify-between">
           <div className="text-xs text-slate-400">
             Four Seasons Dedicated Residential Concierge Desk Available 24/7
           </div>
@@ -139,7 +139,7 @@ export const NeighborhoodModal: React.FC<NeighborhoodModalProps> = ({
               onClose();
               onOpenConciergeQuestion(`What are the private resident concierge privileges and neighborhood benefits for Suite 5200?`);
             }}
-            className="py-2 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-md"
+            className="py-2 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-md transition-colors"
           >
             <span>Ask ARGUS About Neighborhood</span>
             <ArrowRight className="w-3.5 h-3.5" />

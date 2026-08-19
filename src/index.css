@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Global CSS Variables & Font Definition (Microsoft Fluent / Segoe UI Stack) */
+/* Global CSS Variables & Font Definition (Microsoft Fluent / Segoe UI Variable Stack) */
 :root {
   --font-microsoft-display: "Segoe UI Variable Display", "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
   --font-microsoft-text: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
@@ -17,8 +17,8 @@ h1, h2, h3, h4, .font-display {
   letter-spacing: -0.015em;
 }
 
-/* Enable Tabular Numbers for all financial & numerical data */
-.tabular-nums, .metric-value, .financial-amount, .timestamp {
+/* Enable tabular numbers for clean alignment across financial data, time, & metrics */
+.tabular-nums, .metric-value, .financial-amount, .timestamp, .distance-badge {
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
 }

@@ -142,7 +142,7 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
                 <MapPin className="w-4 h-4 text-[#E6CA65]" />
               </div>
               <div className="leading-tight">
-                <div className="font-medium text-sm sm:text-base text-white">
+                <div className="font-semibold text-sm sm:text-base text-white">
                   50 Yorkville Avenue, Toronto
                 </div>
                 <div className="text-xs text-slate-300 font-light mt-0.5">
@@ -155,15 +155,15 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
           {/* 3. RIGHT-ANCHORED SLEEK GLASSMORPHIC ARGUS CONCIERGE WIDGET (MAX-W-400PX) */}
           <div className="w-full lg:w-[45%] flex justify-center lg:justify-end">
             <div
-              className="w-full max-w-[400px] rounded-[24px] border border-white/[0.12] shadow-[0_15px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(6,182,212,0.15)] flex flex-col overflow-hidden transition-all"
+              className="w-full max-w-[400px] rounded-[24px] border border-white/[0.12] shadow-[0_15px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(6,182,212,0.15)] flex flex-col overflow-hidden transition-all max-h-[580px]"
               style={{
                 background: 'rgba(10, 17, 40, 0.70)',
                 backdropFilter: 'blur(16px)',
               }}
             >
               
-              {/* Concierge Header */}
-              <div className="px-4 py-3 bg-[#061224]/80 border-b border-white/[0.08] flex items-center justify-between">
+              {/* Concierge Header - Fixed at Top */}
+              <div className="shrink-0 px-4 py-3 bg-[#061224]/80 border-b border-white/[0.08] flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <div className="relative">
                     <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center shadow-[0_0_12px_rgba(6,182,212,0.5)] border border-cyan-300/50">
@@ -175,7 +175,7 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
                     <h3 className="font-semibold text-white text-xs sm:text-sm tracking-wide font-display">
                       ARGUS AI Concierge
                     </h3>
-                    <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-mono">
+                    <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-mono font-semibold">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
                       <span>Online</span>
                     </div>
@@ -241,8 +241,8 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
                 </div>
               </div>
 
-              {/* Chat Stream Area (Compact Height) */}
-              <div className="h-[220px] overflow-y-auto px-3.5 py-3 space-y-2.5 scroll-smooth">
+              {/* Chat Stream Area - Scrollable with max-h-[320px] and flex-1 */}
+              <div className="flex-1 overflow-y-auto max-h-[320px] min-h-[160px] px-3.5 py-3 space-y-2.5 scroll-smooth">
                 {messages.map((msg) => {
                   const isAssistant = msg.role === 'assistant';
                   return (
@@ -266,7 +266,7 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
                         <div className="whitespace-pre-wrap">{msg.content}</div>
 
                         <div
-                          className={`text-[9px] mt-1 font-mono tabular-nums ${
+                          className={`text-[9px] mt-1 font-mono tabular-nums timestamp ${
                             isAssistant ? 'text-slate-400' : 'text-cyan-100/80 text-right'
                           }`}
                         >
@@ -297,8 +297,8 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
                 <div ref={chatEndRef} />
               </div>
 
-              {/* 4. COMPACT 2-COLUMN PROMPT CHIP MATRIX (-30% VERTICAL HEIGHT) */}
-              <div className="p-2.5 bg-[#061224]/70 border-t border-white/[0.08] grid grid-cols-2 gap-1.5">
+              {/* 4. PINNED COMPACT PROMPT CHIP MATRIX */}
+              <div className="shrink-0 p-2.5 bg-[#061224]/70 border-t border-white/[0.08] grid grid-cols-2 gap-1.5">
                 {/* Full-width primary cash chip */}
                 <button
                   onClick={() => onSendMessage("I'm looking to buy in cash")}
@@ -309,7 +309,7 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
 
                 <button
                   onClick={() => onSendMessage("What are the carrying costs?")}
-                  className="py-1.5 px-2 rounded-full bg-[#091D3B]/60 hover:bg-cyan-950/80 text-cyan-200 border border-cyan-500/30 hover:border-cyan-400/50 text-[10.5px] text-center truncate transition-all cursor-pointer"
+                  className="py-1.5 px-2 rounded-full bg-[#091D3B]/60 hover:bg-cyan-950/80 text-cyan-200 border border-cyan-500/30 hover:border-cyan-400/50 text-[10.5px] font-medium text-center truncate transition-all cursor-pointer"
                   title="What are the carrying costs?"
                 >
                   Carrying costs?
@@ -317,7 +317,7 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
 
                 <button
                   onClick={() => onSendMessage("Tell me about the finishes")}
-                  className="py-1.5 px-2 rounded-full bg-[#091D3B]/60 hover:bg-cyan-950/80 text-cyan-200 border border-cyan-500/30 hover:border-cyan-400/50 text-[10.5px] text-center truncate transition-all cursor-pointer"
+                  className="py-1.5 px-2 rounded-full bg-[#091D3B]/60 hover:bg-cyan-950/80 text-cyan-200 border border-cyan-500/30 hover:border-cyan-400/50 text-[10.5px] font-medium text-center truncate transition-all cursor-pointer"
                   title="Tell me about the finishes"
                 >
                   Penthouse finishes
@@ -325,7 +325,7 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
 
                 <button
                   onClick={() => onSendMessage("Can you model ownership costs?")}
-                  className="py-1.5 px-2 rounded-full bg-[#091D3B]/60 hover:bg-cyan-950/80 text-cyan-200 border border-cyan-500/30 hover:border-cyan-400/50 text-[10.5px] text-center truncate transition-all cursor-pointer"
+                  className="py-1.5 px-2 rounded-full bg-[#091D3B]/60 hover:bg-cyan-950/80 text-cyan-200 border border-cyan-500/30 hover:border-cyan-400/50 text-[10.5px] font-medium text-center truncate transition-all cursor-pointer"
                   title="Can you model ownership costs?"
                 >
                   Model ownership
@@ -333,15 +333,15 @@ export const HeroConcierge: React.FC<HeroConciergeProps> = ({
 
                 <button
                   onClick={() => onSendMessage("I'd like to schedule a private viewing")}
-                  className="py-1.5 px-2 rounded-full bg-[#091D3B]/60 hover:bg-cyan-950/80 text-[#F3E2B8] border border-[#BFA775]/40 hover:border-[#BFA775]/70 text-[10.5px] text-center truncate transition-all cursor-pointer"
+                  className="py-1.5 px-2 rounded-full bg-[#091D3B]/60 hover:bg-cyan-950/80 text-[#F3E2B8] border border-[#BFA775]/40 hover:border-[#BFA775]/70 text-[10.5px] font-medium text-center truncate transition-all cursor-pointer"
                   title="I'd like to schedule a private viewing"
                 >
                   Schedule VIP viewing
                 </button>
               </div>
 
-              {/* Chat Input Bar */}
-              <div className="p-2.5 bg-[#050F20]/80 border-t border-white/[0.08] flex items-center gap-2">
+              {/* PINNED CHAT INPUT BAR */}
+              <div className="shrink-0 p-2.5 bg-[#050F20]/80 border-t border-white/[0.08] flex items-center gap-2">
                 <button
                   onClick={toggleVoiceInput}
                   className={`p-1.5 rounded-full transition-colors cursor-pointer ${

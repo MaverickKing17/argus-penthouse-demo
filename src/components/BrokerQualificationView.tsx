@@ -26,7 +26,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
   onContactLead,
   onScheduleCall,
 }) => {
-  // Animate progress bar fill on mount
+  // Animate progress bar fill on mount from 0% to 95%
   const [animatedScore, setAnimatedScore] = useState(0);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
             <h2 className="text-xl sm:text-2xl font-display font-bold text-white tracking-wide">
               Broker View: Real-Time Lead Qualification
             </h2>
-            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-400 text-xs font-mono font-medium shadow-[0_0_10px_rgba(16,185,129,0.2)]">
+            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-400 text-xs font-mono font-semibold shadow-[0_0_10px_rgba(16,185,129,0.2)]">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse duration-1000"></span>
               <span>Live</span>
             </div>
@@ -63,7 +63,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                 Lead Status
               </div>
 
-              {/* Rich Crimson / Ruby Gradient Hot Lead Badge with Subtle Keyframe Pulse */}
+              {/* Rich Crimson / Ruby Gradient Hot Lead Badge with Keyframe Pulse */}
               <div className="rounded-xl bg-gradient-to-r from-[#7a121d] via-[#941724] to-[#600e16] border border-red-400/50 p-4 shadow-[0_0_25px_rgba(220,38,38,0.3)] mb-5 animate-pulse duration-1000">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-red-500/30 border border-red-400/60 flex items-center justify-center shrink-0 shadow-inner">
@@ -73,7 +73,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                     <div className="text-xs font-mono font-bold tracking-widest text-red-200 uppercase">
                       {qualification.leadStatus}
                     </div>
-                    <div className="text-sm sm:text-base font-bold text-white tracking-wide tabular-nums">
+                    <div className="text-sm sm:text-base font-bold text-white tracking-wide tabular-nums font-mono">
                       {qualification.leadBadge}
                     </div>
                   </div>
@@ -83,7 +83,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
               {/* AI Confidence Score with Animated Fill Width on Mount */}
               <div className="space-y-2 mb-5">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-300 font-medium">AI Confidence Score</span>
+                  <span className="text-slate-300 font-semibold">AI Confidence Score</span>
                   <span className="text-cyan-300 font-mono font-bold text-base tabular-nums">
                     {qualification.confidenceScore}%
                   </span>
@@ -100,20 +100,20 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
             {/* Key Metrics */}
             <div className="space-y-2.5 pt-3 border-t border-white/10 text-xs">
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Lead Quality</span>
+                <span className="text-slate-300">Lead Quality</span>
                 <span className="text-emerald-400 font-semibold px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30">
                   {qualification.leadQuality}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Intent Level</span>
+                <span className="text-slate-300">Intent Level</span>
                 <span className="text-cyan-300 font-semibold px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-400/30">
                   {qualification.intentLevel}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Risk Level</span>
-                <span className="text-emerald-400 font-medium flex items-center gap-1.5">
+                <span className="text-slate-300">Risk Level</span>
+                <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
                   {qualification.riskLevel}
                 </span>
@@ -130,27 +130,27 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
 
               {/* 6 Summary Pills Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-5">
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-semibold">
                   <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Verified ID</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium tabular-nums">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-semibold tabular-nums">
                   <DollarSign className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Budget: $5M+</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-semibold">
                   <Briefcase className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Cash Acquisition</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium tabular-nums">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-semibold tabular-nums">
                   <Calendar className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Timeline: &lt;90 Days</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-semibold">
                   <User className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">Unrepresented</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-medium">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#092244]/60 border border-cyan-400/40 text-cyan-200 text-xs font-semibold">
                   <Zap className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span className="truncate">High Intent</span>
                 </div>
@@ -173,11 +173,11 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
 
             <div className="mt-4 pt-3 border-t border-white/10 text-[11px] text-slate-400 flex items-center justify-between">
               <span>ARGUS Intelligence Vector v4.2</span>
-              <span className="text-cyan-400 font-mono">Live Synced</span>
+              <span className="text-cyan-400 font-mono font-semibold">Live Synced</span>
             </div>
           </div>
 
-          {/* Card 3: Lead Intelligence Key-Value Table & Updated Action Buttons (lg:col-span-4) */}
+          {/* Card 3: Lead Intelligence Key-Value Table & Action Buttons (lg:col-span-4) */}
           <div className="lg:col-span-4 bg-[#081730]/90 border border-cyan-500/20 rounded-2xl p-5 flex flex-col justify-between shadow-xl backdrop-blur-md">
             <div>
               <div className="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold mb-3">
@@ -187,39 +187,39 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
               {/* Key-Value Table with Tabular Financials */}
               <div className="space-y-2 text-xs divide-y divide-white/5">
                 <div className="flex items-center justify-between pb-1.5">
-                  <span className="text-slate-400">Estimated Budget</span>
+                  <span className="text-slate-300">Estimated Budget</span>
                   <span className="text-white font-mono font-semibold tabular-nums financial-amount">
                     {qualification.estimatedBudget}
                   </span>
                 </div>
                 <div className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-400">Purchase Structure</span>
+                  <span className="text-slate-300">Purchase Structure</span>
                   <span className="text-emerald-400 font-semibold">{qualification.purchaseStructure}</span>
                 </div>
                 <div className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-400">Liquid Allocation Timeline</span>
-                  <span className="text-cyan-300 font-mono font-medium tabular-nums">
+                  <span className="text-slate-300">Liquid Allocation Timeline</span>
+                  <span className="text-cyan-300 font-mono font-semibold tabular-nums">
                     {qualification.liquidAllocationTimeline}
                   </span>
                 </div>
                 <div className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-400">Representation</span>
-                  <span className="text-[#F3E2B8] font-medium">{qualification.representation}</span>
+                  <span className="text-slate-300">Representation</span>
+                  <span className="text-[#F3E2B8] font-semibold">{qualification.representation}</span>
                 </div>
                 <div className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-400">Property Interest</span>
-                  <span className="text-white font-medium">{qualification.propertyInterest}</span>
+                  <span className="text-slate-300">Property Interest</span>
+                  <span className="text-white font-semibold">{qualification.propertyInterest}</span>
                 </div>
                 <div className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-400">Location Preference</span>
+                  <span className="text-slate-300">Location Preference</span>
                   <span className="text-slate-200">{qualification.locationPreference}</span>
                 </div>
                 <div className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-400">Property Type</span>
+                  <span className="text-slate-300">Property Type</span>
                   <span className="text-slate-200">{qualification.propertyType}</span>
                 </div>
                 <div className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-400">Intent Score</span>
+                  <span className="text-slate-300">Intent Score</span>
                   <div className="flex items-center gap-0.5 text-amber-400">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star key={star} className="w-3.5 h-3.5 fill-amber-400" />
@@ -249,7 +249,7 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
               {/* SOLID LUXE GOLD PRIMARY: Contact Lead */}
               <button
                 onClick={onContactLead}
-                className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-[#BFA775] hover:bg-[#caa866] text-[#0A1128] font-bold text-xs shadow-[0_0_15px_rgba(191,167,117,0.4)] transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+                className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-[#BFA775] hover:bg-[#caa866] hover:brightness-110 active:scale-[0.99] text-[#0A1128] font-bold text-xs shadow-[0_0_15px_rgba(191,167,117,0.4)] transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
               >
                 <Mail className="w-3.5 h-3.5 text-[#0A1128] shrink-0" />
                 <span className="truncate">Contact Lead</span>

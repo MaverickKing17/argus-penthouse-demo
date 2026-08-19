@@ -48,10 +48,10 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
   const totalMonthlyCarrying = baselineMonthly + monthlyMortgage;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-5xl bg-[#081222] border border-white/15 rounded-3xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.8)] flex flex-col max-h-[92vh]">
-        {/* Header */}
-        <div className="px-6 py-4 bg-[#0a162b] border-b border-white/10 flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md overflow-y-auto animate-fadeIn">
+      <div className="relative w-full max-w-5xl bg-[#081222] border border-white/15 rounded-3xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.8)] flex flex-col max-h-[85vh] my-auto">
+        {/* Header - Fixed & Sticky */}
+        <div className="shrink-0 px-6 py-4 bg-[#0a162b] border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-600/30 border border-emerald-400/50 flex items-center justify-center">
               <Calculator className="w-4 h-4 text-emerald-300" />
@@ -71,7 +71,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
             <div className="flex items-center bg-white/5 border border-white/10 rounded-lg p-0.5 text-xs">
               <button
                 onClick={() => setCurrency('CAD')}
-                className={`px-2.5 py-1 rounded-md font-mono transition-colors cursor-pointer tabular-nums ${
+                className={`px-2.5 py-1 rounded-md font-mono transition-colors cursor-pointer tabular-nums font-semibold ${
                   currency === 'CAD' ? 'bg-cyan-600 text-white font-bold' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -79,7 +79,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
               </button>
               <button
                 onClick={() => setCurrency('USD')}
-                className={`px-2.5 py-1 rounded-md font-mono transition-colors cursor-pointer tabular-nums ${
+                className={`px-2.5 py-1 rounded-md font-mono transition-colors cursor-pointer tabular-nums font-semibold ${
                   currency === 'USD' ? 'bg-cyan-600 text-white font-bold' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -96,7 +96,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
           </div>
         </div>
 
-        {/* Content */}
+        {/* Content Body - Dedicated Internal Scroll Container */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {/* Purchase Structure Selector with Cyan Outer Glow for active selection */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -114,7 +114,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
                   <span className="font-bold text-white text-sm font-display">100% Cash Acquisition</span>
                 </div>
                 {purchaseType === 'cash' && (
-                  <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-mono">
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-mono font-semibold">
                     Selected Model
                   </span>
                 )}
@@ -138,7 +138,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
                   <span className="font-bold text-white text-sm font-display">Structured Debt Financing</span>
                 </div>
                 {purchaseType === 'financed' && (
-                  <span className="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-mono">
+                  <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-mono font-semibold">
                     Selected Model
                   </span>
                 )}
@@ -193,7 +193,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
           {/* Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="p-5 rounded-2xl bg-[#0a1528] border border-white/10 shadow-lg">
-              <div className="text-xs font-mono uppercase text-slate-400 mb-1">Estimated Monthly Carrying</div>
+              <div className="text-xs font-mono uppercase text-slate-400 mb-1 font-semibold">Estimated Monthly Carrying</div>
               <div className="text-2xl lg:text-3xl font-bold font-mono text-emerald-400 tabular-nums">
                 ${totalMonthlyCarrying.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                 <span className="text-xs font-normal text-slate-400 ml-1">/mo {currency}</span>
@@ -204,7 +204,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
             </div>
 
             <div className="p-5 rounded-2xl bg-[#0a1528] border border-white/10 shadow-lg">
-              <div className="text-xs font-mono uppercase text-slate-400 mb-1">Total Closing Capital Due</div>
+              <div className="text-xs font-mono uppercase text-slate-400 mb-1 font-semibold">Total Closing Capital Due</div>
               <div className="text-2xl lg:text-3xl font-bold font-mono text-white tabular-nums">
                 ${(purchaseType === 'cash' ? listPrice + lttTotal : (listPrice * downPaymentPct / 100) + lttTotal).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                 <span className="text-xs font-normal text-slate-400 ml-1">{currency}</span>
@@ -215,11 +215,11 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
             </div>
 
             <div className="p-5 rounded-2xl bg-[#0a1528] border border-white/10 shadow-lg">
-              <div className="text-xs font-mono uppercase text-slate-400 mb-1">Condo Reserve Health</div>
+              <div className="text-xs font-mono uppercase text-slate-400 mb-1 font-semibold">Condo Reserve Health</div>
               <div className="text-2xl lg:text-3xl font-bold font-mono text-cyan-300">
                 Tier-1 AAA
               </div>
-              <div className="text-xs text-emerald-400 mt-2 flex items-center gap-1">
+              <div className="text-xs text-emerald-400 mt-2 flex items-center gap-1 font-semibold">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Zero special assessments on record</span>
               </div>
@@ -232,33 +232,33 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
             <div className="divide-y divide-white/5 text-xs">
               <div className="flex justify-between py-2.5 px-2 rounded-lg hover:bg-white/[0.02] transition-colors duration-150">
                 <span className="text-slate-300">Monthly Maintenance Fee ($1.15 / sq ft)</span>
-                <span className="font-mono text-white font-semibold tabular-nums">
+                <span className="font-mono text-white font-semibold tabular-nums financial-amount">
                   ${monthlyMaintenance.toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency}/mo
                 </span>
               </div>
               <div className="flex justify-between py-2.5 px-2 rounded-lg hover:bg-white/[0.02] transition-colors duration-150">
                 <span className="text-slate-300">Annual Municipal Property Taxes ($88,480 CAD/yr)</span>
-                <span className="font-mono text-white font-semibold tabular-nums">
+                <span className="font-mono text-white font-semibold tabular-nums financial-amount">
                   ${monthlyPropertyTax.toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency}/mo
                 </span>
               </div>
               <div className="flex justify-between py-2.5 px-2 rounded-lg hover:bg-white/[0.02] transition-colors duration-150">
                 <span className="text-slate-300">Luxury Penthouse Hazard & Contents Insurance (Est.)</span>
-                <span className="font-mono text-white font-semibold tabular-nums">
+                <span className="font-mono text-white font-semibold tabular-nums financial-amount">
                   ${monthlyInsurance.toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency}/mo
                 </span>
               </div>
               {purchaseType === 'financed' && (
                 <div className="flex justify-between py-2.5 px-2 rounded-lg hover:bg-white/[0.02] transition-colors duration-150">
                   <span className="text-cyan-300 font-semibold">Mortgage Principal & Interest Service</span>
-                  <span className="font-mono text-cyan-300 font-bold tabular-nums">
+                  <span className="font-mono text-cyan-300 font-bold tabular-nums financial-amount">
                     ${monthlyMortgage.toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency}/mo
                   </span>
                 </div>
               )}
               <div className="flex justify-between pt-3 pb-1 px-2 font-bold text-sm">
                 <span className="text-white font-display">Total Projected Monthly Holding Cost</span>
-                <span className="font-mono text-emerald-400 tabular-nums">
+                <span className="font-mono text-emerald-400 tabular-nums financial-amount">
                   ${totalMonthlyCarrying.toLocaleString(undefined, { maximumFractionDigits: 0 })} {currency}/mo
                 </span>
               </div>
@@ -266,8 +266,8 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="px-6 py-3.5 bg-[#0a162b] border-t border-white/10 flex items-center justify-between">
+        {/* Footer - Fixed & Sticky */}
+        <div className="shrink-0 px-6 py-3.5 bg-[#0a162b] border-t border-white/10 flex items-center justify-between">
           <div className="text-xs text-slate-400">
             Prepared by ARGUS Private Capital Analytics · Subject to legal and tax review
           </div>
@@ -276,7 +276,7 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
               onClose();
               onOpenConciergeQuestion(`Can you analyze the tax and liquidity implications of acquiring Suite 5200 through an offshore trust or holding corp?`);
             }}
-            className="py-2 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-md"
+            className="py-2 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-md transition-colors"
           >
             <span>Ask ARGUS to Advise Structure</span>
             <ArrowRight className="w-3.5 h-3.5" />

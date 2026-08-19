@@ -26,10 +26,10 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-lg bg-[#081222] border border-white/15 rounded-3xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.8)] flex flex-col">
-        {/* Header */}
-        <div className="px-6 py-4 bg-[#0a162b] border-b border-white/10 flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md overflow-y-auto animate-fadeIn">
+      <div className="relative w-full max-w-lg bg-[#081222] border border-white/15 rounded-3xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.8)] flex flex-col max-h-[85vh] my-auto">
+        {/* Header - Fixed & Sticky */}
+        <div className="shrink-0 px-6 py-4 bg-[#0a162b] border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center">
               <Building2 className="w-4 h-4 text-amber-300" />
@@ -52,8 +52,8 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
           </button>
         </div>
 
-        {/* Form Body */}
-        <div className="p-6">
+        {/* Content Body - Scrollable */}
+        <div className="flex-1 overflow-y-auto p-6">
           {submitted ? (
             <div className="py-8 flex flex-col items-center justify-center text-center space-y-3">
               <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-400 animate-bounce">
@@ -67,7 +67,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
           ) : (
             <form onSubmit={handleSubmit} className="space-y-3.5">
               <div>
-                <label className="block text-xs font-mono uppercase text-slate-400 mb-1">
+                <label className="block text-xs font-mono uppercase text-slate-400 mb-1 font-semibold">
                   Select or Enter Brokerage
                 </label>
                 <select
@@ -88,7 +88,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-mono uppercase text-slate-400 mb-1">
+                  <label className="block text-xs font-mono uppercase text-slate-400 mb-1 font-semibold">
                     Representative Name
                   </label>
                   <input
@@ -101,7 +101,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono uppercase text-slate-400 mb-1">
+                  <label className="block text-xs font-mono uppercase text-slate-400 mb-1 font-semibold">
                     Direct Phone
                   </label>
                   <input
@@ -116,7 +116,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase text-slate-400 mb-1">
+                <label className="block text-xs font-mono uppercase text-slate-400 mb-1 font-semibold">
                   Corporate Email
                 </label>
                 <input
@@ -135,7 +135,7 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
                 </span>
                 <button
                   type="submit"
-                  className="py-2.5 px-5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#c5a059] to-[#bfa775] hover:brightness-110 active:scale-[0.99] text-[#0A1128] text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-lg transition-transform"
+                  className="py-2.5 px-5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#c5a059] to-[#bfa775] hover:brightness-110 active:scale-[0.99] text-[#0A1128] text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-lg transition-all"
                 >
                   <span>Request Executive Briefing</span>
                   <ArrowRight className="w-3.5 h-3.5" />
