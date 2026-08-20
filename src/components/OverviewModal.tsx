@@ -280,10 +280,10 @@ export const OverviewModal: React.FC<OverviewModalProps> = ({
                     onClose();
                     onOpenConciergeQuestion(`Tell me more about the architectural specifications for the ${activeRoom.name} in Suite 5200.`);
                   }}
-                  className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all hover:scale-[1.02]"
+                  className="w-full py-3 px-4 rounded-xl bg-[#FF7A00] hover:bg-[#ff881a] text-[#061225] text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,122,0,0.45)] hover:shadow-[0_0_30px_rgba(255,122,0,0.65)] transition-all hover:scale-[1.02]"
                 >
                   <span>Ask ARGUS About {activeRoom.name}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 text-[#061225]" />
                 </button>
               </div>
             </div>

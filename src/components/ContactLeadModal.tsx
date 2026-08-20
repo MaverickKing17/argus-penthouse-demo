@@ -105,7 +105,7 @@ export const ContactLeadModal: React.FC<ContactLeadModalProps> = ({
                 </span>
                 <button
                   type="submit"
-                  className="py-2.5 px-5 rounded-xl bg-[#00C4CC] hover:bg-[#00d8e0] active:scale-[0.99] text-[#061225] text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-[0_0_20px_rgba(0,196,204,0.4)] hover:shadow-[0_0_30px_rgba(0,196,204,0.6)] transition-all"
+                  className="py-2.5 px-5 rounded-xl bg-[#FF7A00] hover:bg-[#ff881a] active:scale-[0.99] text-[#061225] text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-[0_0_20px_rgba(255,122,0,0.45)] hover:shadow-[0_0_30px_rgba(255,122,0,0.65)] transition-all"
                 >
                   <span>Transmit Outreach</span>
                   <Send className="w-3.5 h-3.5 text-[#061225]" />

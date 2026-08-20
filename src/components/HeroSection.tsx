@@ -105,11 +105,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           {/* High-Priority Primary Action CTA + Navigation Micro-Pills */}
           <div className="flex flex-wrap items-center gap-3">
-            {/* HIGH-PRIORITY CTA BUTTON (Vibrant Teal #00C4CC with Dark Navy Text) */}
+            {/* HIGH-PRIORITY CTA BUTTON (Vibrant Tangerine #FF7A00 with Dark Navy Text) */}
             {onOpenSchedule && (
               <button
                 onClick={onOpenSchedule}
-                className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#00C4CC] hover:bg-[#00d8e0] active:scale-[0.98] text-[#061225] font-bold text-xs tracking-wide shadow-[0_0_25px_rgba(0,196,204,0.5)] hover:shadow-[0_0_35px_rgba(0,196,204,0.7)] transition-all cursor-pointer transform hover:-translate-y-0.5"
+                className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FF7A00] hover:bg-[#ff881a] active:scale-[0.98] text-[#061225] font-bold text-xs tracking-wide shadow-[0_0_25px_rgba(255,122,0,0.5)] hover:shadow-[0_0_35px_rgba(255,122,0,0.7)] transition-all cursor-pointer transform hover:-translate-y-0.5"
               >
                 <Calendar className="w-4 h-4 text-[#061225]" />
                 <span>Schedule Private Showing</span>
@@ -119,17 +119,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <button
               onClick={onOpenOverview}
-              className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#091b38]/90 hover:bg-[#0f2c5e] text-white text-xs font-semibold backdrop-blur-md border border-cyan-400/40 transition-all cursor-pointer hover:border-cyan-300"
+              className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#091b38]/90 hover:bg-[#0f2c5e] text-white text-xs font-semibold backdrop-blur-md border border-[#FF7A00]/40 transition-all cursor-pointer hover:border-[#FF7A00]"
             >
-              <Eye className="w-3.5 h-3.5 text-cyan-300" />
+              <Eye className="w-3.5 h-3.5 text-[#FF7A00]" />
               <span>3D Digital Twin</span>
             </button>
 
             <button
               onClick={onOpenSpecs}
-              className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#1f190e]/90 hover:bg-[#332912] text-[#F3E2B8] text-xs font-semibold backdrop-blur-md border border-[#BFA775]/50 transition-all cursor-pointer hover:border-[#BFA775]"
+              className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#1f190e]/90 hover:bg-[#332912] text-[#F3E2B8] text-xs font-semibold backdrop-blur-md border border-[#FF7A00]/40 transition-all cursor-pointer hover:border-[#FF7A00]"
             >
-              <Layers className="w-3.5 h-3.5 text-[#BFA775]" />
+              <Layers className="w-3.5 h-3.5 text-[#FF7A00]" />
               <span>Poliform Matrix</span>
             </button>
 

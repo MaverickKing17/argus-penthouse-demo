@@ -215,10 +215,10 @@ export const NeighborhoodModal: React.FC<NeighborhoodModalProps> = ({
               onClose();
               onOpenConciergeQuestion(`What are the private resident concierge privileges and neighborhood benefits for Suite 5200?`);
             }}
-            className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-lg hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all hover:scale-[1.02]"
+            className="py-2.5 px-4 rounded-xl bg-[#FF7A00] hover:bg-[#ff881a] text-[#061225] text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,122,0,0.45)] hover:shadow-[0_0_22px_rgba(255,122,0,0.65)] transition-all hover:scale-[1.02]"
           >
             <span>Ask ARGUS About Neighborhood</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#061225]" />
           </button>
         </div>
       </div>

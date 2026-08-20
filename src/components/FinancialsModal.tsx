@@ -280,10 +280,10 @@ export const FinancialsModal: React.FC<FinancialsModalProps> = ({
               onClose();
               onOpenConciergeQuestion(`Can you analyze the tax and liquidity implications of acquiring Suite 5200 through an offshore trust or holding corp?`);
             }}
-            className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-lg hover:shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all hover:scale-[1.02]"
+            className="py-2.5 px-4 rounded-xl bg-[#FF7A00] hover:bg-[#ff881a] text-[#061225] text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,122,0,0.45)] hover:shadow-[0_0_22px_rgba(255,122,0,0.65)] transition-all hover:scale-[1.02]"
           >
             <span>Ask ARGUS to Advise Structure</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#061225]" />
           </button>
         </div>
       </div>

@@ -77,11 +77,11 @@ export const LegalDocumentModal: React.FC<LegalDocumentModalProps> = ({
             onClick={() => setActiveDoc('privacy')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeDoc === 'privacy'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_14px_rgba(6,182,212,0.4)] border border-cyan-300'
+                ? 'bg-[#FF7A00] text-[#061225] shadow-[0_0_14px_rgba(255,122,0,0.5)] border border-[#FF7A00]'
                 : 'text-slate-100 bg-[#0a1a36] hover:bg-[#10274f] border border-white/10'
             }`}
           >
-            <Shield className="w-3.5 h-3.5 text-cyan-300" />
+            <Shield className="w-3.5 h-3.5" />
             <span>Privacy Charter</span>
           </button>
 
@@ -89,11 +89,11 @@ export const LegalDocumentModal: React.FC<LegalDocumentModalProps> = ({
             onClick={() => setActiveDoc('nda')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeDoc === 'nda'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_14px_rgba(6,182,212,0.4)] border border-cyan-300'
+                ? 'bg-[#FF7A00] text-[#061225] shadow-[0_0_14px_rgba(255,122,0,0.5)] border border-[#FF7A00]'
                 : 'text-slate-100 bg-[#0a1a36] hover:bg-[#10274f] border border-white/10'
             }`}
           >
-            <Lock className="w-3.5 h-3.5 text-[#E6CA65]" />
+            <Lock className="w-3.5 h-3.5" />
             <span>Client NDA Protocol</span>
           </button>
 
@@ -101,11 +101,11 @@ export const LegalDocumentModal: React.FC<LegalDocumentModalProps> = ({
             onClick={() => setActiveDoc('fintrac')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeDoc === 'fintrac'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_14px_rgba(6,182,212,0.4)] border border-cyan-300'
+                ? 'bg-[#FF7A00] text-[#061225] shadow-[0_0_14px_rgba(255,122,0,0.5)] border border-[#FF7A00]'
                 : 'text-slate-100 bg-[#0a1a36] hover:bg-[#10274f] border border-white/10'
             }`}
           >
-            <FileCheck className="w-3.5 h-3.5 text-emerald-300" />
+            <FileCheck className="w-3.5 h-3.5" />
             <span>FINTRAC Schedule</span>
           </button>
 
@@ -113,11 +113,11 @@ export const LegalDocumentModal: React.FC<LegalDocumentModalProps> = ({
             onClick={() => setActiveDoc('reco')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeDoc === 'reco'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_14px_rgba(6,182,212,0.4)] border border-cyan-300'
+                ? 'bg-[#FF7A00] text-[#061225] shadow-[0_0_14px_rgba(255,122,0,0.5)] border border-[#FF7A00]'
                 : 'text-slate-100 bg-[#0a1a36] hover:bg-[#10274f] border border-white/10'
             }`}
           >
-            <Building2 className="w-3.5 h-3.5 text-cyan-200" />
+            <Building2 className="w-3.5 h-3.5" />
             <span>RECO & TRESA Guide</span>
           </button>
         </div>
@@ -363,7 +363,7 @@ export const LegalDocumentModal: React.FC<LegalDocumentModalProps> = ({
             </button>
             <button
               onClick={onClose}
-              className="px-5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-400 to-teal-400 hover:brightness-110 text-slate-950 text-xs font-bold transition-all cursor-pointer shadow-md"
+              className="px-5 py-2 rounded-xl bg-[#FF7A00] hover:bg-[#ff881a] text-[#061225] text-xs font-bold transition-all cursor-pointer shadow-[0_0_15px_rgba(255,122,0,0.4)]"
             >
               Acknowledge & Close
             </button>

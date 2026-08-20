@@ -30,24 +30,21 @@ export const Header: React.FC<HeaderProps> = ({
           className="flex items-center gap-3 cursor-pointer shrink-0"
           onClick={() => setActiveTab('concierge')}
         >
-          <div className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-[#E6CA65] via-[#BFA775] to-[#997F48] flex items-center justify-center shadow-[0_0_15px_rgba(191,167,117,0.35)] p-0.5">
-            <div className="w-full h-full bg-[#071124] rounded-[6px] flex items-center justify-center">
-              {/* Geometric Diamond Emblem */}
-              <div className="w-4 h-4 rotate-45 border-2 border-[#E6CA65] flex items-center justify-center">
-                <div className="w-1.5 h-1.5 bg-[#E6CA65] rounded-xs"></div>
-              </div>
-            </div>
-          </div>
+          <img
+            src="https://i.ibb.co/hJZCQ2Cr/Luxury-Penthouse-Interior-Arcus-AI.png"
+            alt="ARCUS AI Logo"
+            className="h-8 sm:h-9 w-auto object-contain rounded"
+          />
           <div className="flex items-baseline gap-1.5">
             <span className="text-white font-bold tracking-[0.2em] text-lg font-display">ARCUS</span>
-            <span className="text-[#E6CA65] font-semibold tracking-wider text-[11px] px-1.5 py-0.2 rounded bg-[#E6CA65]/15 border border-[#E6CA65]/30">
+            <span className="text-[#FF7A00] font-semibold tracking-wider text-[11px] px-1.5 py-0.2 rounded bg-[#FF7A00]/15 border border-[#FF7A00]/30">
               AI
             </span>
           </div>
         </div>
 
         {/* Center: Navigation Tabs */}
-        <nav className="hidden lg:flex items-center gap-1 bg-black/50 border border-cyan-500/20 p-1 rounded-full backdrop-blur-md">
+        <nav className="hidden lg:flex items-center gap-1 bg-black/50 border border-white/10 p-1 rounded-full backdrop-blur-md">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
@@ -56,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => setActiveTab(item.id)}
                 className={`relative px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? 'text-white bg-gradient-to-r from-[#00C4CC] to-blue-600 border border-[#00C4CC]/80 shadow-[0_0_12px_rgba(0,196,204,0.4)]'
+                    ? 'text-[#061225] bg-[#FF7A00] font-bold shadow-[0_0_15px_rgba(255,122,0,0.5)] border border-[#FF7A00]'
                     : 'text-slate-300 hover:text-white hover:bg-white/10'
                 }`}
               >
@@ -66,20 +63,20 @@ export const Header: React.FC<HeaderProps> = ({
           })}
         </nav>
 
-        {/* Right Section: User Profile Avatar & High-Priority Request Demo CTA */}
+        {/* Right Section: User Profile Avatar & High-Priority Request Demo CTA in Tangerine */}
         <div className="flex items-center gap-3 shrink-0">
           {/* User Profile Avatar */}
           <div
-            className="w-8 h-8 rounded-full bg-[#0A1A30] border border-[#00C4CC]/40 flex items-center justify-center text-white shadow-[0_0_10px_rgba(0,196,204,0.2)] cursor-pointer hover:border-[#00C4CC] transition-all"
+            className="w-8 h-8 rounded-full bg-[#0A1A30] border border-[#FF7A00]/50 flex items-center justify-center text-white shadow-[0_0_10px_rgba(255,122,0,0.25)] cursor-pointer hover:border-[#FF7A00] transition-all"
             title="User Profile"
           >
-            <User className="w-4 h-4 text-[#00C4CC]" />
+            <User className="w-4 h-4 text-[#FF7A00]" />
           </div>
 
-          {/* High-Priority CTA: Request Demo (Vibrant Teal #00C4CC with Dark Navy Text) */}
+          {/* High-Priority CTA: Request Demo (Vibrant Tangerine #FF7A00 with Dark Navy Text) */}
           <button
             onClick={onRequestDemo}
-            className="group relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#00C4CC] hover:bg-[#00d8e0] active:scale-[0.98] text-[#061225] font-bold text-xs tracking-wide shadow-[0_0_20px_rgba(0,196,204,0.45)] hover:shadow-[0_0_28px_rgba(0,196,204,0.65)] transition-all cursor-pointer transform hover:-translate-y-0.5"
+            className="group relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#FF7A00] hover:bg-[#ff881a] active:scale-[0.98] text-[#061225] font-bold text-xs tracking-wide shadow-[0_0_20px_rgba(255,122,0,0.5)] hover:shadow-[0_0_28px_rgba(255,122,0,0.7)] transition-all cursor-pointer transform hover:-translate-y-0.5"
           >
             <span>Request Demo</span>
             <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 text-[#061225]" />

@@ -159,7 +159,7 @@ export const LeadProfileModal: React.FC<LeadProfileModalProps> = ({
           <span>Audit Logged Session Record</span>
           <button
             onClick={onClose}
-            className="py-1.5 px-4 rounded-lg bg-transparent hover:bg-[#00C4CC]/10 text-[#00C4CC] border border-[#00C4CC]/60 font-semibold cursor-pointer transition-colors"
+            className="py-1.5 px-4 rounded-lg bg-transparent hover:bg-[#FF7A00]/15 text-[#FF7A00] border border-[#FF7A00]/60 font-semibold cursor-pointer transition-colors"
           >
             Close Dossier
           </button>

@@ -43,16 +43,14 @@ export const Footer: React.FC = () => {
             {/* Col 1-6: Brand & Positioning */}
             <div className="lg:col-span-6 space-y-3.5">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#BFA775] to-[#8C733E] p-0.5 flex items-center justify-center">
-                  <div className="w-full h-full bg-[#071124] rounded-[6px] flex items-center justify-center">
-                    <div className="w-3.5 h-3.5 rotate-45 border-2 border-[#BFA775] flex items-center justify-center">
-                      <div className="w-1 h-1 bg-[#BFA775]"></div>
-                    </div>
-                  </div>
-                </div>
+                <img
+                  src="https://i.ibb.co/hJZCQ2Cr/Luxury-Penthouse-Interior-Arcus-AI.png"
+                  alt="ARCUS AI Logo"
+                  className="h-8 sm:h-9 w-auto object-contain rounded"
+                />
                 <div className="flex items-baseline gap-2">
                   <span className="text-white font-bold tracking-[0.2em] text-xl font-display">ARCUS</span>
-                  <span className="text-[#BFA775] font-semibold text-xs px-2 py-0.2 rounded bg-[#BFA775]/15 border border-[#BFA775]/30">
+                  <span className="text-[#FF7A00] font-semibold text-xs px-2 py-0.2 rounded bg-[#FF7A00]/15 border border-[#FF7A00]/30">
                     AI
                   </span>
                 </div>
@@ -70,9 +68,9 @@ export const Footer: React.FC = () => {
               <div className="flex flex-wrap items-center gap-2 pt-1">
                 <button
                   onClick={() => openLegalDocument('reco')}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#061528] border border-cyan-500/30 text-[11px] text-cyan-200 hover:border-cyan-400 transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#061528] border border-[#FF7A00]/30 text-[11px] text-[#FF7A00] hover:border-[#FF7A00] transition-colors cursor-pointer"
                 >
-                  <Shield className="w-3 h-3 text-cyan-300" />
+                  <Shield className="w-3 h-3 text-[#FF7A00]" />
                   <span>COMPLIANCE-AWARE WORKFLOW</span>
                 </button>
                 <button
@@ -89,28 +87,28 @@ export const Footer: React.FC = () => {
             <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Contact Coordinates */}
               <div className="space-y-2.5">
-                <div className="text-xs font-mono uppercase tracking-wider text-cyan-300 font-semibold">
+                <div className="text-xs font-mono uppercase tracking-wider text-[#FF7A00] font-semibold">
                   Advisory Coordinates
                 </div>
                 <div className="space-y-1.5 text-xs text-[#C7D0DC]">
                   <div className="flex items-start gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-[#BFA775] shrink-0 mt-0.5" />
+                    <MapPin className="w-3.5 h-3.5 text-[#FF7A00] shrink-0 mt-0.5" />
                     <span>50 Yorkville Avenue, Suite 5200<br />Toronto, ON M4W 0A3</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Phone className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
-                    <a href="tel:4169205200" className="text-white hover:text-cyan-300 font-mono">+1 (416) 920-5200</a>
+                    <Phone className="w-3.5 h-3.5 text-[#FF7A00] shrink-0" />
+                    <a href="tel:4169205200" className="text-white hover:text-[#FF7A00] font-mono">+1 (416) 920-5200</a>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Mail className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
-                    <a href="mailto:suite5200@arcusai.toronto" className="text-white hover:text-cyan-300 font-mono">suite5200@arcusai.toronto</a>
+                    <Mail className="w-3.5 h-3.5 text-[#FF7A00] shrink-0" />
+                    <a href="mailto:suite5200@arcusai.toronto" className="text-white hover:text-[#FF7A00] font-mono">suite5200@arcusai.toronto</a>
                   </div>
                 </div>
               </div>
 
               {/* Private Inquiries Subscription */}
               <div className="space-y-2.5">
-                <div className="text-xs font-mono uppercase tracking-wider text-[#BFA775] font-semibold">
+                <div className="text-xs font-mono uppercase tracking-wider text-[#FF7A00] font-semibold">
                   Private Inquiries
                 </div>
                 <p className="text-xs text-[#8FA1B5] leading-relaxed">
@@ -130,11 +128,11 @@ export const Footer: React.FC = () => {
                       value={subEmail}
                       onChange={(e) => setSubEmail(e.target.value)}
                       placeholder="principal@advisory.com"
-                      className="flex-1 bg-[#07172e] border border-cyan-500/30 focus:border-cyan-300 rounded-xl px-3 py-2 text-xs text-white placeholder:text-[#8FA1B5] focus:outline-none"
+                      className="flex-1 bg-[#07172e] border border-cyan-500/30 focus:border-[#FF7A00] rounded-xl px-3 py-2 text-xs text-white placeholder:text-[#8FA1B5] focus:outline-none"
                     />
                     <button
                       type="submit"
-                      className="px-3 py-2 rounded-xl bg-[#BFA775] hover:bg-[#caa866] text-[#061225] font-semibold text-xs transition-all cursor-pointer shrink-0"
+                      className="px-4 py-2 rounded-xl bg-[#FF7A00] hover:bg-[#ff881a] text-[#061225] font-bold text-xs shadow-[0_0_15px_rgba(255,122,0,0.4)] transition-all cursor-pointer shrink-0"
                     >
                       Connect
                     </button>

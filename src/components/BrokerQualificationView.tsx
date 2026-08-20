@@ -393,32 +393,32 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
               </div>
             </div>
 
-            {/* ACTION BUTTONS: Secondary & Tertiary Actions in Vibrant Teal (#00C4CC) Outline Style */}
+            {/* ACTION BUTTONS: Actions in Vibrant Tangerine (#FF7A00) Outline Style */}
             <div className="grid grid-cols-3 gap-2 pt-3 border-t border-white/10">
-              {/* Action 1: View Full Profile (Outlined #00C4CC) */}
+              {/* Action 1: View Full Profile (Outlined #FF7A00) */}
               <button
                 onClick={onViewProfile}
-                className="flex items-center justify-center gap-1 py-2.5 px-2 rounded-xl bg-transparent hover:bg-[#00C4CC]/10 text-[#00C4CC] border border-[#00C4CC]/70 hover:border-[#00C4CC] text-xs font-semibold transition-all cursor-pointer truncate shadow-sm"
+                className="flex items-center justify-center gap-1 py-2.5 px-2 rounded-xl bg-transparent hover:bg-[#FF7A00]/15 text-[#FF7A00] border border-[#FF7A00]/70 hover:border-[#FF7A00] text-xs font-semibold transition-all cursor-pointer truncate shadow-sm"
               >
-                <UserCheck className="w-3.5 h-3.5 text-[#00C4CC] shrink-0" />
+                <UserCheck className="w-3.5 h-3.5 text-[#FF7A00] shrink-0" />
                 <span className="truncate">Full Profile</span>
               </button>
 
-              {/* Action 2: Contact Lead / Contact Agent (Outlined #00C4CC) */}
+              {/* Action 2: Contact Lead / Contact Agent (Outlined #FF7A00) */}
               <button
                 onClick={onContactLead}
-                className="flex items-center justify-center gap-1 py-2.5 px-2 rounded-xl bg-transparent hover:bg-[#00C4CC]/10 text-[#00C4CC] border border-[#00C4CC]/70 hover:border-[#00C4CC] text-xs font-semibold transition-all cursor-pointer truncate shadow-sm"
+                className="flex items-center justify-center gap-1 py-2.5 px-2 rounded-xl bg-transparent hover:bg-[#FF7A00]/15 text-[#FF7A00] border border-[#FF7A00]/70 hover:border-[#FF7A00] text-xs font-semibold transition-all cursor-pointer truncate shadow-sm"
               >
-                <Mail className="w-3.5 h-3.5 text-[#00C4CC] shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-[#FF7A00] shrink-0" />
                 <span className="truncate">Contact Agent</span>
               </button>
 
-              {/* Action 3: Schedule Private Call (Outlined #00C4CC) */}
+              {/* Action 3: Schedule Private Call (Outlined #FF7A00) */}
               <button
                 onClick={onScheduleCall}
-                className="flex items-center justify-center gap-1 py-2.5 px-2 rounded-xl bg-transparent hover:bg-[#00C4CC]/10 text-[#00C4CC] border border-[#00C4CC]/70 hover:border-[#00C4CC] text-xs font-semibold transition-all cursor-pointer truncate shadow-sm"
+                className="flex items-center justify-center gap-1 py-2.5 px-2 rounded-xl bg-transparent hover:bg-[#FF7A00]/15 text-[#FF7A00] border border-[#FF7A00]/70 hover:border-[#FF7A00] text-xs font-semibold transition-all cursor-pointer truncate shadow-sm"
               >
-                <Calendar className="w-3.5 h-3.5 text-[#00C4CC] shrink-0" />
+                <Calendar className="w-3.5 h-3.5 text-[#FF7A00] shrink-0" />
                 <span className="truncate">Schedule Call</span>
               </button>
             </div>
