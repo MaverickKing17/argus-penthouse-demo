@@ -135,10 +135,10 @@ export const PrivateDemoModal: React.FC<PrivateDemoModalProps> = ({ isOpen, onCl
                 </span>
                 <button
                   type="submit"
-                  className="py-2.5 px-5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#c5a059] to-[#bfa775] hover:brightness-110 active:scale-[0.99] text-[#0A1128] text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-lg transition-all"
+                  className="py-2.5 px-5 rounded-xl bg-[#00C4CC] hover:bg-[#00d8e0] active:scale-[0.99] text-[#061225] text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-[0_0_20px_rgba(0,196,204,0.4)] hover:shadow-[0_0_30px_rgba(0,196,204,0.6)] transition-all"
                 >
                   <span>Request Executive Briefing</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#061225]" />
                 </button>
               </div>
             </form>

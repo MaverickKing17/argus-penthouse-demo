@@ -117,27 +117,27 @@ export const FloatingConcierge: React.FC<FloatingConciergeProps> = ({
     ? latestAssistantMsg.quickReplies
     : null;
 
-  // Compact floating action bubble when minimized
+  // Compact floating action bubble when minimized (Luminous #00C4CC, Dark Text, Elevated Position)
   if (isMinimized) {
     return (
-      <div className="fixed bottom-6 right-6 z-40">
+      <div className="fixed bottom-24 right-4 sm:right-7 sm:bottom-28 z-50">
         <button
           onClick={() => setIsMinimized(false)}
-          className="group flex items-center gap-3 px-4 py-3 rounded-full border border-cyan-500/40 shadow-2xl transition-all hover:border-cyan-300 cursor-pointer bg-[#061225]/95 backdrop-blur-xl"
+          className="group flex items-center gap-3 px-4 py-3 rounded-full border-2 border-white/40 shadow-[0_12px_35px_rgba(0,196,204,0.55),0_0_20px_rgba(0,196,204,0.4)] transition-all transform hover:-translate-y-1 hover:shadow-[0_16px_45px_rgba(0,196,204,0.7)] cursor-pointer bg-[#00C4CC] hover:bg-[#00d8e0] active:scale-95"
         >
           <div className="relative">
-            <div className="w-8 h-8 rounded-full bg-[#0d2a4d] flex items-center justify-center border border-cyan-400/50">
-              <Bot className="w-4 h-4 text-cyan-300" />
+            <div className="w-8 h-8 rounded-full bg-[#061225] flex items-center justify-center border border-white/20 shadow-sm">
+              <Bot className="w-4 h-4 text-[#00C4CC]" />
             </div>
-            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-[#00C4CC]"></span>
           </div>
 
           <div className="text-left">
             <div className="flex items-center gap-1.5">
-              <span className="text-xs font-semibold text-white font-sans">ARGUS AI Concierge</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded bg-cyan-950 text-cyan-300 font-mono font-medium border border-cyan-500/30">ONLINE</span>
+              <span className="text-xs font-bold text-[#061225] font-sans">ARGUS AI Concierge</span>
+              <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#061225] text-[#00C4CC] font-mono font-bold">LIVE</span>
             </div>
-            <div className="text-[11px] text-[#C7D0DC] font-normal">
+            <div className="text-[11px] text-[#061225]/85 font-medium">
               Click to open dialogue
             </div>
           </div>
@@ -148,39 +148,39 @@ export const FloatingConcierge: React.FC<FloatingConciergeProps> = ({
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-40 max-w-[430px] w-[calc(100%-3rem)] sm:w-full transition-all duration-300 shadow-2xl border border-cyan-500/30 rounded-2xl overflow-hidden bg-[#061225]/98 backdrop-blur-2xl"
+      className="fixed bottom-20 right-4 sm:right-7 sm:bottom-24 z-50 max-w-[430px] w-[calc(100%-2rem)] sm:w-full transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_35px_rgba(0,196,204,0.3)] border-2 border-[#00C4CC]/50 rounded-2xl overflow-hidden bg-[#061225]/98 backdrop-blur-2xl"
     >
       <div className="flex flex-col overflow-hidden">
         
-        {/* Concierge Header (Restrained Cyan Online Indicator) */}
-        <div className="shrink-0 px-4 py-3 bg-[#07162C] border-b border-cyan-500/20 flex items-center justify-between">
+        {/* Concierge Header (Luminous #00C4CC Header Bar with Dark Text for Pop & Readability) */}
+        <div className="shrink-0 px-4 py-3 bg-[#00C4CC] border-b border-[#00C4CC]/30 flex items-center justify-between shadow-md">
           <div className="flex items-center gap-2.5">
             <div className="relative">
-              <div className="w-8 h-8 rounded-xl bg-[#0b2447] flex items-center justify-center border border-cyan-400/40">
-                <Bot className="w-4 h-4 text-cyan-300" />
+              <div className="w-8 h-8 rounded-xl bg-[#061225] flex items-center justify-center border border-white/20 shadow-sm">
+                <Bot className="w-4 h-4 text-[#00C4CC]" />
               </div>
-              <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-cyan-400"></span>
+              <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 border border-[#061225]"></span>
             </div>
             <div>
-              <h3 className="font-semibold text-white text-sm tracking-wide font-sans">
+              <h3 className="font-bold text-[#061225] text-sm tracking-wide font-sans">
                 ARGUS AI Concierge
               </h3>
-              <div className="flex items-center gap-1.5 text-[11px] text-cyan-300 font-mono font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 inline-block"></span>
-                <span>ONLINE</span>
+              <div className="flex items-center gap-1.5 text-[11px] text-[#061225]/80 font-mono font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block"></span>
+                <span>ONLINE · DIRECTORY READY</span>
               </div>
             </div>
           </div>
 
-          {/* Header Controls: Voice, Options, and Minimize */}
+          {/* Header Controls: Voice, Options, and Minimize (Dark on Teal) */}
           <div className="flex items-center gap-1 relative">
             <button
               onClick={() => setVoiceEnabled(!voiceEnabled)}
               title={voiceEnabled ? 'Mute AI Voice' : 'Enable AI Voice'}
               className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                 voiceEnabled
-                  ? 'bg-cyan-500/20 text-cyan-200 border border-cyan-400/40'
-                  : 'text-slate-300 hover:text-white hover:bg-white/10'
+                  ? 'bg-[#061225] text-[#00C4CC]'
+                  : 'text-[#061225] hover:bg-[#061225]/10'
               }`}
             >
               {voiceEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
@@ -188,7 +188,7 @@ export const FloatingConcierge: React.FC<FloatingConciergeProps> = ({
 
             <button
               onClick={() => setShowOptions(!showOptions)}
-              className="p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-[#061225] hover:bg-[#061225]/10 rounded-lg transition-colors cursor-pointer"
             >
               <MoreHorizontal className="w-4 h-4" />
             </button>
@@ -196,14 +196,14 @@ export const FloatingConcierge: React.FC<FloatingConciergeProps> = ({
             <button
               onClick={() => setIsMinimized(true)}
               title="Minimize Concierge"
-              className="p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-[#061225] hover:bg-[#061225]/10 rounded-lg transition-colors cursor-pointer"
             >
               <Minimize2 className="w-4 h-4" />
             </button>
 
             {/* Options Dropdown */}
             {showOptions && (
-              <div className="absolute right-0 top-10 w-52 bg-[#06152e] border border-cyan-500/30 rounded-xl shadow-2xl p-1.5 z-50 text-xs backdrop-blur-2xl">
+              <div className="absolute right-0 top-10 w-52 bg-[#06152e] border border-[#00C4CC]/40 rounded-xl shadow-2xl p-1.5 z-50 text-xs backdrop-blur-2xl">
                 <button
                   onClick={() => {
                     onResetChat();
@@ -211,7 +211,7 @@ export const FloatingConcierge: React.FC<FloatingConciergeProps> = ({
                   }}
                   className="w-full text-left px-3 py-2 rounded-lg text-slate-200 hover:bg-white/10 flex items-center gap-2 transition-colors cursor-pointer font-medium"
                 >
-                  <RotateCcw className="w-3.5 h-3.5 text-cyan-400" />
+                  <RotateCcw className="w-3.5 h-3.5 text-[#00C4CC]" />
                   <span>Reset Dialogue</span>
                 </button>
                 {onOpenMarket && (
@@ -222,7 +222,7 @@ export const FloatingConcierge: React.FC<FloatingConciergeProps> = ({
                     }}
                     className="w-full text-left px-3 py-2 rounded-lg text-slate-200 hover:bg-white/10 flex items-center gap-2 transition-colors cursor-pointer font-medium"
                   >
-                    <TrendingUp className="w-3.5 h-3.5 text-cyan-400" />
+                    <TrendingUp className="w-3.5 h-3.5 text-[#00C4CC]" />
                     <span>Toronto Market Comps</span>
                   </button>
                 )}
@@ -255,7 +255,7 @@ export const FloatingConcierge: React.FC<FloatingConciergeProps> = ({
                   }}
                   className="w-full text-left px-3 py-2 rounded-lg text-slate-200 hover:bg-white/10 flex items-center gap-2 transition-colors cursor-pointer font-medium"
                 >
-                  <Key className="w-3.5 h-3.5 text-[#BFA775]" />
+                  <Key className="w-3.5 h-3.5 text-[#00C4CC]" />
                   <span>VIP Showing Protocol</span>
                 </button>
               </div>
@@ -396,9 +396,9 @@ export const FloatingConcierge: React.FC<FloatingConciergeProps> = ({
               }
             }}
             disabled={isLoading || !inputValue.trim()}
-            className="w-8 h-8 rounded-xl bg-[#1C75BC] hover:bg-blue-600 disabled:opacity-40 disabled:cursor-not-allowed text-white flex items-center justify-center shrink-0 transition-all cursor-pointer"
+            className="w-8 h-8 rounded-xl bg-[#00C4CC] hover:bg-[#00d8e0] disabled:opacity-30 disabled:cursor-not-allowed text-[#061225] flex items-center justify-center shrink-0 transition-all cursor-pointer shadow-[0_0_12px_rgba(0,196,204,0.4)]"
           >
-            <Send className="w-3.5 h-3.5 text-white" />
+            <Send className="w-3.5 h-3.5 text-[#061225]" />
           </button>
         </div>
 

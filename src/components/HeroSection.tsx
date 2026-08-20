@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Eye, Layers, Calculator, Compass, DollarSign, Sparkles } from 'lucide-react';
+import { MapPin, Eye, Layers, Calculator, Compass, DollarSign, Sparkles, Calendar, ChevronRight } from 'lucide-react';
 import { PropertyData } from '../types';
 import heroBgImage from '../assets/images/toronto_penthouse_twilight_1787165723733.jpg';
 
@@ -9,6 +9,7 @@ interface HeroSectionProps {
   onOpenSpecs: () => void;
   onOpenFinancials: () => void;
   onOpenNeighborhood: () => void;
+  onOpenSchedule?: () => void;
   onOpenConciergePrompt: (prompt: string) => void;
 }
 
@@ -18,6 +19,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onOpenSpecs,
   onOpenFinancials,
   onOpenNeighborhood,
+  onOpenSchedule,
   onOpenConciergePrompt,
 }) => {
   return (
@@ -43,7 +45,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="max-w-2xl lg:max-w-3xl flex flex-col justify-center pt-2 lg:pt-6">
           
           {/* Subtle White-Label / Infrastructure Indicator */}
-          <div className="inline-flex items-center gap-2 mb-4 text-xs font-mono text-cyan-300 bg-[#071526]/80 px-3 py-1 rounded-full border border-cyan-500/30 w-fit backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 mb-4 text-xs font-mono text-[#00C4CC] bg-[#071526]/90 px-3 py-1 rounded-full border border-[#00C4CC]/40 w-fit backdrop-blur-md shadow-sm">
             <span>ARCUS AI</span>
             <span className="text-slate-400">·</span>
             <span>Powered by ARGUS</span>
@@ -65,7 +67,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </p>
 
           {/* Refined Property Information Hierarchy */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-[#071526]/90 border border-cyan-500/30 backdrop-blur-xl mb-8 max-w-xl shadow-xl space-y-3">
+          <div className="p-4 sm:p-5 rounded-2xl bg-[#071526]/90 border border-cyan-500/30 backdrop-blur-xl mb-6 max-w-xl shadow-xl space-y-3">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
               <div>
                 <div className="text-xs font-mono uppercase tracking-wider text-[#8FA1B5]">
@@ -101,11 +103,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
           </div>
 
-          {/* Navigation Micro-Pills */}
-          <div className="flex flex-wrap items-center gap-2.5">
+          {/* High-Priority Primary Action CTA + Navigation Micro-Pills */}
+          <div className="flex flex-wrap items-center gap-3">
+            {/* HIGH-PRIORITY CTA BUTTON (Vibrant Teal #00C4CC with Dark Navy Text) */}
+            {onOpenSchedule && (
+              <button
+                onClick={onOpenSchedule}
+                className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#00C4CC] hover:bg-[#00d8e0] active:scale-[0.98] text-[#061225] font-bold text-xs tracking-wide shadow-[0_0_25px_rgba(0,196,204,0.5)] hover:shadow-[0_0_35px_rgba(0,196,204,0.7)] transition-all cursor-pointer transform hover:-translate-y-0.5"
+              >
+                <Calendar className="w-4 h-4 text-[#061225]" />
+                <span>Schedule Private Showing</span>
+                <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 text-[#061225]" />
+              </button>
+            )}
+
             <button
               onClick={onOpenOverview}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#091b38]/90 hover:bg-[#0f2c5e] text-white text-xs font-semibold backdrop-blur-md border border-cyan-400/40 transition-all cursor-pointer hover:border-cyan-300"
+              className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#091b38]/90 hover:bg-[#0f2c5e] text-white text-xs font-semibold backdrop-blur-md border border-cyan-400/40 transition-all cursor-pointer hover:border-cyan-300"
             >
               <Eye className="w-3.5 h-3.5 text-cyan-300" />
               <span>3D Digital Twin</span>
@@ -113,7 +127,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <button
               onClick={onOpenSpecs}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#1f190e]/90 hover:bg-[#332912] text-[#F3E2B8] text-xs font-semibold backdrop-blur-md border border-[#BFA775]/50 transition-all cursor-pointer hover:border-[#BFA775]"
+              className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#1f190e]/90 hover:bg-[#332912] text-[#F3E2B8] text-xs font-semibold backdrop-blur-md border border-[#BFA775]/50 transition-all cursor-pointer hover:border-[#BFA775]"
             >
               <Layers className="w-3.5 h-3.5 text-[#BFA775]" />
               <span>Poliform Matrix</span>
@@ -121,7 +135,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <button
               onClick={onOpenFinancials}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0c2419]/90 hover:bg-[#143d2c] text-emerald-200 text-xs font-semibold backdrop-blur-md border border-emerald-400/40 transition-all cursor-pointer hover:border-emerald-300"
+              className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#0c2419]/90 hover:bg-[#143d2c] text-emerald-200 text-xs font-semibold backdrop-blur-md border border-emerald-400/40 transition-all cursor-pointer hover:border-emerald-300"
             >
               <Calculator className="w-3.5 h-3.5 text-emerald-300" />
               <span>Carrying Costs</span>
@@ -129,7 +143,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <button
               onClick={onOpenNeighborhood}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#091b38]/90 hover:bg-[#0f2c5e] text-cyan-200 text-xs font-semibold backdrop-blur-md border border-cyan-400/40 transition-all cursor-pointer hover:border-cyan-300"
+              className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#091b38]/90 hover:bg-[#0f2c5e] text-cyan-200 text-xs font-semibold backdrop-blur-md border border-cyan-400/40 transition-all cursor-pointer hover:border-cyan-300"
             >
               <Compass className="w-3.5 h-3.5 text-cyan-300" />
               <span>Yorkville Enclave</span>

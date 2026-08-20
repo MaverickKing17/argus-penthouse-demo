@@ -132,7 +132,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
                 </span>
                 <button
                   type="submit"
-                  className="py-2.5 px-5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 hover:brightness-110 active:scale-[0.99] text-white text-xs font-semibold cursor-pointer shadow-lg transition-all"
+                  className="py-2.5 px-5 rounded-xl bg-[#00C4CC] hover:bg-[#00d8e0] active:scale-[0.99] text-[#061225] text-xs font-bold cursor-pointer shadow-[0_0_20px_rgba(0,196,204,0.4)] hover:shadow-[0_0_30px_rgba(0,196,204,0.6)] transition-all"
                 >
                   Confirm Showing Pass
                 </button>

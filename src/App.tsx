@@ -19,7 +19,6 @@ import { INITIAL_PROPERTY_DATA, INITIAL_QUALIFICATION } from './data/propertyDat
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('concierge');
-  const [viewportMode, setViewportMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [property] = useState(INITIAL_PROPERTY_DATA);
   const [qualification, setQualification] = useState<QualificationData>(INITIAL_QUALIFICATION);
   const [inputValue, setInputValue] = useState('');
@@ -214,26 +213,16 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070e1b] text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
-      {/* Top Header with Viewport Mode Switcher */}
+    <div className="min-h-screen bg-[#070e1b] text-slate-100 flex flex-col font-sans selection:bg-[#00C4CC]/30 selection:text-[#00C4CC]">
+      {/* Top Header with User Profile and Request Demo */}
       <Header
         activeTab={activeTab}
         setActiveTab={handleNavClick}
         onRequestDemo={() => setIsPrivateDemoOpen(true)}
-        viewportMode={viewportMode}
-        setViewportMode={setViewportMode}
       />
 
-      {/* Main Container with Smooth Responsive Viewport Simulation */}
-      <div
-        className={`flex-1 transition-all duration-300 w-full ${
-          viewportMode === 'tablet'
-            ? 'max-w-[780px] mx-auto my-4 rounded-3xl border-2 border-cyan-500/40 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden bg-[#070E1B]'
-            : viewportMode === 'mobile'
-            ? 'max-w-[400px] mx-auto my-4 rounded-[36px] border-2 border-cyan-500/40 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden bg-[#070E1B]'
-            : 'w-full'
-        }`}
-      >
+      {/* Main Content Area */}
+      <div className="flex-1 w-full">
         <main className="flex-1">
           {/* Unobstructed Hero Showcase */}
           <HeroSection
@@ -242,6 +231,7 @@ export default function App() {
             onOpenSpecs={() => setIsSpecsOpen(true)}
             onOpenFinancials={() => setIsFinancialsOpen(true)}
             onOpenNeighborhood={() => setIsNeighborhoodOpen(true)}
+            onOpenSchedule={() => setIsScheduleCallOpen(true)}
             onOpenConciergePrompt={handleSendMessage}
           />
 
