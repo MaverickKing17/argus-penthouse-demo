@@ -39,7 +39,7 @@ export const LegalDocumentModal: React.FC<LegalDocumentModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto animate-fadeIn">
-      <div className="relative w-full max-w-4xl bg-[#081224] border-2 border-cyan-400/40 rounded-3xl overflow-hidden shadow-[0_25px_90px_rgba(0,0,0,0.95)] flex flex-col max-h-[88vh] my-auto text-white">
+      <div className="relative w-full max-w-4xl bg-[#081224] border-2 border-cyan-400/40 rounded-3xl overflow-hidden shadow-[0_25px_90px_rgba(0,0,0,0.95)] flex flex-col max-h-[88vh] my-auto text-white animate-modalSlideIn">
         
         {/* Modal Header with High Contrast */}
         <div className="shrink-0 px-6 py-4 bg-gradient-to-r from-[#0a1b38] via-[#0e2752] to-[#0a1b38] border-b border-cyan-500/35 flex items-center justify-between">

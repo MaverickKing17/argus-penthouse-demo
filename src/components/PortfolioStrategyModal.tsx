@@ -30,7 +30,7 @@ export const PortfolioStrategyModal: React.FC<PortfolioStrategyModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md overflow-y-auto animate-fadeIn">
-      <div className="relative w-full max-w-4xl bg-[#081224] border border-cyan-500/35 rounded-3xl overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.85)] flex flex-col max-h-[85vh] my-auto">
+      <div className="relative w-full max-w-4xl bg-[#081224] border border-cyan-500/35 rounded-3xl overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.85)] flex flex-col max-h-[85vh] my-auto animate-modalSlideIn">
         
         {/* Header */}
         <div className="shrink-0 px-6 py-4 bg-[#0a1832] border-b border-cyan-500/25 flex items-center justify-between">

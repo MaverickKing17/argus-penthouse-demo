@@ -142,7 +142,7 @@ export const FloatingConcierge: React.FC<FloatingConciergeProps> = ({
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-40 max-w-[420px] w-[calc(100%-3rem)] sm:w-full transition-all duration-300 animate-fadeIn shadow-[0_25px_60px_rgba(0,0,0,0.8)] border border-cyan-500/40 rounded-2xl overflow-hidden bg-[#071329]/95 backdrop-blur-2xl"
+      className="fixed bottom-6 right-6 z-40 max-w-[420px] w-[calc(100%-3rem)] sm:w-full transition-all duration-300 animate-slideInUp shadow-[0_25px_60px_rgba(0,0,0,0.8)] border border-cyan-500/40 rounded-2xl overflow-hidden bg-[#071329]/95 backdrop-blur-2xl"
     >
       <div className="flex flex-col overflow-hidden">
         
