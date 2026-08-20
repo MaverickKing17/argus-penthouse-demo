@@ -30,7 +30,7 @@ export default function App() {
       id: 'argus-welcome',
       role: 'assistant',
       content:
-        'Welcome to the ARGUS AI Concierge DEMO. I am your secure, institutional-grade digital infrastructure. For this simulation, I am acting as the concierge for Suite 5200. I can show you how we model financial carry, analyze HNW portfolio architecture, and qualify high-intent buyers in real time while protecting vendor privacy. Ask me about the property to begin.',
+        'Welcome to the ARGUS AI Concierge DEMO. I am your secure, institutional-grade digital infrastructure for Suite 5200. I am designed to qualify high-intent interest while protecting vendor privacy. Ask me about the property to begin.',
       timestamp: '6:42 PM',
     },
   ]);
@@ -201,7 +201,7 @@ export default function App() {
         id: 'argus-welcome',
         role: 'assistant',
         content:
-          'Welcome to the ARGUS AI Concierge DEMO. I am your secure, institutional-grade digital infrastructure. For this simulation, I am acting as the concierge for Suite 5200. I can show you how we model financial carry, analyze HNW portfolio architecture, and qualify high-intent buyers in real time while protecting vendor privacy. Ask me about the property to begin.',
+          'Welcome to the ARGUS AI Concierge DEMO. I am your secure, institutional-grade digital infrastructure for Suite 5200. I am designed to qualify high-intent interest while protecting vendor privacy. Ask me about the property to begin.',
         timestamp: '6:42 PM',
       },
     ]);
