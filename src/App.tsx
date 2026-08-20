@@ -31,7 +31,7 @@ export default function App() {
       id: 'argus-welcome',
       role: 'assistant',
       content:
-        'Welcome to Suite 5200 at Four Seasons Private Residences. I am ARGUS, your dedicated AI concierge and luxury acquisition advisor.\n\nAsk me anything about floorplans, finishes, carrying cost simulations, Toronto luxury comps, or schedule an executive twilight viewing.',
+        'Welcome to Suite 5200. I am ARGUS, your private digital concierge. I can provide property intelligence, ownership analysis, or arrange a private introduction to the advisory team.',
       timestamp: '6:42 PM',
     },
   ]);
@@ -60,9 +60,17 @@ export default function App() {
                 ...prev,
                 leadStatus: 'HOT LEAD',
                 leadBadge: '$5.5M CASH BUYER',
-                confidenceScore: 96,
-                purchaseStructure: 'Cash',
-                estimatedBudget: '$5,000,000 - $6,000,000',
+                qualificationConfidence: 95,
+                budget: {
+                  value: '$5,000,000 – $6,000,000',
+                  source: 'buyer_stated',
+                  sourceLabel: 'Buyer stated',
+                },
+                purchaseStructure: {
+                  value: 'Cash',
+                  source: 'buyer_stated',
+                  sourceLabel: 'Buyer stated',
+                },
                 lastUpdated: `Today, ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`,
               }));
             }
@@ -129,6 +137,7 @@ export default function App() {
         content:
           data.reply ||
           'For Suite 5200, carrying costs reflect a pristine institutional reserve fund ratio. The monthly maintenance fee is $7,417.50 CAD, covering 24/7 Four Seasons concierge, valet, and common amenities. What acquisition timeline are you contemplating?',
+        quickReplies: data.quickReplies,
         timestamp: new Date().toLocaleTimeString([], {
           hour: '2-digit',
           minute: '2-digit',
@@ -168,9 +177,17 @@ export default function App() {
           ...prev,
           leadStatus: 'HOT LEAD',
           leadBadge: '$5.5M CASH BUYER',
-          confidenceScore: 95,
-          purchaseStructure: 'Cash',
-          estimatedBudget: '$5,000,000 - $6,000,000',
+          qualificationConfidence: 95,
+          budget: {
+            value: '$5,000,000 – $6,000,000',
+            source: 'buyer_stated',
+            sourceLabel: 'Buyer stated',
+          },
+          purchaseStructure: {
+            value: 'Cash',
+            source: 'buyer_stated',
+            sourceLabel: 'Buyer stated',
+          },
           lastUpdated: `Today, ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`,
         }));
       }
@@ -185,7 +202,7 @@ export default function App() {
         id: 'argus-welcome',
         role: 'assistant',
         content:
-          'Welcome to Suite 5200 at Four Seasons Private Residences. I am ARGUS, your dedicated AI concierge and luxury acquisition advisor.\n\nAsk me anything about floorplans, finishes, carrying cost simulations, Toronto luxury comps, or schedule an executive twilight viewing.',
+          'Welcome to Suite 5200. I am ARGUS, your private digital concierge. I can provide property intelligence, ownership analysis, or arrange a private introduction to the advisory team.',
         timestamp: '6:42 PM',
       },
     ]);

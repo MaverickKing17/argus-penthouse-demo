@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Eye, Layers, Calculator, Compass, Sparkles, Building2 } from 'lucide-react';
+import { MapPin, Eye, Layers, Calculator, Compass, DollarSign, Sparkles } from 'lucide-react';
 import { PropertyData } from '../types';
 import heroBgImage from '../assets/images/toronto_penthouse_twilight_1787165723733.jpg';
 
@@ -22,57 +22,90 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   return (
     <div className="relative w-full min-h-[640px] lg:min-h-[720px] overflow-hidden">
-      {/* 1. FULL-BLEED HIGH-RES PENTHOUSE BACKGROUND OVERLOOKING TORONTO TWILIGHT SKYLINE */}
+      {/* 1. FULL-BLEED HIGH-RES PENTHOUSE BACKGROUND WITH SOPHISTICATED DIRECTIONAL GRADIENT */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroBgImage}
           alt="Suite 5200 Penthouse Twilight Skyline"
           className="w-full h-full object-cover object-center"
         />
-        {/* Subtle luminous grading for text contrast without obscuring the background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#060D1E]/75 via-[#060D1E]/25 to-transparent pointer-events-none"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-transparent to-[#060D1E]/30 pointer-events-none"></div>
+        {/* Sophisticated Directional Gradient:
+            LEFT: Stronger Navy Overlay
+            CENTER: Medium Transparent Navy
+            RIGHT: Allows Architectural Image to Breathe
+        */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061225] via-[#061225]/75 to-[#061225]/20 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#061225] via-transparent to-[#061225]/40 pointer-events-none"></div>
       </div>
 
       {/* Main Content Layout */}
       <div className="relative z-10 max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 py-12 lg:py-16">
-        <div className="max-w-2xl lg:max-w-3xl flex flex-col justify-center pt-4 lg:pt-8">
+        <div className="max-w-2xl lg:max-w-3xl flex flex-col justify-center pt-2 lg:pt-6">
           
-          {/* Main Title */}
-          <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-display text-white font-normal tracking-tight leading-[1.06] mb-3 drop-shadow-lg">
+          {/* Subtle White-Label / Infrastructure Indicator */}
+          <div className="inline-flex items-center gap-2 mb-4 text-xs font-mono text-cyan-300 bg-[#071526]/80 px-3 py-1 rounded-full border border-cyan-500/30 w-fit backdrop-blur-md">
+            <span>ARCUS AI</span>
+            <span className="text-slate-400">·</span>
+            <span>Powered by ARGUS</span>
+          </div>
+
+          {/* Primary Headline (High Legibility Serif for Property Title) */}
+          <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-display text-white font-normal tracking-tight leading-[1.08] mb-3">
             Suite 5200:
           </h1>
           
           {/* Golden Subtitle */}
-          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-display text-[#F3E2B8] font-light leading-[1.25] mb-5 drop-shadow-md">
+          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-display text-[#F3E2B8] font-light leading-[1.25] mb-4 max-w-2xl">
             The Intelligent Digital Twin for Toronto's Most Exclusive Penthouse.
           </h2>
 
-          {/* Sub-headline */}
-          <p className="text-slate-200 text-base sm:text-lg font-light leading-relaxed max-w-xl mb-8 drop-shadow-md">
-            Experience how ARGUS qualifies high-net-worth buyers in real time.
+          {/* Supporting Text (Institutional, Credible, Free of Exaggerations) */}
+          <p className="text-[#C7D0DC] text-base sm:text-lg font-normal leading-relaxed max-w-xl mb-6">
+            Experience how ARGUS qualifies high-intent buyers in real time.
           </p>
 
-          {/* Location Pin */}
-          <div className="flex items-start gap-3 text-slate-200 drop-shadow-md mb-8">
-            <div className="w-8 h-8 rounded-full bg-black/50 border border-white/30 flex items-center justify-center shrink-0 mt-0.5 backdrop-blur-md shadow-[0_0_12px_rgba(230,202,101,0.3)]">
-              <MapPin className="w-4 h-4 text-[#E6CA65]" />
-            </div>
-            <div className="leading-tight">
-              <div className="font-semibold text-sm sm:text-base text-white drop-shadow">
-                50 Yorkville Avenue, Toronto
+          {/* Refined Property Information Hierarchy */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-[#071526]/90 border border-cyan-500/30 backdrop-blur-xl mb-8 max-w-xl shadow-xl space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
+              <div>
+                <div className="text-xs font-mono uppercase tracking-wider text-[#8FA1B5]">
+                  50 Yorkville Avenue, Toronto, Ontario
+                </div>
+                <div className="text-sm sm:text-base font-display font-semibold text-white mt-0.5">
+                  PENTHOUSE SUITE 5200
+                </div>
               </div>
-              <div className="text-xs text-slate-300 font-light mt-0.5">
-                Penthouse Suite 5200 · Four Seasons Private Residences
+              <div className="sm:text-right">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-[#BFA775] font-semibold">
+                  ASKING PRICE
+                </div>
+                <div className="text-lg sm:text-xl font-bold font-mono text-white tabular-nums">
+                  $15,800,000 CAD
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-3 gap-2 text-xs text-[#C7D0DC]">
+              <div>
+                <span className="text-[10px] text-[#8FA1B5] uppercase block font-mono">Interior</span>
+                <span className="font-semibold text-white">6,450 sq ft</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-[#8FA1B5] uppercase block font-mono">Terrace</span>
+                <span className="font-semibold text-white">1,200 sq ft</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-[#8FA1B5] uppercase block font-mono">Building</span>
+                <span className="font-semibold text-white truncate block">Four Seasons</span>
               </div>
             </div>
           </div>
 
-          {/* High-Contrast Value Prop Exploration Action Pills */}
-          <div className="flex flex-wrap items-center gap-3">
+          {/* Navigation Micro-Pills */}
+          <div className="flex flex-wrap items-center gap-2.5">
             <button
               onClick={onOpenOverview}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0a1b38]/80 hover:bg-[#0f2c5e] text-white text-xs font-bold backdrop-blur-md border border-cyan-400/50 hover:border-cyan-300 shadow-[0_4px_15px_rgba(6,182,212,0.25),inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all cursor-pointer hover:scale-105"
+              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#091b38]/90 hover:bg-[#0f2c5e] text-white text-xs font-semibold backdrop-blur-md border border-cyan-400/40 transition-all cursor-pointer hover:border-cyan-300"
             >
               <Eye className="w-3.5 h-3.5 text-cyan-300" />
               <span>3D Digital Twin</span>
@@ -80,15 +113,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <button
               onClick={onOpenSpecs}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#201a0d]/80 hover:bg-[#332912] text-[#F3E2B8] text-xs font-bold backdrop-blur-md border border-[#BFA775]/60 hover:border-[#E6CA65] shadow-[0_4px_15px_rgba(191,167,117,0.3),inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all cursor-pointer hover:scale-105"
+              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#1f190e]/90 hover:bg-[#332912] text-[#F3E2B8] text-xs font-semibold backdrop-blur-md border border-[#BFA775]/50 transition-all cursor-pointer hover:border-[#BFA775]"
             >
-              <Layers className="w-3.5 h-3.5 text-[#E6CA65]" />
+              <Layers className="w-3.5 h-3.5 text-[#BFA775]" />
               <span>Poliform Matrix</span>
             </button>
 
             <button
               onClick={onOpenFinancials}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0c261b]/80 hover:bg-[#143d2c] text-emerald-200 text-xs font-bold backdrop-blur-md border border-emerald-400/50 hover:border-emerald-300 shadow-[0_4px_15px_rgba(16,185,129,0.25),inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all cursor-pointer hover:scale-105"
+              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0c2419]/90 hover:bg-[#143d2c] text-emerald-200 text-xs font-semibold backdrop-blur-md border border-emerald-400/40 transition-all cursor-pointer hover:border-emerald-300"
             >
               <Calculator className="w-3.5 h-3.5 text-emerald-300" />
               <span>Carrying Costs</span>
@@ -96,10 +129,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <button
               onClick={onOpenNeighborhood}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0a1b38]/80 hover:bg-[#0f2c5e] text-cyan-200 text-xs font-bold backdrop-blur-md border border-cyan-400/50 hover:border-cyan-300 shadow-[0_4px_15px_rgba(6,182,212,0.25),inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all cursor-pointer hover:scale-105"
+              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#091b38]/90 hover:bg-[#0f2c5e] text-cyan-200 text-xs font-semibold backdrop-blur-md border border-cyan-400/40 transition-all cursor-pointer hover:border-cyan-300"
             >
               <Compass className="w-3.5 h-3.5 text-cyan-300" />
-              <span>Yorkville District</span>
+              <span>Yorkville Enclave</span>
             </button>
           </div>
 

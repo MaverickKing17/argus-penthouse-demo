@@ -3,29 +3,61 @@ export interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: string;
+  quickReplies?: string[];
   metadata?: {
     carryingCostWidget?: boolean;
     finishesWidget?: boolean;
     viewingWidget?: boolean;
+    stage?: string;
   };
+}
+
+export type SignalSource = 'buyer_stated' | 'observed' | 'verified' | 'pending' | 'not_provided';
+
+export interface SignalItem {
+  value: string;
+  source: SignalSource;
+  sourceLabel?: string;
 }
 
 export interface QualificationData {
   leadStatus: 'HOT LEAD' | 'WARM QUALIFIED' | 'QUALIFIED PROSPECT' | 'NURTURE';
   leadBadge: string;
-  confidenceScore: number;
+  qualificationConfidence: number; // 95%
   leadQuality: 'Excellent' | 'High' | 'Good' | 'Evaluating';
   intentLevel: 'High' | 'Medium' | 'Exploring';
-  riskLevel: 'Low' | 'Verified' | 'Medium';
-  estimatedBudget: string;
-  purchaseStructure: string;
-  liquidAllocationTimeline: string;
-  representation: string;
+  verificationStatus: 'Identity Verification Pending' | 'Verified' | 'Unverified';
+  
+  // Structured Signals with explicit data states
+  budget: SignalItem;
+  purchaseStructure: SignalItem;
+  timeline: SignalItem;
+  representation: SignalItem;
+  identity: SignalItem;
+  proofOfFunds: SignalItem;
+  
   propertyInterest: string;
   locationPreference: string;
   propertyType: string;
   intentScore: number;
-  summaryPills: string[];
+  
+  // Evidence-based qualification
+  qualificationEvidence: {
+    budget: string;
+    structure: string;
+    timeline: string;
+    representation: string;
+    intent: string;
+  };
+  
+  nextBestAction: 'Schedule private viewing' | 'Request private verification' | 'Broker review recommended';
+  
+  summaryPills: Array<{
+    label: string;
+    status: 'stated' | 'observed' | 'verified' | 'pending' | 'not_provided';
+    source: string;
+  }>;
+  
   extractedInsights: string[];
   lastUpdated?: string;
 }
@@ -46,4 +78,13 @@ export interface PropertyData {
   monthlyMaintenanceCad: number;
   status: string;
   highlights: string[];
+}
+
+export interface MarketIntelligenceData {
+  metric: string;
+  value: string;
+  source: string;
+  date: string;
+  geographicScope: string;
+  propertySegment: string;
 }
