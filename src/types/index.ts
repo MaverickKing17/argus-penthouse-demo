@@ -20,6 +20,19 @@ export interface SignalItem {
   sourceLabel?: string;
 }
 
+export interface BrokerNote {
+  id: string;
+  text: string;
+  timestamp: string;
+  author: string;
+}
+
+export interface IntentTimelinePoint {
+  date: string;
+  score: number;
+  event: string;
+}
+
 export interface QualificationData {
   leadStatus: 'HOT LEAD' | 'WARM QUALIFIED' | 'QUALIFIED PROSPECT' | 'NURTURE';
   leadBadge: string;
@@ -27,6 +40,7 @@ export interface QualificationData {
   leadQuality: 'Excellent' | 'High' | 'Good' | 'Evaluating';
   intentLevel: 'High' | 'Medium' | 'Exploring';
   verificationStatus: 'Identity Verification Pending' | 'Verified' | 'Unverified';
+  agentVerified?: boolean;
   
   // Structured Signals with explicit data states
   budget: SignalItem;
@@ -59,6 +73,8 @@ export interface QualificationData {
   }>;
   
   extractedInsights: string[];
+  notes?: BrokerNote[];
+  intentTimeline?: IntentTimelinePoint[];
   lastUpdated?: string;
 }
 

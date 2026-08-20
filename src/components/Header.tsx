@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronRight, User } from 'lucide-react';
+import arcusLogoImg from '../assets/images/arcus_ai_logo_1787262911472.jpg';
 
 interface HeaderProps {
   activeTab: string;
@@ -25,20 +26,30 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="sticky top-0 z-40 w-full bg-[#060D1E]/90 backdrop-blur-xl border-b border-cyan-500/20 px-4 sm:px-6 lg:px-10 py-2.5 transition-all">
       <div className="max-w-[1720px] mx-auto flex items-center justify-between gap-4">
-        {/* Brand Logo */}
+        {/* Brand Logo (Top Left Corner) */}
         <div
-          className="flex items-center gap-3 cursor-pointer shrink-0"
+          className="flex items-center gap-3 cursor-pointer shrink-0 group"
           onClick={() => setActiveTab('concierge')}
+          title="ARCUS AI - Intelligence. Precision. Results."
         >
-          <img
-            src="https://i.ibb.co/hJZCQ2Cr/Luxury-Penthouse-Interior-Arcus-AI.png"
-            alt="ARCUS AI Logo"
-            className="h-8 sm:h-9 w-auto object-contain rounded"
-          />
-          <div className="flex items-baseline gap-1.5">
-            <span className="text-white font-bold tracking-[0.2em] text-lg font-display">ARCUS</span>
-            <span className="text-[#FF7A00] font-semibold tracking-wider text-[11px] px-1.5 py-0.2 rounded bg-[#FF7A00]/15 border border-[#FF7A00]/30">
-              AI
+          <div className="relative w-9 h-9 rounded-xl overflow-hidden border border-cyan-400/40 group-hover:border-[#FF7A00] transition-colors shadow-[0_0_15px_rgba(0,196,204,0.3)] group-hover:shadow-[0_0_20px_rgba(255,122,0,0.4)] bg-[#040C1A]">
+            <img
+              src={arcusLogoImg}
+              alt="ARCUS AI Emblem"
+              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div className="flex flex-col">
+            <div className="flex items-baseline gap-1.5 leading-none">
+              <span className="text-white font-bold tracking-[0.22em] text-lg font-display group-hover:text-slate-100 transition-colors">
+                ARCUS
+              </span>
+              <span className="text-[#FF7A00] font-bold tracking-wider text-[11px] px-1.5 py-0.2 rounded bg-[#FF7A00]/15 border border-[#FF7A00]/30 shadow-sm">
+                AI
+              </span>
+            </div>
+            <span className="text-[8.5px] font-mono tracking-[0.2em] text-[#8FA1B5] uppercase mt-0.5 group-hover:text-cyan-300 transition-colors">
+              Intelligence · Precision · Results
             </span>
           </div>
         </div>

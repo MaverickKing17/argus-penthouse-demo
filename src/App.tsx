@@ -309,6 +309,9 @@ export default function App() {
         isOpen={isLeadProfileOpen}
         onClose={() => setIsLeadProfileOpen(false)}
         qualification={qualification}
+        onUpdateQualification={setQualification}
+        onContactLead={() => setIsContactLeadOpen(true)}
+        onScheduleCall={() => setIsScheduleCallOpen(true)}
       />
 
       <ContactLeadModal

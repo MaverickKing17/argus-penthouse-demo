@@ -355,11 +355,18 @@ export const BrokerQualificationView: React.FC<BrokerQualificationViewProps> = (
                 <div className="flex items-center justify-between py-2 px-2.5 rounded-lg bg-white/[0.02]">
                   <span className="text-[#C7D0DC] font-medium">Representation</span>
                   <div className="text-right">
-                    <span className="text-[#F3E2B8] font-semibold px-2 py-0.5 rounded bg-[#BFA775]/15 border border-[#BFA775]/30">
-                      {qualification.representation.value}
-                    </span>
+                    {qualification.agentVerified ? (
+                      <span className="text-emerald-300 font-semibold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 inline-flex items-center gap-1 shadow-sm">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                        <span>Verified Agent</span>
+                      </span>
+                    ) : (
+                      <span className="text-[#F3E2B8] font-semibold px-2 py-0.5 rounded bg-[#BFA775]/15 border border-[#BFA775]/30">
+                        {qualification.representation.value}
+                      </span>
+                    )}
                     <div className="text-[10px] text-cyan-300 font-mono mt-0.5">
-                      Source: {qualification.representation.sourceLabel || 'Buyer stated'}
+                      Source: {qualification.agentVerified ? 'Broker Verified' : qualification.representation.sourceLabel || 'Buyer stated'}
                     </div>
                   </div>
                 </div>

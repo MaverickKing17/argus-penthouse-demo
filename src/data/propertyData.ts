@@ -100,6 +100,28 @@ export const INITIAL_QUALIFICATION: QualificationData = {
     'Buyer unrepresented by external brokerage',
     'Private viewing request intent registered'
   ],
+  agentVerified: false,
+  notes: [
+    {
+      id: 'note-1',
+      text: 'Principal indicated all-cash liquid availability without lending contingency. Requested after-hours walkthrough with senior listing team.',
+      timestamp: 'Today, 6:44 PM',
+      author: 'Senior Advisory Director'
+    },
+    {
+      id: 'note-2',
+      text: 'Reviewed Poliform kitchen finishes & Lutron home automation specs. Requested full property disclosure package.',
+      timestamp: 'Today, 6:38 PM',
+      author: 'Managing Partner'
+    }
+  ],
+  intentTimeline: [
+    { date: 'Aug 14', score: 38, event: 'First Property Overview & Floorplan Discovery' },
+    { date: 'Aug 16', score: 56, event: 'Explored 3D Digital Twin & Poliform Specification' },
+    { date: 'Aug 18', score: 74, event: 'Analyzed Carrying Cost Model & Tax Structures' },
+    { date: 'Aug 19', score: 86, event: 'Accessed RECO / FINTRAC Compliance Schedules' },
+    { date: 'Aug 20 (Today)', score: 96, event: 'Stated All-Cash Offer & Scheduled VIP Showing' }
+  ],
   lastUpdated: 'Today, 6:47 PM'
 };
 

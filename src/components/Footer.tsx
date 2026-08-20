@@ -12,6 +12,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { LegalDocumentModal, LegalDocType } from './LegalDocumentModal';
+import arcusLogoImg from '../assets/images/arcus_ai_logo_1787262911472.jpg';
 
 export const Footer: React.FC = () => {
   const [emailSubscribed, setEmailSubscribed] = useState(false);
@@ -40,18 +41,27 @@ export const Footer: React.FC = () => {
           {/* Top Tier: Institutional Brand, Mission & Accreditation Flow */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-8 border-b border-white/10">
             
-            {/* Col 1-6: Brand & Positioning */}
+            {/* Col 1-6: Brand & Positioning (Bottom Left Corner) */}
             <div className="lg:col-span-6 space-y-3.5">
-              <div className="flex items-center gap-3">
-                <img
-                  src="https://i.ibb.co/hJZCQ2Cr/Luxury-Penthouse-Interior-Arcus-AI.png"
-                  alt="ARCUS AI Logo"
-                  className="h-8 sm:h-9 w-auto object-contain rounded"
-                />
-                <div className="flex items-baseline gap-2">
-                  <span className="text-white font-bold tracking-[0.2em] text-xl font-display">ARCUS</span>
-                  <span className="text-[#FF7A00] font-semibold text-xs px-2 py-0.2 rounded bg-[#FF7A00]/15 border border-[#FF7A00]/30">
-                    AI
+              <div className="flex items-center gap-3 group">
+                <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-cyan-400/40 group-hover:border-[#FF7A00] transition-colors shadow-[0_0_15px_rgba(0,196,204,0.3)] group-hover:shadow-[0_0_20px_rgba(255,122,0,0.4)] bg-[#040C1A]">
+                  <img
+                    src={arcusLogoImg}
+                    alt="ARCUS AI Emblem"
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <div className="flex items-baseline gap-2 leading-none">
+                    <span className="text-white font-bold tracking-[0.22em] text-xl font-display">
+                      ARCUS
+                    </span>
+                    <span className="text-[#FF7A00] font-bold text-xs px-2 py-0.5 rounded bg-[#FF7A00]/15 border border-[#FF7A00]/30 shadow-sm">
+                      AI
+                    </span>
+                  </div>
+                  <span className="text-[9px] font-mono tracking-[0.2em] text-[#8FA1B5] uppercase mt-0.5">
+                    Intelligence · Precision · Results
                   </span>
                 </div>
               </div>
