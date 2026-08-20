@@ -61,10 +61,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             The Intelligent Digital Twin for Toronto's Most Exclusive Penthouse.
           </h2>
 
-          {/* Supporting Text (Institutional, Credible, Free of Exaggerations) */}
-          <p className="text-[#C7D0DC] text-base sm:text-lg font-normal leading-relaxed max-w-xl mb-6">
-            Experience how ARGUS qualifies high-intent buyers in real time.
-          </p>
+          {/* Supporting Text & Platform Context (Institutional, Credible) */}
+          <div className="space-y-2 mb-6 max-w-xl">
+            <p className="text-[#C7D0DC] text-base sm:text-lg font-normal leading-relaxed">
+              Experience how ARGUS qualifies high-intent buyers in real time.
+            </p>
+            <p className="text-[#C7D0DC] text-sm sm:text-base font-normal leading-relaxed text-[#9fb1c7]">
+              This demo showcases the ARGUS AI Concierge, our proprietary white-label digital acquisition infrastructure designed to secure premium listing mandates and qualify HNW interest for high-value real estate assets.
+            </p>
+          </div>
 
           {/* Refined Property Information Hierarchy */}
           <div className="p-4 sm:p-5 rounded-2xl bg-[#071526]/90 border border-cyan-500/30 backdrop-blur-xl mb-6 max-w-xl shadow-xl space-y-3">

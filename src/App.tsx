@@ -24,13 +24,13 @@ export default function App() {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Initial welcome message from ARGUS
+  // Initial welcome message from ARGUS (Demo onboarding moment)
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'argus-welcome',
       role: 'assistant',
       content:
-        'Welcome to Suite 5200. I am ARGUS, your private digital concierge. I can provide property intelligence, ownership analysis, or arrange a private introduction to the advisory team.',
+        'Welcome to the ARGUS AI Concierge DEMO. I am your secure, institutional-grade digital infrastructure. For this simulation, I am acting as the concierge for Suite 5200. I can show you how we model financial carry, analyze HNW portfolio architecture, and qualify high-intent buyers in real time while protecting vendor privacy. Ask me about the property to begin.',
       timestamp: '6:42 PM',
     },
   ]);
@@ -201,7 +201,7 @@ export default function App() {
         id: 'argus-welcome',
         role: 'assistant',
         content:
-          'Welcome to Suite 5200. I am ARGUS, your private digital concierge. I can provide property intelligence, ownership analysis, or arrange a private introduction to the advisory team.',
+          'Welcome to the ARGUS AI Concierge DEMO. I am your secure, institutional-grade digital infrastructure. For this simulation, I am acting as the concierge for Suite 5200. I can show you how we model financial carry, analyze HNW portfolio architecture, and qualify high-intent buyers in real time while protecting vendor privacy. Ask me about the property to begin.',
         timestamp: '6:42 PM',
       },
     ]);
